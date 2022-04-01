@@ -71,6 +71,18 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     })
   }
 
+  verifyAndSignup() {
+    if (this.signupForm.controls['password'].value == this.signupForm.controls['cpassword'].value) {
+      this.signUp()
+    } else {
+      this.toastr.error("Confirm password doesn't match");
+      this.signupForm.patchValue({
+        password: "",
+        cpassword: ""
+      })
+    }
+  }
+
   signUp() {
     this.isLoading = true;
     var customer: Customer = new Customer;
@@ -102,7 +114,7 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
   }
 
   confirmPasswordShow() {
-    this.encryptPassword = !this.encryptPassword;
+    this.encryptConfirmPassword = !this.encryptConfirmPassword;
   }
 
 }
