@@ -9,6 +9,9 @@ import { MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext'
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
 
 
 @NgModule({
@@ -17,6 +20,7 @@ import { ButtonModule } from 'primeng/button';
     CustomerSignupComponent
   ],
   imports: [
+    ToastModule,
     CommonModule,
     CustomerRoutingModule,
     FontAwesomeModule,
@@ -24,7 +28,9 @@ import { ButtonModule } from 'primeng/button';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    DropdownModule,
   ],
   providers: [MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
