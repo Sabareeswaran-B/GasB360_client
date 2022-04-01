@@ -8,6 +8,9 @@ import { CustomerModule } from './customer/customer.module';
 import { DeliveryModule } from './delivery/delivery.module';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AccordionModule} from 'primeng/accordion';    
+
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AdminModule,
     CustomerModule,
     DeliveryModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AccordionModule,
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]
