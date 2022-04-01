@@ -7,6 +7,7 @@ import { Subject, Subscription } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { CustomerService } from 'src/app/service/customer.service';
 import { LoginResponse } from 'src/app/model/login.response';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private messageService: MessageService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private toastr: ToastrService
   ) { }
 
   ngOnDestroy(): void {
@@ -54,7 +56,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
   get f() { return this.loginForm.controls; }
 
   login(): void {
-    // this.isLoading = true;
+    this.isLoading = true;
     console.log(this.loginForm.value);
     this.customerService.login(this.loginForm.value).subscribe({
       next: (data) => {
@@ -65,13 +67,16 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('isLoggedin', 'true');
         localStorage.setItem('role', response.role.toString());
         let message = data['message' as keyof Object] as unknown as string
-        this.messageService.add({ severity: 'success', summary: message });
+        this.toastr.success(message);
+        // this.messageService.add({ severity: 'success', summary: message });
         this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
+        this.isLoading = false;
       },
       error: (error) => {
         console.log(error);
         let message = error.error.message as unknown as string
-        this.messageService.add({ severity: 'error', summary: message });
+        this.toastr.error(message);
+        // this.messageService.add({ severity: 'error', summary: message });
         this.isLoading = false;
       }
     })

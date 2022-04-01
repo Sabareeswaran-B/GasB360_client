@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule,

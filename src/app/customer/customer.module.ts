@@ -12,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext'
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { DropdownModule } from 'primeng/dropdown';
     CustomerSignupComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     ToastModule,
     CommonModule,
     CustomerRoutingModule,

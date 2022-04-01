@@ -21,7 +21,7 @@
             <button class="w-100 p-2 p-button-raised" *ngIf="!isLoading;else loader" pButton pRipple (click)="login()"
                 title="Signin" type="button" label="Signin"></button>
 
-            <!-- <a routerLink="/signup" style="float: right;">New User?</a> -->
+            <a routerLink="/customer/signup" style="float: right;">New User?</a>
             <ng-template #loader>
                 <button class="w-100 p-2 p-button-raised" pButton pRipple type="button" [disabled]="true">
                     <i class="pi pi-spin pi-spinner"></i>
