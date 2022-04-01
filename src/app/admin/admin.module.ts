@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
-
+import {CardModule} from 'primeng/card';
+import { GridModule } from '@progress/kendo-angular-grid';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import { AdminRoutingModule } from './admin-routing/admin-routing.module';
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    CardModule,
+    GridModule,
   ]
 })
 export class AdminModule { }
