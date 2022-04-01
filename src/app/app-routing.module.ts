@@ -9,6 +9,12 @@ const routes: Routes = [
     // pathMatch: "prefix"
     // canActivate: [AuthGuard]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(admin => admin.AdminModule),
+    // pathMatch: "prefix"
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({
