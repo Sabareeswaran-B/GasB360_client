@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { StockComponent } from './stock/stock.component';
-import { LoginComponent } from './login/login.component';
-
+import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 
 
 @NgModule({
@@ -12,10 +11,11 @@ import { LoginComponent } from './login/login.component';
     DashboardComponent,
     EmployeeComponent,
     StockComponent,
-    LoginComponent
+
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }
