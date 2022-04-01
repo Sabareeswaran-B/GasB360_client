@@ -1,5 +1,5 @@
 export class LoginResponse {
     id!: string;
-    role!: Number;
+    role!: string;
     token!: string;
 }

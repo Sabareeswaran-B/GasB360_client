@@ -3,8 +3,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import Customer from 'src/app/model/customer.model';
+import Type from 'src/app/model/type.model';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -22,7 +25,7 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
   encryptPassword = true;
   encryptConfirmPassword = true;
 
-  type:any[] = [];
+  type: Type[] = [];
 
   subscriptions: Subscription[] = [];
 
@@ -31,7 +34,8 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private router: Router,
     private messageService: MessageService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -58,8 +62,8 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
   getAllTypes() {
     this.customerService.GetAllTypes().subscribe({
       next: (data) => {
-        var response = data['data' as keyof Object];
-        this.type = response as unknown as any[];
+        var response = data['data' as keyof Object] as unknown as Type[];
+        this.type = response;
       },
       error: (error) => {
         console.log(error);
@@ -67,8 +71,42 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     })
   }
 
-  signUp() {
+  verifyAndSignup() {
+    if (this.signupForm.controls['password'].value == this.signupForm.controls['cpassword'].value) {
+      this.signUp()
+    } else {
+      this.toastr.error("Confirm password doesn't match");
+      this.signupForm.patchValue({
+        password: "",
+        cpassword: ""
+      })
+    }
+  }
 
+  signUp() {
+    this.isLoading = true;
+    var customer: Customer = new Customer;
+    customer.CustomerName = this.signupForm.controls['customerName'].value;
+    customer.CustomerPhone = this.signupForm.controls['customerPhone'].value;
+    customer.CustomerEmail = this.signupForm.controls['customerEmail'].value;
+    customer.TypeId = this.signupForm.controls['typeId'].value.typeId;
+    customer.Password = this.signupForm.controls['password'].value;
+    this.customerService.Signup(customer).subscribe({
+      next: (data) => {
+        var response = data['data' as keyof Object];
+        console.log(response);
+        // let message = data['message' as keyof Object] as unknown as string
+        // this.messageService.add({ severity: 'success', summary: message });
+        this.toastr.success("Sign up successful");
+        this.isLoading = false;
+        this.router.navigate(['/customer/login'], { replaceUrl: true });
+      },
+      error: (error) => {
+        console.log(error);
+        this.toastr.error(error.error.message);
+        this.isLoading = false;
+      }
+    })
   }
 
   passwordShow() {
@@ -76,7 +114,7 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
   }
 
   confirmPasswordShow() {
-    this.encryptPassword = !this.encryptPassword;
+    this.encryptConfirmPassword = !this.encryptConfirmPassword;
   }
 
 }
