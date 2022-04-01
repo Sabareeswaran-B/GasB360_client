@@ -6,7 +6,6 @@ const routes: Routes = [
   {
     path: 'customer',
     loadChildren: () => import('./customer/customer.module').then(customer => customer.CustomerModule),
-    // pathMatch: "prefix"
     // canActivate: [AuthGuard]
   },
   {

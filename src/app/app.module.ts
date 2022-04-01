@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -9,9 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {AccordionModule} from 'primeng/accordion';    
 import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
 
 
 @NgModule({
@@ -20,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule,
     AppRoutingModule,
     SharedModule,
@@ -27,12 +28,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CustomerModule,
     DeliveryModule,
     FontAwesomeModule,
-    AccordionModule,
-    BrowserAnimationsModule
-    
-
+    ToastModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MessageService],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
