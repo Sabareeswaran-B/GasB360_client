@@ -59,14 +59,14 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     console.log(this.loginForm.value);
     this.customerService.login(this.loginForm.value).subscribe({
-      next: (data) => {
-        var response: LoginResponse = data['data' as keyof Object] as unknown as LoginResponse;
+      next: (response) => {
         console.log(response);
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('id', response.id);
+        var data = response.data as LoginResponse;
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('id', data.id);
         localStorage.setItem('isLoggedin', 'true');
-        localStorage.setItem('role', response.role.toString());
-        let message = data['message' as keyof Object] as unknown as string
+        localStorage.setItem('role', data.role.toString());
+        let message = response.message;
         this.toastr.success(message);
         // this.messageService.add({ severity: 'success', summary: message });
         this.router.navigate(['/customer/dashboard'], { replaceUrl: true });

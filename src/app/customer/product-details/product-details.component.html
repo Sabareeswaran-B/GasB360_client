@@ -1,0 +1,54 @@
+<div class="container-fluid vh-100">
+  <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+
+  <kendo-tilelayout [columns]="4" [rowHeight]="300" [resizable]="false" [reorderable]="false">
+    <kendo-tilelayout-item title="Other products" [col]="1" [colSpan]="1" [rowSpan]="2" class="shadow">
+      <kendo-tilelayout-item-body>
+        <div class="order-list">
+          <div *ngFor="let otherProduct of otherProducts">
+            <div class="contact">
+              <div class="contact-details">
+                <div class="contact-name">{{ otherProduct.productName }}</div>
+                <div class="contact-name">₹ {{ otherProduct.productPrice }}</div>
+              </div>
+              <button class="k-button k-button-solid-primary k-button-solid-base messages-label"
+                (click)="changeProduct( otherProduct.productId )">View</button>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </kendo-tilelayout-item-body>
+    </kendo-tilelayout-item>
+
+    <kendo-tilelayout-item [col]="2" [colSpan]="2" [rowSpan]="2" class="shadow">
+      <kendo-tilelayout-item-body>
+        <div class="row px-2">
+          <div class="col-lg-6 col-md-12 col-sm-12 bg-dark" style="border-radius: 20px; min-height: 350px;"></div>
+          <div class="col-lg-6 col-md-12 col-sm-12 h3 fw-normal">{{ product.productCategory.productName }}</div>
+        </div>
+      </kendo-tilelayout-item-body>
+    </kendo-tilelayout-item>
+
+    <kendo-tilelayout-item title="Conversion Rate" [col]="4" class="shadow">
+      <kendo-tilelayout-item-body>
+        <div class="h5 fw-normal">₹ {{ product.productCategory.productPrice }}</div>
+        <button class="product-button k-bg-primary text-light shadow py-1" (click)="confirmOrder()"
+          *ngIf="!orderLoading;else loader">ORDER</button>
+        <!-- <button pButton pRipple class="k-bg-primary w-100 px-3" *ngIf="!orderLoading;else loader"
+          style="margin-top: auto;" (click)="confirmOrder()" label="ORDER"></button> -->
+        <ng-template #loader>
+          <button class="product-button k-bg-primary text-light shadow py-1" [disabled]="true">
+            <i class="pi pi-spin pi-spinner"></i>
+          </button>
+        </ng-template>
+      </kendo-tilelayout-item-body>
+    </kendo-tilelayout-item>
+
+    <kendo-tilelayout-item title="Visitors" [col]="4" class="shadow">
+      <kendo-tilelayout-item-body>
+
+      </kendo-tilelayout-item-body>
+    </kendo-tilelayout-item>
+  </kendo-tilelayout>
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+</div>

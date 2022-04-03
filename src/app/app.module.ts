@@ -13,6 +13,10 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ListViewModule } from '@progress/kendo-angular-listview';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
+
 
 
 @NgModule({
@@ -31,6 +35,8 @@ import { ToastrModule } from 'ngx-toastr';
     DeliveryModule,
     FontAwesomeModule,
     ToastModule,
+    ListViewModule,
+    LayoutModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
