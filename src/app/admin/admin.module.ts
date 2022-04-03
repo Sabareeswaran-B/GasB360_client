@@ -11,12 +11,14 @@ import { CalendarModule } from '@progress/kendo-angular-dateinputs';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import { ProductcategoryComponent } from './productcategory/productcategory.component';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
     EmployeeComponent,
+    ProductcategoryComponent,
 
 
   ],

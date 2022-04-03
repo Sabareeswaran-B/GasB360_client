@@ -47,8 +47,8 @@
             [width]="140"
           >
           </kendo-grid-column>
-          <kendo-grid-column field="role.roleType" title="roleId" [width]="100">
-          </kendo-grid-column>
+          <kendo-grid-column field="role.roleType" title="role Name" [width]="100">
+          </kendo-grid-column>  
           <kendo-grid-column field="active" title="active" [width]="60">
           </kendo-grid-column>
           <kendo-grid-column
@@ -207,6 +207,7 @@
           id="float-input"
           type="text"
           name="id_text"
+          [readonly]="true"
           formControlName="employeeId"
           pInputText
           disable
@@ -298,7 +299,7 @@
 <form [formGroup]="employeeDataUpdate">
 <div class="row">
   <div class="col-md-6">
-    <h4>Are You Sure want to delete?</h4>
+    <h4> {{displayDelete}} </h4>
   </div>
   <div class="col-md-6"></div>
 </div>

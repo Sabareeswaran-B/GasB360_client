@@ -13,9 +13,6 @@ export class AdminService {
   GetAllEmployees(){
     return this.http.get("https://localhost:7076/Employee/GetAllEmployees");
   }
-  GetAllRoles(){
-    return this.http.get("https://localhost:7076/Role/GetAllRoles");
-  }
   AddNewEmployee(Employee_data : any){
     return this.http.post("https://localhost:7076/Employee/AddNewEmployee",Employee_data);
   }
@@ -24,6 +21,30 @@ export class AdminService {
   }
   DeleteEmployee(EmployeeId : string){
     return this.http.delete("https://localhost:7076/Employee/DeleteEmployee/"+ EmployeeId)
+  }
+  // Product Category 
+  GetAllProductCategories(){
+    return this.http.get("https://localhost:7076/ProductCategory/GetAllProductCategories")
+  }
+  AddProductCategory(NewProduct : any){
+    return this.http.post("https://localhost:7076/ProductCategory/AddProductCategory",NewProduct);
+  }
+  UpdateProductCategory(Product : any,ProductId : number){
+    return this.http.put("https://localhost:7076/ProductCategory/UpdateProductCategory/"+ ProductId,Product);
+  }
+  DeleteProductCategory(Product : string){
+    return this.http.delete("  https://localhost:7076/ProductCategory/DeleteProductCategory/"+ Product)
+  }
+
+
+   // Roles
+   GetAllRoles(){
+    return this.http.get("https://localhost:7076/Role/GetAllRoles");
+  }
+
+   // Type
+   GetAllTypes(){
+    return this.http.get("https://localhost:7076/Type/GetAllTypes");
   }
 }
 
