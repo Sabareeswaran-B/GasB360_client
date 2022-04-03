@@ -1,10 +1,10 @@
-<div class="container back-black">
+<div class="container-fluid back-black vh-100">
   <br />
   <div class="row">
     <div class="col-md-2 text-center">
       <p-card title="Create New Employee">
         <svg
-          (click)="this.create_new_user_popup()"
+          (click)="this.createNewUserPopup()"
           xmlns="http://www.w3.org/2000/svg"
           width="70"
           height="90"
@@ -22,12 +22,19 @@
         </svg>
       </p-card>
       <br />
-      <p-card> Content </p-card>
+      <p-card>
+        <h5>Count<hr>{{dataCount}}</h5>
+      </p-card>
+      <br>
+      <!-- <p-card>
+        <h5>Change Password<hr>{{dataCount}}</h5>
+      </p-card> -->
     </div>
     <div class="col-md-10">
       <p-card>
+        <h5>Admin Panel</h5><hr> 
         <kendo-grid
-          [kendoGridBinding]="employee_data"
+          [kendoGridBinding]="employeeDataForGrid"
           kendoGridSelectBy="employeeEmail"
           [pageSize]="10"
           [pageable]="true"
@@ -59,6 +66,7 @@
           <kendo-grid-column field="id" title="" [width]="120">
             <ng-template kendoGridCellTemplate let-dataItem>
               <svg
+                (click)="updateGridElementPopup(dataItem)"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -76,6 +84,7 @@
               </svg>
               &nbsp;&nbsp;&nbsp;
               <svg
+              (click)="deleteGridElementPopup(dataItem)"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -95,15 +104,16 @@
   </div>
   <br />
 </div>
+<!-- Creating Pop Up -->
 <p-dialog
   header="Create a new User"
-  [(visible)]="displayModal"
+  [(visible)]="displayModalCreate"
   [modal]="true"
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
-  <form [formGroup]="employee_form">
+  <form [formGroup]="employeeCreateForm">
     <br />
     <span class="p-float-label" width="100">
       <input
@@ -147,16 +157,16 @@
       <label for="float-input"> employee Email </label> </span
     ><br />
     <span class="p-float-label" width="100">
-        <input
-          id="float-input"
-          type="password"
-          name="password_new"
-          formControlName="password"
-          pInputText
-          required
-        />
-        <label for="float-input"> password </label> </span
-      ><br />
+      <input
+        id="float-input"
+        type="password"
+        name="password_new"
+        formControlName="password"
+        pInputText
+        required
+      />
+      <label for="float-input"> password </label> </span
+    ><br />
     <div class="row">
       <div class="col-md-6">
         <button
@@ -164,7 +174,7 @@
           style="background-color: var(--red-500); width: 100%"
           type="button"
           label="Exit"
-          (click)="this.employee_grid.reset(); this.displayModal = false"
+          (click)="this.employeeDataUpdate.reset(); this.displayModalCreate = false"
         ></button>
       </div>
       <div class="col-md-6">
@@ -173,9 +183,138 @@
           style="background-color: var(--green-500); width: 100%"
           type="button"
           label="Submit"
-          (click)="create_new_user()"
+          (click)="createNewUser()"
         ></button>
       </div>
     </div>
   </form>
+</p-dialog>
+<!-- Editing Pop Up -->
+
+<p-dialog
+  header="Edit Employee Data"
+  [(visible)]="displayModalEdit"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="true"
+>
+  <div class="grid p-fluid">
+    <form [formGroup]="employeeDataUpdate">
+      <br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="text"
+          name="id_text"
+          formControlName="employeeId"
+          pInputText
+          disable
+        />
+        <label for="float-input">employee Id </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="text"
+          name="name_text"
+          formControlName="employeeName"
+          pInputText
+          required
+        />
+        <label for="float-input">employee Name </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <p-dropdown
+          [options]="role_data"
+          optionLabel="roleType"
+          formControlName="roleId"
+          [showClear]="true"
+        ></p-dropdown>
+        <label for="float-input"> Role Type </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="number"
+          name="Phone_num"
+          formControlName="employeePhone"
+          pInputText
+          required
+        />
+        <label for="float-input"> employee Phone</label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="email"
+          formControlName="employeeEmail"
+          pInputText
+          required
+        />
+        <label for="float-input"> employee Email </label> </span
+      ><br />
+      <br />
+      <div class="row">
+        <div class="col-md-6">
+          <button
+            width="50%"
+            pButton
+            style="background-color: var(--red-600)"
+            type="button"
+            label="Exit"
+            (click)="this.employeeDataUpdate.reset(); this.displayModalEdit = false"
+          ></button>
+        </div>
+        <div class="col-md-6">
+          <button
+          width="50%"
+          pButton
+          style="background-color: var(--green-600)"
+          type="button"
+          label="Submit"
+          (click)="updateGridElement()"
+        ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!-- <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayModalEdit=false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template> -->
+</p-dialog>
+
+
+<!-- Delete Modal -->
+
+<p-dialog
+  header="Delete Employee Data"
+  [(visible)]="displayModalDelete"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="true"
+>
+<form [formGroup]="employeeDataUpdate">
+<div class="row">
+  <div class="col-md-6">
+    <h4>Are You Sure want to delete?</h4>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4"><button
+    width="50%"
+    pButton
+    style="background-color: var(--red-600)"
+    type="button"
+    label="Confirm Delete"
+    (click)="this.displayModalEdit = false;deleteGridElement()"
+    ></button>
+  </div>
+</div>
+</form>
+
 </p-dialog>

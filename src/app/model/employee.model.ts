@@ -1,6 +1,6 @@
 import Role from "./role.model";
 
-export default class Employee {
+export  class Employee {
     employeeId! :      string;
     employeeName! :   string;
     roleId! : string;
@@ -9,7 +9,5 @@ export default class Employee {
     employeeEmail!: string;
     password!: string;
     role!:Role;
-    // tblBranches!: string;
-    // tblOrders!: string;
-   
+  constructor() {}
 }
