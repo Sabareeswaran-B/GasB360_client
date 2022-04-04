@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
- 
-  {path:'login',component:EmployeeLoginComponent},
+  {
+    path: 'customer',
+    loadChildren: () => import('./customer/customer.module').then(customer => customer.CustomerModule),
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

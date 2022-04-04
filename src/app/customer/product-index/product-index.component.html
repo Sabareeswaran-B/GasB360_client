@@ -1,0 +1,17 @@
+<p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<div class="container-fluid">
+    <div class="row mt-3">
+        <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let product of products;">
+            <div class="card my-3 shadow px-3 py-3" style="min-height: 300px; border:none; border-radius: 20px;">
+                <div class="card-image bg-dark">
+
+                </div>
+                <div class="card-body">
+                    <h1 class="h3 fw-normal">{{product.productName}} <span class="h5 fw-normal" style="float: right;">₹
+                            {{product.productPrice}}</span></h1>
+                </div>
+                <button class="product-button k-bg-primary text-light shadow py-2" [routerLink]="[product.productId]">View</button>
+            </div>
+        </div>
+    </div>
+</div>

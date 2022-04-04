@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,15 +11,13 @@ import { CustomerModule } from './customer/customer.module';
 import { DeliveryModule } from './delivery/delivery.module';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
-// Kendo
-import { LabelModule } from "@progress/kendo-angular-label";
-import { InputsModule } from '@progress/kendo-angular-inputs';
+import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToastrModule } from 'ngx-toastr';
+import{ ListViewModule} from '@progress/kendo-angular-listview';
 import { LayoutModule } from '@progress/kendo-angular-layout';
-import { ButtonsModule } from '@progress/kendo-angular-buttons';
-import { RippleModule } from "@progress/kendo-angular-ripple";
-import { IconsModule } from "@progress/kendo-angular-icons";
-
+import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
 
 
 
@@ -30,25 +28,22 @@ import { IconsModule } from "@progress/kendo-angular-icons";
     EmployeeLoginComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule,
     AppRoutingModule,
     SharedModule,
     AdminModule,
     CustomerModule,
     DeliveryModule,
     FontAwesomeModule,
-    InputsModule,
-    BrowserAnimationsModule,
-    LabelModule,
+    ToastModule,
+    ListViewModule,
     LayoutModule,
-    ButtonsModule,
-    RippleModule,
-    IconsModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [MessageService],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
