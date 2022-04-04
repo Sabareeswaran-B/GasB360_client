@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { ProductcategoryComponent } from './productcategory/productcategory.component';
+import { FilledproductComponent } from './filledproduct/filledproduct.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { ProductcategoryComponent } from './productcategory/productcategory.comp
     DashboardComponent,
     EmployeeComponent,
     ProductcategoryComponent,
+    FilledproductComponent,
 
 
   ],

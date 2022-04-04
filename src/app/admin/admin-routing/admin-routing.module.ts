@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import {  EmployeeComponent } from '../employee/employee.component';
 import { ProductcategoryComponent } from '../productcategory/productcategory.component';
+import { FilledproductComponent } from '../filledproduct/filledproduct.component';
 
 
 
 
 const routes: Routes = [
   {path: "employee", component:EmployeeComponent , pathMatch: "prefix"},
-  {path: "productcategory", component:ProductcategoryComponent , pathMatch: "prefix"}
+  {path: "productcategory", component:ProductcategoryComponent , pathMatch: "prefix"},
+  {path: "filledproduct", component:FilledproductComponent , pathMatch: "prefix"}
 ];
 
 @NgModule({

@@ -13,6 +13,8 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     DeliveryModule,
     FontAwesomeModule,
     ToastModule,
+    ExcelExportModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

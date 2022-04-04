@@ -2,7 +2,7 @@
   <br />
   <div class="row">
     <div class="col-md-2 text-center">
-      <p-card title="Create New Employee">
+      <p-card title="Create New Product">
         <svg
           (click)="this.createNewUserPopup()"
           xmlns="http://www.w3.org/2000/svg"
@@ -23,19 +23,21 @@
       </p-card>
       <br />
       <p-card>
-        <h5>Count<hr>{{dataCount}}</h5>
+        <h5>
+          Count
+          <hr />
+          {{ dataCount }}
+        </h5>
       </p-card>
-      <br>
-      <!-- <p-card>
-        <h5>Change Password<hr>{{dataCount}}</h5>
-      </p-card> -->
+      <br />
     </div>
     <div class="col-md-10">
       <p-card>
-        <h5>Admin Panel</h5><hr> 
+        <h5>Filled Product</h5>
+        <hr />
         <kendo-grid
-          [kendoGridBinding]="employeeDataForGrid"
-          kendoGridSelectBy="employeeEmail"
+          [kendoGridBinding]="filledDataForGrid"
+          kendoGridSelectBy="filledProductId"
           [pageSize]="10"
           [pageable]="true"
           [pageable]="true"
@@ -55,50 +57,81 @@
                   </svg> Export to Excel
             </button>
           </ng-template>
+
           <kendo-grid-column
-            field="employeeName"
-            title="Employee Name"
+            field="productcategory.productName"
+            title="product Name"
             [width]="140"
           >
           </kendo-grid-column>
-          <kendo-grid-column field="role.roleType" title="role Name" [width]="100">
-          </kendo-grid-column>  
-          <kendo-grid-column field="active" title="active" [width]="60">
-          </kendo-grid-column>
           <kendo-grid-column
-            field="employeePhone"
-            title="Employee Phone"
-            [width]="120"
+            field="filledProductQuantity"
+            title="product Weight"
+            [width]="100"
           >
           </kendo-grid-column>
           <kendo-grid-column
-            field="employeeEmail"
-            title=" Employee Email"
+            field="branch.branchName"
+            title="branch"
+            [width]="60"
+          >
+          </kendo-grid-column>
+          <kendo-grid-column
+            field="branch.branchLocation"
+            title="branch location"
             [width]="120"
           >
           </kendo-grid-column>
           <kendo-grid-column field="id" title="" [width]="120">
             <ng-template kendoGridCellTemplate let-dataItem>
-              <svg
-                (click)="updateGridElementPopup(dataItem)"
+                <svg
+                  (click)="updateGridElementPopup(dataItem)"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="30"
+                  height="30"
+                  fill="currentColor"
+                  class="bi bi-pencil-square"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  />
+                </svg>
+                &nbsp;&nbsp;&nbsp;
+                <svg
+                (click)="increaseQuantity(dataItem)"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-pencil-square"
+                class="bi bi-arrow-up-circle-fill"
                 viewBox="0 0 16 16"
               >
                 <path
-                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
                 />
               </svg>
               &nbsp;&nbsp;&nbsp;
               <svg
-              (click)="deleteGridElementPopup(dataItem)"
+              (click)=" decreaseQuantity(dataItem)"
+                xmlns="http://www.w3.org/2000/svg"
+                width="30"
+                height="30"
+                fill="currentColor"
+                class="bi bi-arrow-down-circle-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"
+                />
+              </svg>
+              &nbsp;&nbsp;&nbsp;
+              <svg
+                (click)="deleteGridElementPopup(dataItem)"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -118,68 +151,46 @@
   </div>
   <br />
 </div>
-<!-- Creating Pop Up -->
+
+<!-- Creating Filled Product -->
 <p-dialog
-  header="Create a new User"
+  header="Create a new Product"
   [(visible)]="displayModalCreate"
   [modal]="true"
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
-  <form [formGroup]="employeeCreateForm">
+  <form [formGroup]="filledCreateForm">
     <br />
     <span class="p-float-label" width="100">
-      <input
-        id="float-input"
-        type="text"
-        name="name_text"
-        formControlName="employeeName"
-        pInputText
-        required
-      />
-      <label for="float-input">employee Name </label> </span
+      <p-dropdown
+        [options]="product_data"
+        optionLabel="productName"
+        formControlName="productCategoryId"
+        [showClear]="true"
+      ></p-dropdown>
+      <label for="float-input"> product Name </label> </span
     ><br />
     <span class="p-float-label" width="100">
       <p-dropdown
-        [options]="role_data"
-        optionLabel="roleType"
-        formControlName="roleId"
+        [options]="branch_data"
+        optionLabel="branchName"
+        formControlName="branchId"
         [showClear]="true"
       ></p-dropdown>
-      <label for="float-input"> Role Type </label> </span
+      <label for="float-input"> branch Name </label> </span
     ><br />
     <span class="p-float-label" width="100">
       <input
         id="float-input"
         type="number"
-        name="pNum"
-        formControlName="employeePhone"
+        name="productWeight"
+        formControlName="filledProductQuantity"
         pInputText
         required
       />
-      <label for="float-input"> employee Phone</label> </span
-    ><br />
-    <span class="p-float-label" width="100">
-      <input
-        id="float-input"
-        type="email"
-        formControlName="employeeEmail"
-        pInputText
-        required
-      />
-      <label for="float-input"> employee Email </label> </span
-    ><br />
-    <span class="p-float-label" width="100">
-      <input
-        id="float-input"
-        type="password"
-        name="password_new"
-        formControlName="password"
-        pInputText
-        required
-      />
-      <label for="float-input"> password </label> </span
+      <label for="float-input"> product Weight</label> </span
     ><br />
     <div class="row">
       <div class="col-md-6">
@@ -188,7 +199,9 @@
           style="background-color: var(--red-500); width: 100%"
           type="button"
           label="Exit"
-          (click)="this.employeeDataUpdate.reset(); this.displayModalCreate = false"
+          (click)="
+            this.filledDataUpdate.reset(); this.displayModalCreate = false
+          "
         ></button>
       </div>
       <div class="col-md-6">
@@ -203,7 +216,10 @@
     </div>
   </form>
 </p-dialog>
-<!-- Editing Pop Up -->
+
+
+<!-- Edit Pop Up -->
+
 
 <p-dialog
   header="Edit Employee Data"
@@ -214,61 +230,49 @@
   [resizable]="true"
 >
   <div class="grid p-fluid">
-    <form [formGroup]="employeeDataUpdate">
+    <form [formGroup]="filledDataUpdate">
       <br />
-      <span class="p-float-label" width="100">
-        <input
-          id="float-input"
-          type="text"
-          name="id_text"
-          [readonly]="true"
-          formControlName="employeeId"
-          pInputText
-          disable
-        />
-        <label for="float-input">employee Id </label> </span
-      ><br />
-      <span class="p-float-label" width="100">
-        <input
-          id="float-input"
-          type="text"
-          name="name_text"
-          formControlName="employeeName"
-          pInputText
-          required
-        />
-        <label for="float-input">employee Name </label> </span
-      ><br />
-      <span class="p-float-label" width="100">
-        <p-dropdown
-          [options]="role_data"
-          optionLabel="roleType"
-          formControlName="roleId"
-          [showClear]="true"
-        ></p-dropdown>
-        <label for="float-input"> Role Type </label> </span
-      ><br />
-      <span class="p-float-label" width="100">
-        <input
-          id="float-input"
-          type="number"
-          name="Phone_num"
-          formControlName="employeePhone"
-          pInputText
-          required
-        />
-        <label for="float-input"> employee Phone</label> </span
-      ><br />
-      <span class="p-float-label" width="100">
-        <input
-          id="float-input"
-          type="email"
-          formControlName="employeeEmail"
-          pInputText
-          required
-        />
-        <label for="float-input"> employee Email </label> </span
-      ><br />
+        <span class="p-float-label" width="100">
+          <input
+            id="float-input"
+            type="text"
+            name="id_text"
+            [readonly]="true"
+            formControlName="filledProductId"
+            pInputText
+          />
+          <label for="float-input">filled Product Id </label> </span
+        ><br />
+        <span class="p-float-label" width="100">
+            <p-dropdown
+              [options]="product_data"
+              optionLabel="productName"
+              formControlName="productCategoryId"
+              [showClear]="true"
+            ></p-dropdown>
+            <label for="float-input"> product Name </label> </span
+          ><br />
+        <span class="p-float-label" width="100">
+            <p-dropdown
+              [options]="branch_data"
+              optionLabel="branchName"
+              formControlName="branchId"
+              [showClear]="true"
+            ></p-dropdown>
+            <label for="float-input"> branch Name </label> </span
+          ><br />
+        <span class="p-float-label" width="100">
+          <input
+            id="float-input"
+            type="number"
+            name="filledProductQuantity"
+            formControlName="filledProductQuantity"
+            pInputText
+            required
+          />
+          <label for="float-input"> product Quantity</label> </span
+        ><br />
+       
       <br />
       <div class="row">
         <div class="col-md-6">
@@ -278,7 +282,7 @@
             style="background-color: var(--red-600)"
             type="button"
             label="Exit"
-            (click)="this.employeeDataUpdate.reset(); this.displayModalEdit = false"
+            (click)="this.filledDataUpdate.reset(); this.displayModalEdit = false"
           ></button>
         </div>
         <div class="col-md-6">
@@ -310,7 +314,7 @@
   [draggable]="false"
   [resizable]="true"
 >
-<form [formGroup]="employeeDataUpdate">
+<form [formGroup]="filledDataUpdate">
 <div class="row">
   <div class="col-md-6">
     <h4> {{displayDelete}} </h4>

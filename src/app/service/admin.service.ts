@@ -10,6 +10,7 @@ export class AdminService {
 
   constructor(private http : HttpClient) { }
 
+  // Employee 
   GetAllEmployees(){
     return this.http.get("https://localhost:7076/Employee/GetAllEmployees");
   }
@@ -22,6 +23,8 @@ export class AdminService {
   DeleteEmployee(EmployeeId : string){
     return this.http.delete("https://localhost:7076/Employee/DeleteEmployee/"+ EmployeeId)
   }
+
+
   // Product Category 
   GetAllProductCategories(){
     return this.http.get("https://localhost:7076/ProductCategory/GetAllProductCategories")
@@ -36,7 +39,27 @@ export class AdminService {
     return this.http.delete("  https://localhost:7076/ProductCategory/DeleteProductCategory/"+ Product)
   }
 
+ // Filled Product Category
+ GetAllFilledProducts(){
+  return this.http.get("https://localhost:7076/FilledProduct/GetAllFilledProducts")
+}
+AddNewFilledProduct(Filled : any){
+  return this.http.post("https://localhost:7076/FilledProduct/AddNewFilledProduct",Filled);
+}
+AddFilledProductStock(filledIncrease : string,filledId : string){
+  return this.http.put(`https://localhost:7076/FilledProduct/AddFilledProductStock/${filledIncrease}/${filledId}`,{});
+}
+RemoveFilledProductStock(filledDecrease : string,filledId : string){
+  return this.http.put(`https://localhost:7076/FilledProduct/RemoveFilledProductStock/${filledDecrease}/${filledId}`,{});
+}
+UpdateFilledProduct(filledProduct : any,filledId : number){
+  return this.http.put("https://localhost:7076/FilledProduct/UpdateFilledProduct/"+ filledId,filledProduct);
+}
+DeleteFilledProduct(filledId : string){
+  return this.http.delete("https://localhost:7076/FilledProduct/DeleteFilledProduct/"+filledId);
+}
 
+ 
    // Roles
    GetAllRoles(){
     return this.http.get("https://localhost:7076/Role/GetAllRoles");
@@ -46,5 +69,11 @@ export class AdminService {
    GetAllTypes(){
     return this.http.get("https://localhost:7076/Type/GetAllTypes");
   }
+
+  // Branch
+  GetAllBranches(){
+  return this.http.get("https://localhost:7076/Branch/GetAllBranches");  
+  }
+
 }
 
