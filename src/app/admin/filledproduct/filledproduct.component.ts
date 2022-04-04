@@ -6,7 +6,8 @@ import { ProductCategory } from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
 import FilledProducts from 'src/app/model/filled-product.model';
 import Branch from 'src/app/model/branch.model';
-import { process } from "@progress/kendo-data-query";
+import { process, aggregateBy } from "@progress/kendo-data-query";
+
 
 @Component({
   selector: 'app-filledproduct',

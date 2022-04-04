@@ -2,12 +2,16 @@
     <br />
     <div class="row">
       <div class="col-md-2 text-center">
-        <p-card title="Create New Product">
+        <p-card >
+          <span  
+          pTooltip="  Create a Product"
+          tooltipPosition="bottom">
           <svg
             (click)="this.createNewUserPopup()"
             xmlns="http://www.w3.org/2000/svg"
             width="70"
             height="90"
+           
             fill="currentColor"
             class="bi bi-person-plus-fill"
             viewBox="0 0 16 16"
@@ -20,10 +24,13 @@
               d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
             />
           </svg>
+        </span>
         </p-card>
         <br />
         <p-card>
+          <span >
           <h5>Count<hr>{{dataCount}}</h5>
+        </span>
         </p-card>
         <br>
       </div>
@@ -45,31 +52,51 @@
           >
         
             <ng-template kendoGridToolbarTemplate>
-              <button type="button" class="btn btn-success" kendoGridExcelCommand icon="file-excel">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-file-earmark-spreadsheet-fill" viewBox="0 0 16 16">
-                      <path d="M6 12v-2h3v2H6z"/>
-                      <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM3 9h10v1h-3v2h3v1h-3v2H9v-2H6v2H5v-2H3v-1h2v-2H3V9z"/>
-                    </svg> Export to Excel
+              <button 
+              type="button" 
+              class="btn btn-success" 
+              kendoGridExcelCommand 
+              icon="file-excel"
+              pTooltip="Click to Convert Excel"
+               tooltipPosition="right"
+              >
+                   Export to Excel
               </button>
+              
             </ng-template>
             <kendo-grid-column
               field="productName"
               title="product Name"
               [width]="140"
+              [headerStyle] ="{'font-weight' : 'bold'}" 
             >
             </kendo-grid-column>
-            <kendo-grid-column field="productWeight" title="productWeight" [width]="100">
+            <kendo-grid-column 
+            field="productWeight" 
+            title="productWeight" 
+            [width]="100"
+            [headerStyle] ="{'font-weight' : 'bold'}" 
+            >
             </kendo-grid-column>
-            <kendo-grid-column field="productPrice" title="productPrice" [width]="60">
+            <kendo-grid-column 
+            field="productPrice"
+            title="productPrice" 
+            [width]="60"
+            [headerStyle] ="{'font-weight' : 'bold'}" 
+            >
             </kendo-grid-column>
             <kendo-grid-column
               field="type.typeName"
               title="Type Name"
               [width]="120"
+              [headerStyle] ="{'font-weight' : 'bold'}" 
             >
             </kendo-grid-column>
-            <kendo-grid-column field="id" title="" [width]="120">
+            <kendo-grid-column title="" [width]="120">
               <ng-template kendoGridCellTemplate let-dataItem>
+                <span  
+          pTooltip="Edit Row "
+          tooltipPosition="left">
                 <svg
                   (click)="updateGridElementPopup(dataItem)"
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +114,11 @@
                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
                   />
                 </svg>
+                </span>
                 &nbsp;&nbsp;&nbsp;
+                <span  
+          pTooltip="Delete Row"
+          tooltipPosition="right">
                 <svg
                 (click)="deleteGridElementPopup(dataItem)"
                   xmlns="http://www.w3.org/2000/svg"
@@ -101,8 +132,10 @@
                     d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
                   />
                 </svg>
+                </span>
               </ng-template>
             </kendo-grid-column>
+            <kendo-grid-excel fileName="ProductCategory.xlsx"></kendo-grid-excel>
           </kendo-grid>
         </p-card>
       </div>

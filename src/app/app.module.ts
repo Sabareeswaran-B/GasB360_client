@@ -1,3 +1,4 @@
+import { ExcelModule } from '@progress/kendo-angular-grid';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AdminModule } from './admin/admin.module';
@@ -33,7 +34,7 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
     DeliveryModule,
     FontAwesomeModule,
     ToastModule,
-    ExcelExportModule,
+    ExcelModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -5,7 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { AdminRoutingModule } from './admin-routing/admin-routing.module';
 import {CardModule} from 'primeng/card';
-import { GridModule } from '@progress/kendo-angular-grid';
+import { ExcelModule, GridModule } from '@progress/kendo-angular-grid';
 import {DialogModule} from 'primeng/dialog';
 import { CalendarModule } from '@progress/kendo-angular-dateinputs';
 import { DropdownModule } from 'primeng/dropdown';
@@ -13,7 +13,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { ProductcategoryComponent } from './productcategory/productcategory.component';
 import { FilledproductComponent } from './filledproduct/filledproduct.component';
-
+import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import {TooltipModule} from 'primeng/tooltip';
+import { UnfilledproductComponent } from './unfilledproduct/unfilledproduct.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { FilledproductComponent } from './filledproduct/filledproduct.component'
     EmployeeComponent,
     ProductcategoryComponent,
     FilledproductComponent,
+    UnfilledproductComponent,
 
 
   ],
@@ -46,6 +49,9 @@ CalendarModule,
 // DockModule,
 DialogModule,
 DropdownModule,
+// ExcelExportModule,
+ExcelModule,
+TooltipModule,
 // SlideMenuModule,
 // TabMenuModule,
 // MegaMenuModule,
