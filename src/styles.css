@@ -44,6 +44,36 @@ p-breadcrumb, .p-breadcrumb {
     background-color: transparent;
 }
 
+p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
+    background-color: red;
+}
+p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:after{
+    background-color: red;
+}
+
+.p-chip {
+    background-color: white;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    height: 40px;
+    overflow: hidden;
+}
+
+p-chip {
+    width: 20%;
+}
+
+@media only screen and (max-width: 450px) {
+    p-chip {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    p-chip {
+        width: 30%;
+    }
+}
+
 /* kendo-tilelayout, .kendo-tilelayout{
     background-color: #f5f5f5;
 } */

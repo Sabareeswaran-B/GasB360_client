@@ -21,6 +21,12 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AddressIndexComponent } from './address-index/address-index.component';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { StoreModule } from '@ngrx/store';
+import { ProductReducer } from '../ngrx/order.reducer';
+import { HeaderComponent } from './header/header.component';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -28,10 +34,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CustomerLoginComponent,
     CustomerSignupComponent,
     ProductIndexComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AddressIndexComponent,
+    HeaderComponent
   ],
   imports: [
     ToastrModule.forRoot(),
+    StoreModule.forFeature('product', ProductReducer),
+    ChipModule,
+    ProgressBarModule,
     LayoutModule,
     BreadcrumbModule,
     ListViewModule,
@@ -49,6 +60,14 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextModule,
     DropdownModule,
     RippleModule,
+  ],
+  exports: [
+    CustomerLoginComponent,
+    CustomerSignupComponent,
+    ProductIndexComponent,
+    ProductDetailsComponent,
+    AddressIndexComponent,
+    HeaderComponent
   ],
   providers: [MessageService, ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

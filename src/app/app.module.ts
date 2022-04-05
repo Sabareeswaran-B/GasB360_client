@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { LayoutModule } from '@progress/kendo-angular-layout';
+import { StoreModule } from '@ngrx/store';
+import { ProductReducer } from './ngrx/order.reducer';
 
 
 
@@ -38,6 +40,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
     ToastModule,
     ListViewModule,
     LayoutModule,
+    StoreModule.forRoot({ product: ProductReducer}),
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

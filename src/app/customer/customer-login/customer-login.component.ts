@@ -65,7 +65,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('token', data.token);
         localStorage.setItem('id', data.id);
         localStorage.setItem('isLoggedin', 'true');
-        localStorage.setItem('role', data.role.toString());
+        localStorage.setItem('role', data.role);
         let message = response.message;
         this.toastr.success(message);
         // this.messageService.add({ severity: 'success', summary: message });
