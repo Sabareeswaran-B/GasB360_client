@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
-import { ProductCategory } from 'src/app/model/product-category.model';
+import ProductCategory  from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
 import FilledProducts from 'src/app/model/filled-product.model';
 import Branch from 'src/app/model/branch.model';
@@ -147,7 +147,7 @@ decreaseQuantity(dataItem: FilledProducts){
     // console.log(dataItem)
     this.filledDataUpdate.setValue({
       'filledProductId': dataItem.filledProductId,
-      'productCategoryId': dataItem.productcategory.productId,
+      'productCategoryId': dataItem.productCategory.productId,
       'filledProductQuantity': dataItem.filledProductQuantity,
       'branchId': dataItem.branch.branchId,
       'active': dataItem.active,

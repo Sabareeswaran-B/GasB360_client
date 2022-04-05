@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
-import { ProductCategory } from 'src/app/model/product-category.model';
+import ProductCategory  from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
 
 @Component({

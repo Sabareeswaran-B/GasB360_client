@@ -7,5 +7,5 @@ export default class FilledProducts {
     active!: string;
     branchId!: string;
     branch!: Branch;
-    productcategory!: ProductCategory;
+    productCategory!: ProductCategory;
 }
