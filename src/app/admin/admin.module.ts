@@ -16,6 +16,7 @@ import { FilledproductComponent } from './filledproduct/filledproduct.component'
 import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import {TooltipModule} from 'primeng/tooltip';
 import { UnfilledproductComponent } from './unfilledproduct/unfilledproduct.component';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ DropdownModule,
 // ExcelExportModule,
 ExcelModule,
 TooltipModule,
+ProgressBarModule,
 // SlideMenuModule,
 // TabMenuModule,
 // MegaMenuModule,

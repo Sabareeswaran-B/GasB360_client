@@ -28,9 +28,10 @@ export class FilledproductComponent implements OnInit {
   deleteMemberId! : string;
   displayDelete!:string;
   dataCount!:number;
-
+  componentLoading: boolean = true;
   gridData!: FilledProducts[];
  gridView!: any[];
+
   constructor(private service: AdminService, private builder: FormBuilder, private toaster: ToastrService) {
     this.filledDataUpdate = this.builder.group({
       filledProductId: [''], productCategoryId: [''], filledProductQuantity: [''],
@@ -53,6 +54,7 @@ export class FilledproductComponent implements OnInit {
       next: (data) => {
         this.filledDataForGrid = data['data' as keyof Object];
         this.dataCount = this.filledDataForGrid.length; 
+        this.componentLoading = false;  
         // console.log(this.productDataForGrid)
       },
       error: (err) => {
