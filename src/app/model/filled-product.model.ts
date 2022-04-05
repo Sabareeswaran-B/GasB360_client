@@ -3,7 +3,7 @@ import Branch from './branch.model';
 export default class FilledProducts {
     filledProductId!: string;
     productCategoryId!: string;
-    filledProductQuantity!: string;
+    filledProductQuantity!: number;
     active!: string;
     branchId!: string;
     branch!: Branch;

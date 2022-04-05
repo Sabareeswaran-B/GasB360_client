@@ -19,6 +19,8 @@ export class ProductcategoryComponent implements OnInit {
   displayModalEdit!: boolean;
   displayModalDelete!:boolean;
   deleteMemberId! : string;
+  componentLoading: boolean = true;
+
   displayDelete!:string;
   dataCount!:number;
   constructor(private service: AdminService, private builder: FormBuilder, private toaster: ToastrService) {
@@ -41,6 +43,7 @@ export class ProductcategoryComponent implements OnInit {
       next: (data) => {
         this.productDataForGrid = data['data' as keyof Object];
         this.dataCount = this.productDataForGrid.length; 
+        this.componentLoading = false;
         // console.log(this.productDataForGrid)
       },
       error: (err) => {

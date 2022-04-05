@@ -1,4 +1,4 @@
-<div class="container-fluid back-black vh-100">
+<div class="container-fluid back-black vh-100" *ngIf="!componentLoading;else progresloading">
   <br />
   <div class="row">
     <div class="col-md-2 text-center">
@@ -363,3 +363,6 @@
 </form>
 
 </p-dialog>
+<ng-template #progresloading>
+  <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+</ng-template>

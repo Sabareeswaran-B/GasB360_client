@@ -146,10 +146,10 @@ decreaseQuantity(dataItem: FilledProducts){
         console.log(err)
       }
     });
-    // console.log(dataItem)
+    console.log(dataItem)
     this.filledDataUpdate.setValue({
       'filledProductId': dataItem.filledProductId,
-      'productCategoryId': dataItem.productCategory.productId,
+      'productCategoryId': dataItem.productCategoryId,
       'filledProductQuantity': dataItem.filledProductQuantity,
       'branchId': dataItem.branch.branchId,
       'active': dataItem.active,

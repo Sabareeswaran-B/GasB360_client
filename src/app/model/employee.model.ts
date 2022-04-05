@@ -1,6 +1,6 @@
 import Role from "./role.model";
 
-export  class Employee {
+export default  class Employee {
     employeeId! :      string;
     employeeName! :   string;
     roleId! : string;

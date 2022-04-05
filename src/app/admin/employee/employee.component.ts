@@ -1,4 +1,4 @@
-import { Employee } from 'src/app/model/employee.model';
+import Employee  from 'src/app/model/employee.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Role from 'src/app/model/role.model';
@@ -19,6 +19,8 @@ export class EmployeeComponent implements OnInit {
   displayModalEdit!: boolean;
   displayModalDelete!:boolean;
   deleteMemberId! : string;
+  componentLoading: boolean = true;
+
   displayDelete!:string;
   dataCount!:number;
 
@@ -42,6 +44,7 @@ export class EmployeeComponent implements OnInit {
       next: (data) => {
         this.employeeDataForGrid = data['data' as keyof Object];
         this.dataCount = this.employeeDataForGrid.length; 
+        this.componentLoading = false;
       },
       error: (err) => {
         console.log(err)

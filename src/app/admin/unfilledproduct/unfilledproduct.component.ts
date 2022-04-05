@@ -27,6 +27,8 @@ export class UnfilledproductComponent implements OnInit {
   deleteMemberId! : string;
   displayDelete!:string;
   dataCount!:number;
+  componentLoading: boolean = true;
+
 
   gridData!: UnfilledProducts[];
   gridView!: any[];
@@ -52,7 +54,8 @@ export class UnfilledproductComponent implements OnInit {
       next: (data) => {
         this.unfilledDataForGrid = data['data' as keyof Object];
         this.dataCount = this.unfilledDataForGrid.length; 
-        console.log(this.unfilledDataForGrid)
+        this.componentLoading = false;
+        // console.log(this.unfilledDataForGrid)
       },
       error: (err) => {
         console.log(err)
