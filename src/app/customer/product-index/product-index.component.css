@@ -1,0 +1,12 @@
+.product-button{
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    margin-top: auto;
+}
+
+.card-image{
+    min-height: 250px;
+    border-radius: 20px;
+}

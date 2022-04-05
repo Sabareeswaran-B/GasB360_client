@@ -86,15 +86,14 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
   signUp() {
     this.isLoading = true;
     var customer: Customer = new Customer;
-    customer.CustomerName = this.signupForm.controls['customerName'].value;
-    customer.CustomerPhone = this.signupForm.controls['customerPhone'].value;
-    customer.CustomerEmail = this.signupForm.controls['customerEmail'].value;
-    customer.TypeId = this.signupForm.controls['typeId'].value.typeId;
-    customer.Password = this.signupForm.controls['password'].value;
+    customer.customerName = this.signupForm.controls['customerName'].value;
+    customer.customerPhone = this.signupForm.controls['customerPhone'].value;
+    customer.customerEmail = this.signupForm.controls['customerEmail'].value;
+    customer.typeId = this.signupForm.controls['typeId'].value.typeId;
+    customer.password = this.signupForm.controls['password'].value;
     this.customerService.Signup(customer).subscribe({
-      next: (data) => {
-        var response = data['data' as keyof Object];
-        console.log(response);
+      next: (response) => {
+        console.log(response.data);
         // let message = data['message' as keyof Object] as unknown as string
         // this.messageService.add({ severity: 'success', summary: message });
         this.toastr.success("Sign up successful");

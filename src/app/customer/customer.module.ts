@@ -5,7 +5,7 @@ import { CustomerSignupComponent } from './customer-signup/customer-signup.compo
 import { CustomerRoutingModule } from './customer-routing/customer-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ButtonModule } from 'primeng/button';
@@ -13,15 +13,30 @@ import { InputTextModule } from 'primeng/inputtext'
 import { ToastModule } from 'primeng/toast';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastrModule } from 'ngx-toastr';
+import { ProductIndexComponent } from './product-index/product-index.component';
+import { RippleModule } from 'primeng/ripple';
+import { ListViewModule } from "@progress/kendo-angular-listview";
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { DialogModule } from 'primeng/dialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @NgModule({
   declarations: [
     CustomerLoginComponent,
-    CustomerSignupComponent
+    CustomerSignupComponent,
+    ProductIndexComponent,
+    ProductDetailsComponent
   ],
   imports: [
     ToastrModule.forRoot(),
+    LayoutModule,
+    BreadcrumbModule,
+    ListViewModule,
+    DialogModule,
+    ConfirmDialogModule,
     ToastModule,
     CommonModule,
     CustomerRoutingModule,
@@ -33,8 +48,9 @@ import { ToastrModule } from 'ngx-toastr';
     ButtonModule,
     InputTextModule,
     DropdownModule,
+    RippleModule,
   ],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CustomerModule { }

@@ -1,14 +1,14 @@
 export default class Customer {
-    CustomerId!: string;
-    CustomerName!: string;
-    CustomerEmail!: string;
-    CustomerPhone!: string;
-    Password!: string;
-    RoleId!: string;
-    TypeId!: string;
-    CustomerConnection!: number;
-    AllowedLimit!: number;
-    Requested!: string;
-    Role!: string;
-    Type!: string;
+    customerId!: string;
+    customerName!: string;
+    customerEmail!: string;
+    customerPhone!: string;
+    password!: string;
+    roleId!: string;
+    typeId!: string;
+    customerConnection!: number;
+    allowedLimit!: number;
+    requested!: string;
+    role!: string;
+    type!: string;
 }

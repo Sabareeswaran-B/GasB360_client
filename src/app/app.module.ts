@@ -14,7 +14,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
+import { ListViewModule } from '@progress/kendo-angular-listview';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+
 
 
 
@@ -34,7 +36,8 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
     DeliveryModule,
     FontAwesomeModule,
     ToastModule,
-    ExcelModule,
+    ListViewModule,
+    LayoutModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
