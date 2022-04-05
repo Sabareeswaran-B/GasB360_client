@@ -59,6 +59,25 @@ DeleteFilledProduct(filledId : string){
   return this.http.delete("https://localhost:7076/FilledProduct/DeleteFilledProduct/"+filledId);
 }
 
+ // Unfilled Product Category
+ GetAllUnfilledProducts(){
+  return this.http.get("https://localhost:7076/UnfilledProduct/GetAllUnfilledProducts")
+}
+AddNewUnfilledProduct(Filled : any){
+  return this.http.post("https://localhost:7076/UnfilledProduct/AddNewUnfilledProduct",Filled);
+}
+AddUnfilledProductStock(unfilledIncrease : string,unfilledId : string){
+  return this.http.put(`https://localhost:7076/UnfilledProduct/AddUnfilledProductStock/${unfilledIncrease}/${unfilledId}`,{});
+}
+RemoveUnfilledProductStock(unfilledDecrease : string,unfilledId : string){
+  return this.http.put(`https://localhost:7076/UnfilledProduct/RemoveUnfilledProductStock/${unfilledDecrease}/${unfilledId}`,{});
+}
+UpdateUnfilledProduct(unfilledProduct : any,unfilledId : number){
+  return this.http.put("https://localhost:7076/UnfilledProduct/UpdateUnfilledProduct/"+ unfilledId,unfilledProduct);
+}
+DeleteUnfilledProduct(unfilledId : string){
+  return this.http.delete("https://localhost:7076/UnfilledProduct/DeleteUnfilledProduct/"+unfilledId);
+}
  
    // Roles
    GetAllRoles(){
