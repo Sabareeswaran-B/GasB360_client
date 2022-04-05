@@ -1,4 +1,4 @@
 export default class Type {
-    TypeId!: string;
-    TypeName!: string;
+    typeId!: string;
+    typeName!: string;
 }

@@ -1,0 +1,16 @@
+.user-button {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+@media only screen and (max-width: 450px) {
+    .user-button {
+        margin-right: 7%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .user-button {
+        margin-right: 10%;
+    }
+}

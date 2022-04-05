@@ -26,6 +26,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@ng-bootstrap/ng-bootstrap": "^12.0.1",
+    "@ngrx/store": "^13.1.0",
     "@progress/kendo-angular-buttons": "^7.0.0",
     "@progress/kendo-angular-common": "^2.0.0",
     "@progress/kendo-angular-dropdowns": "^6.0.0",
@@ -36,6 +37,7 @@
     "@progress/kendo-angular-listview": "^3.0.2",
     "@progress/kendo-angular-pager": "^3.0.0",
     "@progress/kendo-angular-popup": "^4.0.0",
+    "@progress/kendo-angular-progressbar": "^2.0.0",
     "@progress/kendo-angular-treeview": "^6.0.0",
     "@progress/kendo-drawing": "^1.5.12",
     "@progress/kendo-licensing": "^1.0.2",
@@ -46,8 +48,7 @@
     "primeng": "^13.3.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.11.4",
-    "@progress/kendo-angular-progressbar": "^2.0.0"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.2.5",

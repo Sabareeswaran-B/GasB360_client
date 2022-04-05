@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService, ConfirmEventType, MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import FilledProduct from 'src/app/model/filled-product.model';
 import ProductCategory from 'src/app/model/product-category.model';
+import { product } from 'src/app/ngrx/order.action';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -11,18 +14,22 @@ import { CustomerService } from 'src/app/service/customer.service';
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   product!: FilledProduct;
   otherProducts: ProductCategory[] = [];
   items!: MenuItem[];
   home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" }
   orderLoading: boolean = false;
+  subscriptions: Subscription[] = [];
+  componentLoading: boolean = true;
+
   constructor(
     private customerService: CustomerService,
     private router: Router,
     private confirmationService: ConfirmationService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -34,21 +41,31 @@ export class ProductDetailsComponent implements OnInit {
     this.getProductDetails(productCategoryId!);
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.map((x) => {
+      if (!x.closed) {
+        x.unsubscribe();
+      }
+    })
+  }
+
   getProductDetails(productCategoryId: string) {
     this.getProductCategoryById(productCategoryId);
     this.getAllProductCategories();
   }
 
   getProductCategoryById(productCategoryId: string) {
-    this.customerService.GetProductCategoryById(productCategoryId).subscribe({
+    var subscription = this.customerService.GetProductCategoryById(productCategoryId).subscribe({
       next: (response) => {
         console.log(response);
         this.product = response.data as FilledProduct;
+        this.componentLoading = false;
       },
       error: (error) => {
         console.log(error);
       }
     })
+    this.subscriptions.push(subscription);
   }
 
   confirmOrder() {
@@ -58,8 +75,9 @@ export class ProductDetailsComponent implements OnInit {
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.toastr.success("Order placed successfully");
         this.orderLoading = false;
+        this.store.dispatch(product(this.product));
+        this.router.navigateByUrl('/customer/order/address');
       },
       reject: (type: any) => {
         switch (type) {
@@ -80,7 +98,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getAllProductCategories() {
-    this.customerService.GetAllProductCategories().subscribe({
+    var subscription = this.customerService.GetAllProductCategories().subscribe({
       next: (response) => {
         this.otherProducts = response.data as ProductCategory[];
       },
@@ -88,6 +106,7 @@ export class ProductDetailsComponent implements OnInit {
         console.log(error);
       }
     });
+    this.subscriptions.push(subscription);
   }
 
 
