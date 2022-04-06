@@ -64,5 +64,16 @@ export class CustomerService {
     })
   }
 
+  //update customer profile image
+  UpdateCustomerImage(formData: FormData, customerId: string) {
+    return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomerImage/${customerId}`, formData);
+  }
+
+
+  //get customer by customer id
+  GetCustomerById(customerId: string) {
+    return this.httpClient.get<Response>(`${env.baseUrl}/customer/getcustomerbyid/${customerId}`)
+  }
+
 
 }

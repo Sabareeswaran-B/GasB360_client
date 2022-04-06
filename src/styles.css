@@ -56,20 +56,23 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
     height: 40px;
     overflow: hidden;
+    max-width: 300px;
+    padding-right: 5px;
+    padding-right: 5px;
 }
 
-p-chip {
-    width: 20%;
+.p-chip-text {
+    overflow: hidden;
 }
 
 @media only screen and (max-width: 450px) {
-    p-chip {
+    .p-chip {
         width: 50%;
     }
 }
 
 @media only screen and (max-width: 790px) {
-    p-chip {
+    .p-chip {
         width: 30%;
     }
 }

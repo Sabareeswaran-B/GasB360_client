@@ -19,11 +19,26 @@
 
 .address-bg-active {
     box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
+    background-color: #ff6358;
+    color: white;
 }
 
 .address-heading {
     color: rgb(177, 177, 177);
     font-weight: 500;    
+}
+
+.address-heading-active {
+    color: white;
+    font-weight: 500;
+}
+
+.address-close {
+    color: #ff6358;
+}
+
+.address-close-active {
+    color: white;
 }
 
 .product-button {

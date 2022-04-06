@@ -6,7 +6,7 @@ import { ConfirmationService, ConfirmEventType, MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import FilledProduct from 'src/app/model/filled-product.model';
 import ProductCategory from 'src/app/model/product-category.model';
-import { product } from 'src/app/ngrx/order.action';
+import { product } from 'src/app/ngrx/product.action';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({

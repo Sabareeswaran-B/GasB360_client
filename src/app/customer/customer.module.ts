@@ -24,9 +24,13 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AddressIndexComponent } from './address-index/address-index.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { StoreModule } from '@ngrx/store';
-import { ProductReducer } from '../ngrx/order.reducer';
+import { ProductReducer } from '../ngrx/product.reducer';
 import { HeaderComponent } from './header/header.component';
 import { ChipModule } from 'primeng/chip';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileReducer } from '../ngrx/profile.reducer';
+import { HeaderOldComponent } from './header-old/header-old.component';
 
 
 @NgModule({
@@ -36,11 +40,15 @@ import { ChipModule } from 'primeng/chip';
     ProductIndexComponent,
     ProductDetailsComponent,
     AddressIndexComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileComponent,
+    DashboardComponent,
+    HeaderOldComponent
   ],
   imports: [
     ToastrModule.forRoot(),
     StoreModule.forFeature('product', ProductReducer),
+    StoreModule.forFeature('profile', ProfileReducer),
     ChipModule,
     ProgressBarModule,
     LayoutModule,

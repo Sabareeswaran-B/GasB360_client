@@ -28,7 +28,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
   selectedAddress!: Address;
   orderLoading: boolean = false;
   items!: MenuItem[];
-  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" }
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" };
 
   constructor(
     private customerService: CustomerService,
@@ -64,7 +64,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
       'addressCountry': ['', Validators.required],
       'addressPincode': ['', Validators.required],
       'customerId': ['']
-    })
+    });
     this.items = [
       { label: 'Products', routerLink: "/customer/products" },
       { label: 'Product Details', routerLink: `/customer/products/${this.selectedProduct.productCategory.productId}` },
