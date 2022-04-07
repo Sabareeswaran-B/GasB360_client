@@ -12,13 +12,7 @@ export default class Customer {
     customerConnection!: number;
     allowedLimit!: number;
     requested!: string;
-<<<<<<< HEAD
-    role!: string;
-    type!: string;
-    customerImage!: string;
-=======
     customerImage!: string;
     role!: Role;
     type!: Type;
->>>>>>> 0be6e9a36ec0806d27a065922c20b7b0627dd2e9
 }

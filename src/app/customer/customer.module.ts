@@ -75,6 +75,8 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     InputTextModule,
     DropdownModule,
     RippleModule,
+    ProgressBarModule
+    
   ],
   exports: [
     CustomerLoginComponent,
