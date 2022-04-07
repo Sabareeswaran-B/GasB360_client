@@ -12,11 +12,13 @@ import Response from '../model/response.model';
 })
 export class CustomerService {
 
-  httpHeader!: HttpHeaders
+  httpHeader: HttpHeaders = new HttpHeaders();
 
   constructor(private httpClient: HttpClient) {
-    var token = localStorage.getItem('id')!;
-    this.httpHeader.append('Authorization', `Bearer ${token}`);
+    var token = localStorage.getItem('token')!;
+    this.httpHeader = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
   }
 
   //login api
