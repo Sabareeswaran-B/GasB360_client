@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header-old></app-header-old>
 <div class="container" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
     <kendo-tilelayout [columns]="4" [rowHeight]="275" [resizable]="false" [reorderable]="false">
@@ -18,34 +18,35 @@
                         <div class="address-card px-4 py-3" (click)="setAddress(address)"
                             [class]="address == selectedAddress ? 'address-bg-active' : 'address-bg'">
                             <div>
-                                <a class="pi pi-times k-float-right fw-bolder" style="color: #ff6358;"
+                                <a class="pi pi-times k-float-right fw-bolder"
+                                    [class]="address == selectedAddress ? 'address-close-active' : 'address-close'"
                                     (click)="confirmDelete(address)"></a>
                             </div>
-                            <h6 class="address-heading">
+                            <h6 [class]="address == selectedAddress ? 'address-heading-active' : 'address-heading'">
                                 Street :
                             </h6>
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">
                                 {{ address.addressStreetName }}
                             </h5>
-                            <h6 class="address-heading">
+                            <h6 [class]="address == selectedAddress ? 'address-heading-active' : 'address-heading'">
                                 City :
                             </h6>
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">
                                 {{ address.addressCity }}
                             </h5>
-                            <h6 class="address-heading">
+                            <h6 [class]="address == selectedAddress ? 'address-heading-active' : 'address-heading'">
                                 State :
                             </h6>
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">
                                 {{ address.addressState }}
                             </h5>
-                            <h6 class="address-heading">
+                            <h6 [class]="address == selectedAddress ? 'address-heading-active' : 'address-heading'">
                                 Country :
                             </h6>
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">
                                 {{ address.addressCountry }}
                             </h5>
-                            <h6 class="address-heading">
+                            <h6 [class]="address == selectedAddress ? 'address-heading-active' : 'address-heading'">
                                 Pincode :
                             </h6>
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">

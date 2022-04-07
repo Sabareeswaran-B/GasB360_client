@@ -24,9 +24,17 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { AddressIndexComponent } from './address-index/address-index.component';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { StoreModule } from '@ngrx/store';
-import { ProductReducer } from '../ngrx/order.reducer';
+import { ProductReducer } from '../ngrx/product.reducer';
 import { HeaderComponent } from './header/header.component';
 import { ChipModule } from 'primeng/chip';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileReducer } from '../ngrx/profile.reducer';
+import { HeaderOldComponent } from './header-old/header-old.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
+import { OrderIndexComponent } from './order-index/order-index.component';
+import { CookieService } from 'ngx-cookie-service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -36,11 +44,18 @@ import { ChipModule } from 'primeng/chip';
     ProductIndexComponent,
     ProductDetailsComponent,
     AddressIndexComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProfileComponent,
+    DashboardComponent,
+    HeaderOldComponent,
+    PlaceOrderComponent,
+    OrderIndexComponent,
+    OrderDetailsComponent
   ],
   imports: [
     ToastrModule.forRoot(),
     StoreModule.forFeature('product', ProductReducer),
+    StoreModule.forFeature('profile', ProfileReducer),
     ChipModule,
     ProgressBarModule,
     LayoutModule,
@@ -69,7 +84,7 @@ import { ChipModule } from 'primeng/chip';
     AddressIndexComponent,
     HeaderComponent
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CustomerModule { }

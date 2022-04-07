@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService, ConfirmEventType, MenuItem } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
@@ -28,7 +29,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
   selectedAddress!: Address;
   orderLoading: boolean = false;
   items!: MenuItem[];
-  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" }
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" };
 
   constructor(
     private customerService: CustomerService,
@@ -37,6 +38,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
     private store: Store<{ product: FilledProduct }>,
     private toastr: ToastrService,
     private confirmationService: ConfirmationService,
+    private cookie: CookieService,
   ) {
     var selectedProductObservable = store.select('product')
     var subscription = selectedProductObservable.subscribe({
@@ -64,7 +66,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
       'addressCountry': ['', Validators.required],
       'addressPincode': ['', Validators.required],
       'customerId': ['']
-    })
+    });
     this.items = [
       { label: 'Products', routerLink: "/customer/products" },
       { label: 'Product Details', routerLink: `/customer/products/${this.selectedProduct.productCategory.productId}` },
@@ -160,9 +162,10 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
           order.customerId = this.customerId;
           order.filledProductId = this.selectedProduct.filledProductId;
           order.orderTotalprice = this.selectedProduct.productCategory.productPrice;
-          var subscription = this.customerService.AddNewOrder(order).subscribe({
+          var subscription = this.customerService.CheckoutStipe(order).subscribe({
             next: (response) => {
-              this.toastr.success(response.message);
+              // this.toastr.success(response.message);
+              window.location.replace(response.data);
               this.orderLoading = false;
             },
             error: (error) => {

@@ -17,7 +17,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { ListViewModule } from '@progress/kendo-angular-listview';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { StoreModule } from '@ngrx/store';
-import { ProductReducer } from './ngrx/order.reducer';
+import { ProductReducer } from './ngrx/product.reducer';
+import { ProfileReducer } from './ngrx/profile.reducer';
 
 
 
@@ -40,7 +41,7 @@ import { ProductReducer } from './ngrx/order.reducer';
     ToastModule,
     ListViewModule,
     LayoutModule,
-    StoreModule.forRoot({ product: ProductReducer}),
+    StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

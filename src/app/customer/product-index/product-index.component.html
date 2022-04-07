@@ -4,8 +4,8 @@
     <div class="row mt-3">
         <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products;">
             <div class="card my-3 shadow px-3 py-3" style="min-height: 250px; border:none; border-radius: 20px;">
-                <div class="card-image bg-dark">
-
+                <div class="card-image">
+                    <img [src]="product.productImage" width="100%" style="border-radius: 10px;" >
                 </div>
                 <div class="card-body">
                     <h1 class="h5 fw-normal">{{product.productName}} <span class="h6 fw-normal" style="float: right;">₹
