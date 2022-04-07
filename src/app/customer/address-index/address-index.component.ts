@@ -160,9 +160,10 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
           order.customerId = this.customerId;
           order.filledProductId = this.selectedProduct.filledProductId;
           order.orderTotalprice = this.selectedProduct.productCategory.productPrice;
-          var subscription = this.customerService.AddNewOrder(order).subscribe({
+          var subscription = this.customerService.CheckoutStipe(order).subscribe({
             next: (response) => {
-              this.toastr.success(response.message);
+              // this.toastr.success(response.message);
+              window.location.replace(response.data);
               this.orderLoading = false;
             },
             error: (error) => {

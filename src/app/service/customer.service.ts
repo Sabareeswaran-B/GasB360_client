@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment as env } from 'src/environments/environment';
 import Address from '../model/address.model';
@@ -12,67 +12,83 @@ import Response from '../model/response.model';
 })
 export class CustomerService {
 
-  constructor(private httpClient: HttpClient) { }
+  httpHeader!: HttpHeaders
+
+  constructor(private httpClient: HttpClient) {
+    var token = localStorage.getItem('id')!;
+    this.httpHeader.append('Authorization', `Bearer ${token}`);
+  }
 
   //login api
   login(customerCredential: LoginRequest) {
-    return this.httpClient.post<Response>(`${env.baseUrl}/customer/login`, customerCredential)
+    return this.httpClient.post<Response>(`${env.baseUrl}/customer/login`, customerCredential, { headers: this.httpHeader })
   }
 
   //Signup Api
   Signup(customerDetails: Customer) {
-    return this.httpClient.post<Response>(`${env.baseUrl}/customer/addnewcustomer`, customerDetails)
+    return this.httpClient.post<Response>(`${env.baseUrl}/customer/addnewcustomer`, customerDetails, { headers: this.httpHeader })
   }
 
   //get all types api
   GetAllTypes() {
-    return this.httpClient.get<Response>(`${env.baseUrl}/type/getalltypes`)
+    return this.httpClient.get<Response>(`${env.baseUrl}/type/getalltypes`, { headers: this.httpHeader })
   }
 
   //get all product categories api
   GetAllProductCategories() {
-    return this.httpClient.get<Response>(`${env.baseUrl}/productcategory/getallproductcategories`)
+    return this.httpClient.get<Response>(`${env.baseUrl}/productcategory/getallproductcategories`, { headers: this.httpHeader })
   }
 
   //get a single product category by product category id
   GetProductCategoryById(productCategoryId: string) {
-    return this.httpClient.get<Response>(`${env.baseUrl}/filledproduct/GetFilledProductByProductCategoryId/${productCategoryId}`)
+    return this.httpClient.get<Response>(`${env.baseUrl}/filledproduct/GetFilledProductByProductCategoryId/${productCategoryId}`, { headers: this.httpHeader })
   }
 
   //get address of a single customer
   GetAddressByCustomerId(customerId: string) {
-    return this.httpClient.get<Response>(`${env.baseUrl}/address/GetAddressByCustomerId/${customerId}`)
+    return this.httpClient.get<Response>(`${env.baseUrl}/address/GetAddressByCustomerId/${customerId}`, { headers: this.httpHeader })
   }
 
   //add a new address
   AddNewAddress(address: Address) {
-    return this.httpClient.post<Response>(`${env.baseUrl}/address/AddNewCustomerAddress`, address);
+    return this.httpClient.post<Response>(`${env.baseUrl}/address/AddNewCustomerAddress`, address, { headers: this.httpHeader });
   }
 
   //delete address
   DeleteAddress(addressId: string) {
-    return this.httpClient.delete<Response>(`${env.baseUrl}/address/DeleteCustomerAddress/${addressId}`);
+    return this.httpClient.delete<Response>(`${env.baseUrl}/address/DeleteCustomerAddress/${addressId}`, { headers: this.httpHeader });
   }
 
-  //add a new order
+  //order payment gateway
+  CheckoutStipe(order: Order) {
+    return this.httpClient.post<Response>(`${env.baseUrl}/create-checkout-session`, {
+      customerId: order.customerId,
+      orderTotalprice: order.orderTotalprice,
+      filledProductId: order.filledProductId,
+      addressId: order.addressId
+    }, { headers: this.httpHeader })
+  }
+
+  //Order add new
   AddNewOrder(order: Order) {
+    console.log(order)
     return this.httpClient.post<Response>(`${env.baseUrl}/order/addneworder`, {
       customerId: order.customerId,
       orderTotalprice: order.orderTotalprice,
       filledProductId: order.filledProductId,
       addressId: order.addressId
-    })
+    }, { headers: this.httpHeader })
   }
 
   //update customer profile image
   UpdateCustomerImage(formData: FormData, customerId: string) {
-    return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomerImage/${customerId}`, formData);
+    return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomerImage/${customerId}`, formData, { headers: this.httpHeader });
   }
 
 
   //get customer by customer id
   GetCustomerById(customerId: string) {
-    return this.httpClient.get<Response>(`${env.baseUrl}/customer/getcustomerbyid/${customerId}`)
+    return this.httpClient.get<Response>(`${env.baseUrl}/customer/getcustomerbyid/${customerId}`, { headers: this.httpHeader })
   }
 
 

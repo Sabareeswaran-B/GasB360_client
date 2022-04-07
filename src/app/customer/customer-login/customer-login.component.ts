@@ -69,8 +69,8 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         let message = response.message;
         this.toastr.success(message);
         // this.messageService.add({ severity: 'success', summary: message });
-        this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
         this.isLoading = false;
+        this.router.navigate(['/customer/dashboard'], { replaceUrl: true });
       },
       error: (error) => {
         console.log(error);

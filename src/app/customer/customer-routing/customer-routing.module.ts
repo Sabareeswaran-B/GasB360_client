@@ -9,9 +9,11 @@ import { ProductDetailsComponent } from '../product-details/product-details.comp
 import { AddressIndexComponent } from '../address-index/address-index.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { PlaceOrderComponent } from '../place-order/place-order.component';
 
 
 const routes: Routes = [
+  // { path: "", redirectTo: '/customer/login', pathMatch: "prefix" },
   { path: "login", component: CustomerLoginComponent },
   { path: "signup", component: CustomerSignupComponent },
   { path: "dashboard", component: DashboardComponent },
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: "products", component: ProductIndexComponent, canActivate: [AuthGuard] },
   { path: "products/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
   { path: "order/address", component: AddressIndexComponent, canActivate: [AuthGuard] },
+  { path: "order", component: PlaceOrderComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

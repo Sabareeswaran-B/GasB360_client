@@ -31,6 +31,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileReducer } from '../ngrx/profile.reducer';
 import { HeaderOldComponent } from './header-old/header-old.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HeaderOldComponent } from './header-old/header-old.component';
     HeaderComponent,
     ProfileComponent,
     DashboardComponent,
-    HeaderOldComponent
+    HeaderOldComponent,
+    PlaceOrderComponent
   ],
   imports: [
     ToastrModule.forRoot(),
