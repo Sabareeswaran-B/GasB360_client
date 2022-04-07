@@ -1,4 +1,6 @@
-<div class="cls_container cls_aligncenter">
+
+<h3 class="centering">Delivery Login</h3>
+<div class="cls_container cls_aligncenter centering">
   <kendo-card class="cls_boxshadow cls_kendoauthcard" width="480px">
     <kendo-card-body>
       <form class="k-form" [formGroup]="signInForm">
@@ -7,7 +9,7 @@
             ><kendo-icon name="user" size="medium"></kendo-icon
           ></kendo-avatar>
           <kendo-formfield>
-            <kendo-label [for]="email" text="email"></kendo-label>
+            <kendo-label [for]="email" text="Email"></kendo-label>
             <kendo-textbox
               formControlName="email"
               [clearButton]="true"
@@ -18,7 +20,7 @@
             <kendo-formerror>Error: email is required</kendo-formerror>
           </kendo-formfield>
           <kendo-formfield>
-            <kendo-label [for]="password" text="password"> </kendo-label>
+            <kendo-label [for]="password" text="Password"> </kendo-label>
             <kendo-textbox
               formControlName="password"
               #password

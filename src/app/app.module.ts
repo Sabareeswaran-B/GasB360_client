@@ -15,9 +15,21 @@ import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrModule } from 'ngx-toastr';
-import{ ListViewModule} from '@progress/kendo-angular-listview';
-import { LayoutModule } from '@progress/kendo-angular-layout';
+import { ListViewModule} from '@progress/kendo-angular-listview';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
+import { TextBoxModule } from '@progress/kendo-angular-inputs';
+import {  ButtonModule } from '@progress/kendo-angular-buttons';
+import {DialogModule} from 'primeng/dialog';
+
+// Kendo
+import { LabelModule } from "@progress/kendo-angular-label";
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { RippleModule } from "@progress/kendo-angular-ripple";
+import { IconsModule } from "@progress/kendo-angular-icons";
+
+
 
 
 
@@ -25,7 +37,7 @@ import { EmployeeLoginComponent } from './shared/employee-login/employee-login.c
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeLoginComponent
+    EmployeeLoginComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -41,6 +53,18 @@ import { EmployeeLoginComponent } from './shared/employee-login/employee-login.c
     ToastModule,
     ListViewModule,
     LayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TextBoxModule,
+    ButtonsModule,
+    HttpClientModule,
+    LabelModule,
+    InputsModule,
+    RippleModule,
+    IconsModule,
+    ButtonModule,
+    DialogModule
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],
