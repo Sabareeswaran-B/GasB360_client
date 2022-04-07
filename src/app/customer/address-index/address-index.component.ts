@@ -57,7 +57,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.customerId = this.cookie.get('id');
+    this.customerId = localStorage.getItem('id')!;
     this.getAddressByCustomerId();
     this.addAddressForm = this.formBuilder.group({
       'addressStreetName': ['', Validators.required],

@@ -15,7 +15,7 @@ export class ProfileComponent implements OnInit {
   constructor(private customerService: CustomerService, private toastr:ToastrService,  private cookie: CookieService) { }
 
   ngOnInit(): void {
-    this.customerId = this.cookie.get('id');
+    this.customerId = localStorage.getItem('id')!;
   }
 
   uploadFile = (files: any) => {

@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    this.customerId = this.cookie.get('id');
+    this.customerId = localStorage.getItem('id')!;
     var profileObservable = this.profile.select('profile');
     var subscription = profileObservable.subscribe({
       next: (response) => {

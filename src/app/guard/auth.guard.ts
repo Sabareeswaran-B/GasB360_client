@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
   }
 
   canActivate() {
-    var isLoggedin = this.cookie.get("isLoggedin");
+    var isLoggedin = localStorage.getItem("isLoggedin");
     if (isLoggedin == "true")
       return true;
 
