@@ -17,12 +17,23 @@ import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrModule } from 'ngx-toastr';
-import{ ListViewModule} from '@progress/kendo-angular-listview';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { StoreModule } from '@ngrx/store';
 import { ProductReducer } from './ngrx/product.reducer';
 import { ProfileReducer } from './ngrx/profile.reducer';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
+import { ListViewModule} from '@progress/kendo-angular-listview';
+import { TextBoxModule } from '@progress/kendo-angular-inputs';
+import {  ButtonModule } from '@progress/kendo-angular-buttons';
+import {DialogModule} from 'primeng/dialog';
+
+// Kendo
+import { LabelModule } from "@progress/kendo-angular-label";
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { RippleModule } from "@progress/kendo-angular-ripple";
+import { IconsModule } from "@progress/kendo-angular-icons";
+
 
 
 
@@ -48,7 +59,18 @@ import { EmployeeLoginComponent } from './shared/employee-login/employee-login.c
     LayoutModule,
     StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ReactiveFormsModule,
+    TextBoxModule,
+    ButtonsModule,
+    HttpClientModule,
+    LabelModule,
+    InputsModule,
+    RippleModule,
+    IconsModule,
+    ButtonModule,
+    DialogModule
+
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

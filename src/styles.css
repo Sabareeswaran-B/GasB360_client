@@ -14,7 +14,9 @@
 /* @import '~bootstrap/scss/variables'; */
 /* @import '~bootstrap/scss/mixins'; */
 /* @import '~ngx-toastr/toastr-bs4-alert'; */
-
+:root{
+  --theme:#ff6358;
+}
 a {
     text-decoration: none;
 }
@@ -100,4 +102,16 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
 .table-container{
     border-radius: 20px;
     /* padding: 10px; */
+}
+
+.centering{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme{
+  background-color: var(--theme);
+  color:white;
+
 }

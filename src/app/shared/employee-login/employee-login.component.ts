@@ -1,8 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
-
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 
 
@@ -47,20 +46,32 @@ export class EmployeeLoginComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(this.userData));
           JSON.parse(localStorage.getItem('user')!);
           this.router.navigate(['']);
+          this.userData = result.data;
+          console.log(this.userData)
+          localStorage.setItem('token',this.userData.token);
+          localStorage.setItem('id',this.userData.id);
+          localStorage.setItem('isLoggedin','true');
+          localStorage.setItem('role',this.userData.role);
+          this.router.navigate(['/ordersbyemployee']);
 
-          // if(this.userData.roleId == 1)
-          // {
-          //   this.router.navigate(['admin']);
-          // }
-          // else
-          // {
-          //   this.router.navigate(['user']);
-          // }
+          if(localStorage.getItem('role') == "admin")
+          {
+            this.router.navigate(['admin/dashboard']);
+          }
+          else
+          {
+            this.router.navigate(['user']);
+          }
 
         } else {
 
           localStorage.setItem('user', 'null');
           JSON.parse(localStorage.getItem('user')!);
+          localStorage.setItem('token','null');
+          localStorage.setItem('id','null');
+          localStorage.setItem('isLoggedin','null');
+          localStorage.setItem('role','null');
+
         }
       });
       this.signInForm.reset();
@@ -71,6 +82,7 @@ export class EmployeeLoginComponent implements OnInit {
     }
     // this.signInForm.markAllAsTouched();
     // this._pageloaderservice.requestEnded();
+
   }
 
 }
