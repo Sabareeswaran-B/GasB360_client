@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
@@ -21,6 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private customerService: CustomerService, 
+    private router: Router,
     private store: Store, 
     private profile: Store<{ profile: Customer }>,
     private cookie: CookieService
@@ -65,6 +67,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     })
     this.subscriptions.push(subscription);
+  }
+
+  logout() {
+    this.router.navigate(['/customer/login'], { replaceUrl: true });
   }
 
 }

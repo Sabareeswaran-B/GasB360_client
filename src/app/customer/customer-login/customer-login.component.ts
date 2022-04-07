@@ -9,6 +9,8 @@ import { CustomerService } from 'src/app/service/customer.service';
 import { LoginResponse } from 'src/app/model/login.response';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { CookieService } from 'ngx-cookie-service';
+import { Store } from '@ngrx/store';
+import { profile } from 'src/app/ngrx/profile.action';
 
 
 @Component({
@@ -33,6 +35,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private store: Store,
     private messageService: MessageService,
     private customerService: CustomerService,
     private toastr: ToastrService,
@@ -73,6 +76,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         this.cookie.set('id', data.id);
         this.cookie.set('isLoggedin', 'true');
         this.cookie.set('role', data.role);
+        this.store.dispatch(profile(response.data))
         let message = response.message;
         this.toastr.success(message);
         // this.messageService.add({ severity: 'success', summary: message });

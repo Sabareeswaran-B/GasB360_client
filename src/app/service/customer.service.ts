@@ -16,7 +16,7 @@ export class CustomerService {
   httpHeader: HttpHeaders = new HttpHeaders();
 
   constructor(private httpClient: HttpClient, private cookie: CookieService) {
-    var token = cookie.get('token');
+    var token = localStorage.getItem('token')!;
     this.httpHeader = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
