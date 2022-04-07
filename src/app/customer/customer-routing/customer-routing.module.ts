@@ -10,6 +10,7 @@ import { AddressIndexComponent } from '../address-index/address-index.component'
 import { ProfileComponent } from '../profile/profile.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { PlaceOrderComponent } from '../place-order/place-order.component';
+import { OrderIndexComponent } from '../order-index/order-index.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,8 @@ const routes: Routes = [
   { path: "products/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
   { path: "order/address", component: AddressIndexComponent, canActivate: [AuthGuard] },
   { path: "order", component: PlaceOrderComponent, canActivate: [AuthGuard] },
+  { path: "orders", component: OrderIndexComponent, canActivate: [AuthGuard] },
+  { path: "orders/:id", component: PlaceOrderComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

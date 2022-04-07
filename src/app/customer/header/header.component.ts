@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import { profile } from 'src/app/ngrx/profile.action';
@@ -18,10 +19,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   componentLoading: boolean = true;
 
-  constructor(private customerService: CustomerService, private store: Store, private profile: Store<{ profile: Customer }>,) { }
+  constructor(
+    private customerService: CustomerService, 
+    private store: Store, 
+    private profile: Store<{ profile: Customer }>,
+    private cookie: CookieService
+    ) { }
 
   ngOnInit(): void {
-    this.customerId = localStorage.getItem('id')!;
+    this.customerId = this.cookie.get('id');
     var profileObservable = this.profile.select('profile');
     var subscription = profileObservable.subscribe({
       next: (response) => {

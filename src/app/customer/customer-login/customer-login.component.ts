@@ -8,6 +8,7 @@ import { MessageService } from 'primeng/api';
 import { CustomerService } from 'src/app/service/customer.service';
 import { LoginResponse } from 'src/app/model/login.response';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private customerService: CustomerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cookie: CookieService
   ) { }
 
   ngOnDestroy(): void {
@@ -47,6 +49,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     localStorage.clear();
+    this.cookie.deleteAll();
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -66,6 +69,10 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         localStorage.setItem('id', data.id);
         localStorage.setItem('isLoggedin', 'true');
         localStorage.setItem('role', data.role);
+        this.cookie.set('token', data.token);
+        this.cookie.set('id', data.id);
+        this.cookie.set('isLoggedin', 'true');
+        this.cookie.set('role', data.role);
         let message = response.message;
         this.toastr.success(message);
         // this.messageService.add({ severity: 'success', summary: message });

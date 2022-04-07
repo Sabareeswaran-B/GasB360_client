@@ -32,6 +32,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProfileReducer } from '../ngrx/profile.reducer';
 import { HeaderOldComponent } from './header-old/header-old.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
+import { OrderIndexComponent } from './order-index/order-index.component';
+import { CookieService } from 'ngx-cookie-service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -45,7 +48,9 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
     ProfileComponent,
     DashboardComponent,
     HeaderOldComponent,
-    PlaceOrderComponent
+    PlaceOrderComponent,
+    OrderIndexComponent,
+    OrderDetailsComponent
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -79,7 +84,7 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
     AddressIndexComponent,
     HeaderComponent
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CustomerModule { }

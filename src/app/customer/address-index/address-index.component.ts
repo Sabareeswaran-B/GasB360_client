@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationService, ConfirmEventType, MenuItem } from 'primeng/api';
 import { Observable, Subscription } from 'rxjs';
@@ -37,6 +38,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
     private store: Store<{ product: FilledProduct }>,
     private toastr: ToastrService,
     private confirmationService: ConfirmationService,
+    private cookie: CookieService,
   ) {
     var selectedProductObservable = store.select('product')
     var subscription = selectedProductObservable.subscribe({
@@ -55,7 +57,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.customerId = localStorage.getItem('id')!;
+    this.customerId = this.cookie.get('id');
     this.getAddressByCustomerId();
     this.addAddressForm = this.formBuilder.group({
       'addressStreetName': ['', Validators.required],

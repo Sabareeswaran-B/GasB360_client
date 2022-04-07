@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/service/customer.service';
 
@@ -11,10 +12,10 @@ export class ProfileComponent implements OnInit {
 
   customerId!: string
 
-  constructor(private customerService: CustomerService, private toastr:ToastrService) { }
+  constructor(private customerService: CustomerService, private toastr:ToastrService,  private cookie: CookieService) { }
 
   ngOnInit(): void {
-    this.customerId = localStorage.getItem('id')!;
+    this.customerId = this.cookie.get('id');
   }
 
   uploadFile = (files: any) => {

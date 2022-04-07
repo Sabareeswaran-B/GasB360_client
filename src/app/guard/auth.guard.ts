@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,16 +9,16 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate {
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private cookie: CookieService) {
 
   }
 
   canActivate() {
-    var isLoggedin = localStorage.getItem("isLoggedin")!;
+    var isLoggedin = this.cookie.get("isLoggedin");
     if (isLoggedin == "true")
       return true;
 
-    this.router.navigate(['/customer/login'], { replaceUrl: true })
+    this.router.navigate([''], { replaceUrl: true })
     return false;
   }
 

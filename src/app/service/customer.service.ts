@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { environment as env } from 'src/environments/environment';
 import Address from '../model/address.model';
 import Customer from '../model/customer.model';
@@ -14,8 +15,8 @@ export class CustomerService {
 
   httpHeader: HttpHeaders = new HttpHeaders();
 
-  constructor(private httpClient: HttpClient) {
-    var token = localStorage.getItem('token')!;
+  constructor(private httpClient: HttpClient, private cookie: CookieService) {
+    var token = cookie.get('token');
     this.httpHeader = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
