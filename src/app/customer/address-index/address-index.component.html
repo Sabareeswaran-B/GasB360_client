@@ -109,10 +109,10 @@
                         </h5>
                     </div>
 
-                    <button class="product-button k-bg-primary text-light shadow py-1" (click)="confirmOrder()"
+                    <button class="product-button k-bg-primary text-light shadow py-1" style="margin-top: 150px;" (click)="confirmOrder()"
                         *ngIf="!orderLoading;else orderLoader">ORDER</button>
                     <ng-template #orderLoader>
-                        <button class="product-button k-bg-primary text-light shadow py-1" [disabled]="true">
+                        <button class="product-button k-bg-primary text-light shadow py-1"  style="margin-top: 150px;" [disabled]="true">
                             <i class="pi pi-spin pi-spinner"></i>
                         </button>
                     </ng-template>

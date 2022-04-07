@@ -2,13 +2,14 @@
 <div class="container vh-100" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
   <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
-  <kendo-tilelayout [columns]="4" [rowHeight]="300" [resizable]="false" [reorderable]="false">
+  <kendo-tilelayout [columns]="4" [rowHeight]="230" [resizable]="false" [reorderable]="false">
     <kendo-tilelayout-item title="Other products" [col]="1" [colSpan]="1" [rowSpan]="2" class="shadow">
       <kendo-tilelayout-item-body>
         <div class="order-list">
           <div *ngFor="let otherProduct of otherProducts">
             <div class="contact">
-              <img [src]="otherProduct.productImage" class="img-rounded img-responsive" style="max-height: 40px; border-radius: 50%">
+              <img [src]="otherProduct.productImage" class="img-rounded img-responsive"
+                style="max-height: 40px; border-radius: 50%">
               <div class="contact-details">
                 <div class="contact-name">{{ otherProduct.productName }}</div>
                 <div class="contact-email">₹ {{ otherProduct.productPrice }}</div>
@@ -26,18 +27,55 @@
       <kendo-tilelayout-item-body>
         <div class="row px-2">
           <div class="col-lg-6 col-md-12 col-sm-12">
-            <img [src]="product.productCategory.productImage" alt="product-image" width="100%" height="300px" style="border-radius: 10px;">
+            <img [src]="product.productCategory.productImage" alt="product-image" width="100%" height="300px"
+              style="border-radius: 10px;">
           </div>
-          <div class="col-lg-6 col-md-12 col-sm-12 h3 fw-normal">{{ product.productCategory.productName }}</div>
+
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <h6 class='address-heading'>
+              Product name :
+            </h6>
+            <h6 class="h3 fw-normal">
+              {{ product.productCategory.productName }}
+            </h6>
+            <br>
+            <h6 class='address-heading'>
+              Product weight :
+            </h6>
+            <h6 class="h4 fw-normal">{{ product.productCategory.productWeight }} kg</h6>
+            <br>
+            <h6 class='address-heading'>
+              Product type :
+            </h6>
+            <h6 class="h4 fw-normal">{{ product.productCategory.type.typeName }}</h6>
+
+          </div>
+        </div>
+        <br>
+        <br>
+        <div>
+          <h6 class='address-heading'>
+            Description :
+          </h6>
+          <h6 class="h6">The product {{ product.productCategory.productWeight }} kg {{
+            product.productCategory.productName }} is a {{ product.productCategory.type.typeName }} product which cost ₹
+            {{product.productCategory.productPrice}} including all tax. For more information contact {{ product.branch.branchName }} branch</h6>
         </div>
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
 
     <kendo-tilelayout-item title="Conversion Rate" [col]="4" class="shadow">
       <kendo-tilelayout-item-body>
-        <div class="h5 fw-normal">₹ {{ product.productCategory.productPrice }}</div>
-        <button class="product-button k-bg-primary text-light shadow py-1" (click)="confirmOrder()"
-          *ngIf="!orderLoading;else loader">ORDER</button>
+        <h6 class='address-heading'>
+          Product price :
+        </h6>
+        <div class="h5 fw-normal ">₹ {{ product.productCategory.productPrice }}</div>
+        <h6 class='address-heading'>
+          Product quantity :
+        </h6>
+        <div class="h5 fw-normal ">1</div>
+        <button class="product-button k-bg-primary text-light shadow py-1"
+          (click)="confirmOrder()" *ngIf="!orderLoading;else loader">ORDER</button>
         <!-- <button pButton pRipple class="k-bg-primary w-100 px-3" *ngIf="!orderLoading;else loader"
           style="margin-top: auto;" (click)="confirmOrder()" label="ORDER"></button> -->
         <ng-template #loader>
@@ -48,9 +86,20 @@
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
 
-    <kendo-tilelayout-item title="Visitors" [col]="4" class="shadow">
+    <kendo-tilelayout-item title="Branch" [col]="4" class="shadow">
       <kendo-tilelayout-item-body>
-
+        <h6 class='address-heading'>
+          Branch name :
+        </h6>
+        <h5 class="fw-normal overflow-hidden" style="height: 40px;">
+          {{ product.branch.branchName }}
+        </h5>
+        <h6 class='address-heading'>
+          Branch location :
+        </h6>
+        <h5 class="fw-normal overflow-hidden" style="height: 40px;">
+          {{ product.branch.branchLocation }}
+        </h5>
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
   </kendo-tilelayout>

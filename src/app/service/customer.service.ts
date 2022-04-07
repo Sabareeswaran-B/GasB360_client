@@ -95,4 +95,18 @@ export class CustomerService {
   }
 
 
+  //get all orders by customer id
+  GetOrdersByCustomerId(customerId: string) {
+    return this.httpClient.get<Response>(`${env.baseUrl}/order/GetOrdersByCustomerId/${customerId}`, { headers: this.httpHeader })
+  }
+
+
+  //update customer by customer id
+  UpdateCustomer(customerId: string, customer: Customer) {
+    let data: any = customer;
+    data.customerConnection = customer.customerConnection.toString();
+    data.allowedLimit = customer.allowedLimit.toString();
+    return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomer/${customerId}`, customer , { headers: this.httpHeader })
+  }
+
 }
