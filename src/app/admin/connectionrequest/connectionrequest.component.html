@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid">
+    <br /><br><br><br>
+<div class="row mt-3" >
+    <div class="col-lg-3" *ngFor="let request of CustomerRequest">
+        <p-card class="my-3 shadow" >
+      <div class="row">
+          <div class="col-md-3">
+              <img [src]="request.customerImage" height="70" width="70" alt="">
+          </div>
+          <div class="col-md-2">
+            <hr style="width: 1px;height: 100%;">
+          </div>
+          <div class="col-md-7">
+               {{ request.customerName }}<br>
+               {{ request.customerPhone }}<br>
+                Raised request : <h6>1</h6>
+          </div>
+          
+      </div>
+        <ng-template pTemplate="footer">
+            <hr>
+         <div class="row">
+             <div class="col-md-6">
+                <button
+                pButton
+                style="background-color: var(--red-500); width: 100%"
+                type="button"
+                label="Decline"
+              ></button>
+            </div>
+            <div class="col-md-6">
+              <button
+                pButton
+                style="background-color: var(--green-500); width: 100%"
+                type="button"
+                label="Accept"
+                (click)="this.AcceptRequest(request.customerId)"
+              ></button>
+         </div>
+         </div>
+        </ng-template>
+        </p-card>
+        
+    </div>
+</div>
+
+    </div>

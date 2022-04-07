@@ -127,7 +127,7 @@ export class UnfilledproductComponent implements OnInit {
     // console.log(dataItem)
     this.unfilledDataUpdate.setValue({
       'unfilledProductId': dataItem.unfilledProductId,
-      'productCategoryId': dataItem.productcategory.productId,
+      'productCategoryId': dataItem.productCategory.productId,
       'unfilledProductQuantity': dataItem.unfilledProductQuantity,
       'branchId': dataItem.branch.branchId,
       'active': dataItem.active,
@@ -173,7 +173,7 @@ export class UnfilledproductComponent implements OnInit {
   deleteGridElementPopup(dataItem : UnfilledProducts){
     console.log(dataItem)
     this.displayDelete = "Are You Sure want to delete, ";
-    this.displayDelete += dataItem.productcategory.productName;
+    this.displayDelete += dataItem.productCategory.productName;
     this.displayDelete += "?";
     this.displayModalDelete = true;
     this.deleteMemberId = dataItem.unfilledProductId;

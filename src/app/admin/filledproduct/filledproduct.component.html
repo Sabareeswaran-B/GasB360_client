@@ -1,5 +1,8 @@
-<div class="container-fluid back-black vh-100" *ngIf="!componentLoading;else progresloading">
-  <br />
+<app-navbar></app-navbar>
+
+
+<div class="container-fluid " *ngIf="!componentLoading;else progresloading">
+  <br /><br><br><br>
   <div class="row">
     <div class="col-md-2 text-center">
       <p-card title="Create New Product">
@@ -67,7 +70,7 @@
           </ng-template>
 
           <kendo-grid-column
-            field="productcategory.productName"
+            field="productCategory.productName"
             title="Product Name"
             [width]="140"
             [headerStyle] ="{'font-weight' : 'bold'}" 
@@ -366,5 +369,6 @@
   </form>
 </p-dialog>
 <ng-template #progresloading>
-  <p-progressBar mode="indeterminate" [style]="{'height': '6px'}"></p-progressBar>
+  <br><br><br>
+  <p-progressBar mode="indeterminate" [style]="{'height': '9px'}"></p-progressBar>
 </ng-template>

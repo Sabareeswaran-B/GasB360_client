@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import Response from '../model/response.model';
 // import Role from '../model/role.model';
 // import Employee from 'src/app/model/employee.model';
 
@@ -77,6 +78,11 @@ UpdateUnfilledProduct(unfilledProduct : any,unfilledId : number){
 }
 DeleteUnfilledProduct(unfilledId : string){
   return this.http.delete("https://localhost:7076/UnfilledProduct/DeleteUnfilledProduct/"+unfilledId);
+}
+
+// COnnection Request from Customer
+GetAllConnectionRequests(){
+  return this.http.get<Response>("https://localhost:7076/Employee/GetAllConnectionRequests");
 }
  
    // Roles

@@ -7,5 +7,5 @@ export default class UnfilledProducts {
     active!:    string;
     branchId!: string;
     branch!: Branch;
-    productcategory!: ProductCategory;
+    productCategory!: ProductCategory;
 }

@@ -17,6 +17,13 @@ import { ExcelExportModule } from '@progress/kendo-angular-excel-export';
 import {TooltipModule} from 'primeng/tooltip';
 import { UnfilledproductComponent } from './unfilledproduct/unfilledproduct.component';
 import {ProgressBarModule} from 'primeng/progressbar';
+import {KnobModule} from 'primeng/knob';
+import {ChartModule} from 'primeng/chart';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { ConnectionrequestComponent } from './connectionrequest/connectionrequest.component';
+import {SplitButtonModule} from 'primeng/splitbutton';
+import {MenubarModule} from 'primeng/menubar';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +32,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ProductcategoryComponent,
     FilledproductComponent,
     UnfilledproductComponent,
+    ConnectionrequestComponent,
+    NavbarComponent,
 
 
   ],
@@ -38,7 +47,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
     DialogModule,
     GridModule,
     ButtonModule,
-// MenubarModule,
+MenubarModule,
 // ProgressSpinnerModule,
 // TagModule,
 InputTextModule,
@@ -54,6 +63,10 @@ DropdownModule,
 ExcelModule,
 TooltipModule,
 ProgressBarModule,
+KnobModule,
+ChartModule,  
+NgApexchartsModule,
+SplitButtonModule
 // SlideMenuModule,
 // TabMenuModule,
 // MegaMenuModule,

@@ -11,4 +11,5 @@ export default class Customer {
     requested!: string;
     role!: string;
     type!: string;
+    customerImage!: string;
 }

@@ -6,6 +6,7 @@ import { ProductcategoryComponent } from '../productcategory/productcategory.com
 import { FilledproductComponent } from '../filledproduct/filledproduct.component';
 import { UnfilledproductComponent } from '../unfilledproduct/unfilledproduct.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { ConnectionrequestComponent } from '../connectionrequest/connectionrequest.component';
 
 
 
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: "productcategory", component:ProductcategoryComponent , pathMatch: "prefix"},
   {path: "filledproduct", component:FilledproductComponent , pathMatch: "prefix"},  
   {path: "unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix"},
-  {path: "dashboard", component:DashboardComponent , pathMatch: "prefix"}
+  {path: "dashboard", component:DashboardComponent , pathMatch: "prefix"},
+  {path: "connection", component:ConnectionrequestComponent , pathMatch: "prefix"}
 ];
 
 @NgModule({
