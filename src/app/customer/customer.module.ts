@@ -35,6 +35,7 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderIndexComponent } from './order-index/order-index.component';
 import { CookieService } from 'ngx-cookie-service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import {PaginatorModule} from 'primeng/paginator';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('profile', ProfileReducer),
     ChipModule,
+    PaginatorModule,
     ProgressBarModule,
     LayoutModule,
     BreadcrumbModule,

@@ -96,8 +96,8 @@ export class CustomerService {
 
 
   //get all orders by customer id
-  GetOrdersByCustomerId(customerId: string) {
-    return this.httpClient.get<Response>(`${env.baseUrl}/order/GetOrdersByCustomerId/${customerId}`, { headers: this.httpHeader })
+  GetOrdersByCustomerId(customerId: string, pageNumber: number) {
+    return this.httpClient.get<Response>(`${env.baseUrl}/order/GetOrdersByCustomerIdWithPagination/${customerId}/${pageNumber}`, { headers: this.httpHeader })
   }
 
 

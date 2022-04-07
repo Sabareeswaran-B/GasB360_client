@@ -17,6 +17,9 @@
         </div>
         <h6 style="color: rgb(177,177,177);" class="mt-2">Address: <span style="color: black;"> {{order.address.addressStreetName}}, {{order.address.addressCity}}, {{order.address.addressState}}, {{order.address.addressCountry}} - {{order.address.addressPincode}}</span></h6>
     </div>
+    <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="onPageChage($event)" class="shadow"></p-paginator>
+    <br>
+    <br>
 </div>
 
 <ng-template #componentLoader>

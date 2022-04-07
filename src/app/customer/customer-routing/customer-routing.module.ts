@@ -14,11 +14,10 @@ import { OrderIndexComponent } from '../order-index/order-index.component';
 
 
 const routes: Routes = [
-  // { path: "", redirectTo: '/customer/login', pathMatch: "prefix" },
+  { path: "", component: DashboardComponent,canActivate: [AuthGuard] },
   { path: "login", component: CustomerLoginComponent },
   { path: "signup", component: CustomerSignupComponent },
-  { path: "dashboard", component: DashboardComponent },
-  { path: "profile", component: ProfileComponent },
+  { path: "profile", component: ProfileComponent, canActivate: [AuthGuard] },
   { path: "products", component: ProductIndexComponent, canActivate: [AuthGuard] },
   { path: "products/:id", component: ProductDetailsComponent, canActivate: [AuthGuard] },
   { path: "order/address", component: AddressIndexComponent, canActivate: [AuthGuard] },

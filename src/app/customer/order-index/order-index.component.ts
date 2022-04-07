@@ -12,11 +12,13 @@ import { CustomerService } from 'src/app/service/customer.service';
 export class OrderIndexComponent implements OnInit, OnDestroy {
 
   orders!: Order[];
+  pageNumber:number = 1;
   customerId!: string;
   subscriptions: Subscription[] = [];
   items!: MenuItem[];
-  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" };
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" };
   componentLoading:boolean = true;
+  totalRecords:number = 1;
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
@@ -35,9 +37,16 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
     })
   }
 
+  onPageChage(event: any){
+    this.pageNumber = event.page + 1;
+    console.log(event);
+    this.getAllOrdersByCustomerId()
+  }
+
   getAllOrdersByCustomerId() {
-    var subscription = this.customerService.GetOrdersByCustomerId(this.customerId).subscribe({
+    var subscription = this.customerService.GetOrdersByCustomerId(this.customerId, this.pageNumber).subscribe({
       next:(response)=> {
+        this.totalRecords = Number.parseInt(response.message)
         this.orders = response.data as Order[];
         this.componentLoading = false;
         console.log(this.orders);

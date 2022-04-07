@@ -18,7 +18,7 @@ export class ProductIndexComponent implements OnInit, OnDestroy {
 
   componentLoading: boolean = true;
   items!: MenuItem[];
-  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" }
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" }
   subscriptions: Subscription[] = [];
   constructor(private customerService: CustomerService, private router: Router) { }
 

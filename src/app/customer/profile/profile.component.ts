@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   componentLoading: boolean = true;
   subscriptions: Subscription[] = [];
   items!: MenuItem[];
-  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" }
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" }
   displayEditModal: boolean = false;
   profileEditForm!: FormGroup;
   type: Type[] = [];
@@ -77,6 +77,7 @@ export class ProfileComponent implements OnInit {
     var subscription = this.customerService.UpdateCustomerImage(formData, this.customerId).subscribe({
       next: (data) => {
         this.toastr.success("image uploaded successful");
+        this.getCustomerById();
       },
       error: (error) => {
         this.toastr.success("image uploaded failed");
@@ -94,6 +95,7 @@ export class ProfileComponent implements OnInit {
     this.customerService.UpdateCustomer(this.customerId, customer).subscribe({
       next: (response) => {
         this.toastr.success(response.message);
+        this.getCustomerById();
       },
       error: (error) => {
         console.log(error);

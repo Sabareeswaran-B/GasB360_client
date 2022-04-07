@@ -44,6 +44,11 @@ p-breadcrumb, .p-breadcrumb {
     background-color: transparent;
 }
 
+p-paginator .p-paginator {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+    border-radius: 20px;
+}
+
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
     background-color: red;
 }
