@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable,catchError, throwError } from 'rxjs';
-import { IUser } from 'src/models/IUser';
-
 import { environment } from 'src/environments/environment';
 import Response from '../model/response.model';
 
@@ -21,6 +18,7 @@ export class DeliveryService {
       this.getAndSetJWTTokenFromLocalStorage();
      }
 
+     //Get Localstorage Token and Header
      getAndSetJWTTokenFromLocalStorage() {
       this.token = localStorage.getItem('token')!;
 
@@ -31,20 +29,23 @@ export class DeliveryService {
         }
     }
 
+    //Get Orders By Passing EmployeeId As Parameter
     getOrderByEmployeeId(val:any){
-      return this.http.get<Response>(environment.apiUrl+'/Order/GetOrderByEmployeeId/'+val,{
+      return this.http.get<Response>(environment.baseUrl+'/Order/GetOrderByEmployeeId/'+val,{
         headers: this.header,
       });
     }
 
+    //Check Order Otp By Passing OrderId and Input Otp As Parameter
     OrderDeliveryCheckByOtp(id:any,inputOTP:any){
-      return this.http.get<Response>(environment.apiUrl+'/Order/OrderDeliveryCheckByOtp/'+id+'/'+inputOTP,{
+      return this.http.get<Response>(environment.baseUrl+'/Order/OrderDeliveryCheckByOtp/'+id+'/'+inputOTP,{
         headers:this.header,
       })
     }
 
+    //Get Delivered Order By Passing EmployeeId As Parameter
     GetDeliveriesByEmployeeId(id:any){
-      return this.http.get<Response>(environment.apiUrl+'/Delivery/GetDeliveriesByEmployeeId/'+id,{
+      return this.http.get<Response>(environment.baseUrl+'/Delivery/GetDeliveriesByEmployeeId/'+id,{
         headers:this.header,
       })
     }

@@ -1,3 +1,4 @@
+
 <div class="selector">
   <div class="cls_container cls_aligncenter centering">
     <div class="wrapper fadeInDown">
@@ -84,6 +85,48 @@
                 </div>
               </fieldset>
             </form>
+<h3 class="centering">Delivery Login</h3>
+<div class="cls_container cls_aligncenter centering">
+  <kendo-card class="cls_boxshadow cls_kendoauthcard" width="480px">
+    <kendo-card-body>
+      <form class="k-form" [formGroup]="signInForm">
+        <fieldset class="k-form-fieldset">
+          <kendo-avatar width="80px" height="80px" shape="circle" class="bg-dark"
+            ><kendo-icon name="user" size="medium"></kendo-icon
+          ></kendo-avatar>
+          <kendo-formfield>
+            <kendo-label [for]="email" text="Email"></kendo-label>
+            <kendo-textbox
+              formControlName="email"
+              [clearButton]="true"
+              #email
+              required
+            ></kendo-textbox>
+            <kendo-formhint>Your email</kendo-formhint>
+            <kendo-formerror>Error: email is required</kendo-formerror>
+          </kendo-formfield>
+          <kendo-formfield>
+            <kendo-label [for]="password" text="Password"> </kendo-label>
+            <kendo-textbox
+              formControlName="password"
+              #password
+              required
+              [clearButton]="true"
+            >
+              <ng-template kendoTextBoxSuffixTemplate>
+                <button
+                  kendoButton
+                  look="clear"
+                  icon="eye"
+                  (click)="toggleVisibility()"
+                ></button>
+              </ng-template>
+            </kendo-textbox>
+            <kendo-formhint>Your password</kendo-formhint>
+            <kendo-formerror>Error: password is required</kendo-formerror>
+          </kendo-formfield>
+          <div class="cls_textalign">
+            <br />
           </div>
           <div class="col-md-2"></div>
         </div>

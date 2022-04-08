@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import Order from 'src/app/model/order.model';
 import { PrimeNGConfig } from 'primeng/api';
+import { debounce } from 'lodash';
 
 @Component({
   selector: 'app-delivery-completedorders',
@@ -22,14 +23,14 @@ export class DeliveryCompletedordersComponent implements OnInit {
 
   ngOnInit(): void {
     var id = localStorage.getItem('id');
-    this.refreshOrderList(id);
+    this.deliveredOrderList(id);
     this.primengConfig.ripple = true;
   }
-
-  refreshOrderList(id:any){
+  //Get Orders Delivered By Employee
+  deliveredOrderList(id:any){
     this.service.GetDeliveriesByEmployeeId(id).subscribe({
       next: (response) => {
-        // console.log(response.data)
+        console.log(response.data)
         this.OrderList=response.data as Order[];
         this.OrderListWithoutFilter=response.data as Order[];
       },
@@ -39,27 +40,17 @@ export class DeliveryCompletedordersComponent implements OnInit {
     });
   }
 
-  FilterFn(){
+  //Debounce Function
+  FilterFn = debounce(this.search, 400)
+
+  search(){
+    console.log(this.CustomerNameFilter);
     var CustomerNameFilter = this.CustomerNameFilter;
 
     this.OrderList = this.OrderListWithoutFilter.filter(function (el:any){
-
-      // console.log(el.order.customer.customerName);
-
-        return el.order.customer.customerName.toString().toLowerCase().includes(
+         return el.customer.customerName.toString().toLowerCase().includes(
           CustomerNameFilter.toString().trim().toLowerCase()
         )
     });
   }
-
-  sortResult(prop:any,asc:any){
-    this.OrderList = this.OrderListWithoutFilter.sort(function(a:any,b:any){
-      if(asc){
-          return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-      }else{
-        return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-      }
-    })
-  }
-
 }

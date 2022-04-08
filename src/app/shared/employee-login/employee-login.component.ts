@@ -14,8 +14,6 @@ export class EmployeeLoginComponent implements OnInit {
   isLoading: boolean = false;
   @ViewChild('password') public textbox!: TextBoxComponent;
 
-  // responsedata!: any;
-
   public signInForm: FormGroup = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
@@ -43,8 +41,10 @@ export class EmployeeLoginComponent implements OnInit {
   public signinHandler() {
     this.isLoading = true;
     if (this.signInForm.valid) {
+
       this.service.loginUser(this.signInForm.value).subscribe({
         next:(result:any) => {
+      this.service.employeeLogin(this.signInForm.value).subscribe((result:any) => {
         if (result != null) {
           this.userData = result;
           localStorage.setItem('user', JSON.stringify(this.userData));
@@ -56,6 +56,7 @@ export class EmployeeLoginComponent implements OnInit {
           localStorage.setItem('id',this.userData.id);
           localStorage.setItem('isLoggedin','true');
           localStorage.setItem('role',this.userData.role);
+
           this.toaster.success("Login Successfull")
           this.router.navigate(['/ordersbyemployee']);
 
@@ -67,6 +68,8 @@ export class EmployeeLoginComponent implements OnInit {
           {
             this.router.navigate(['ordersbyemployee'],{ replaceUrl: true });
           }
+
+          this.router.navigate(['/delivery/ordersbyemployee']);
 
         } else {
 
@@ -82,7 +85,8 @@ export class EmployeeLoginComponent implements OnInit {
       error: (err)=>{
         this.isLoading = false;
         this.toaster.error("Invalid email or Password, Enter Correctly!!");
-      }});
+      }
+    });
       this.signInForm.reset();
 
     }
@@ -90,8 +94,6 @@ export class EmployeeLoginComponent implements OnInit {
       this.isLoading = false;
       this.toaster.error("Invalid email or Password, Enter Correctly!!");
     }
-    // this.signInForm.markAllAsTouched();
-    // this._pageloaderservice.requestEnded();
 
   }
 

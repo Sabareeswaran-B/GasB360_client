@@ -1,55 +1,151 @@
-<div class="d-flex flex-row">
-  <input [(ngModel)]="CustomerNameFilter" class="form-control"
-  (keyup)="FilterFn()" placeholder="Search Customer..">
-
-  <button type="button" class="btn btn-light"
-          (click)="sortResult('departmentId',true)">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 5a.5.5 0 0 0-1 0v4.793L5.354 7.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 9.793V5z"/>
-          </svg>
-        </button>
-        <button type="button" class="btn btn-light"
-          (click)="sortResult('departmentId',false)">
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 8.354a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 6.207V11a.5.5 0 0 1-1 0V6.207L5.354 8.354z"/>
-          </svg>
-        </button>
-</div>
-
-
-<div class="row m-5  p-5">
-  <div class="col-sm-6 my-3" *ngFor="let item of OrderList">
-    <div class="card">
-      <div class="card-body">
-        <div style="display: flex;align-items: center;justify-content: space-between">
-          <h5 class="card-title fw-bold">Customer Name : {{item.customer.customerName}}</h5>
-          <button class="btn btn-danger">{{item.orderStatus}}</button>
+<div class="row m-5 p-5" *ngIf="!progress; else progressLoader">
+  <div class="grid">
+    <div class="col-12 md:col-4">
+      <div class="p-inputgroup card-shadow">
+        <button type="button" pButton pRipple label="Search"></button>
+        <div style="width: 100%">
+          <input
+            [(ngModel)]="CustomerNameFilter"
+            style="position: relative; border: 1px solid white"
+            class="form-control"
+            type="text"
+            (keyup)="FilterFn()"
+            pInputText
+            placeholder="Search Customer.."
+          />
         </div>
+        <div style="width: 30px; position: relative; top: 7px">
+          <i class="pi pi-search" style="font-size: 1.5rem"></i>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 my-3" *ngFor="let item of OrderList">
+        <div class="card carder card-shadow">
+          <div class="card-body">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              <h5 class="card-titler card-title fw-bold">
+                Customer Name : {{ item.customer.customerName }}
+              </h5>
+              <button pButton type="button" class="p-button-raised">
+                {{ item.orderStatus }}
+              </button>
+            </div>
 
-        <hr>
-        <p class="card-text">Product Name : {{item.filledProduct.productCategory.productName}}</p>
-        <p class="card-text fw-bold">Address </p>
-        <hr>
-        <p class="card-text">Street : {{item.address.addressStreetName}}</p>
-        <p class="card-text">City : {{item.address.addressCity}}</p>
-        <p class="card-text">State & Country : {{item.address.addressState}},{{item.address.addressCountry}}</p>
-        <p class="card-text">Phone : {{item.customer.customerPhone}}</p>
-        <p-button (click)="showMaximizableDialog(item.orderId)" [style]="{ 'background-color': 'var(--red-500)'}" icon="pi pi-external-link" label="Deliver Product"></p-button>
-        <p-dialog header="  Get OTP From Customer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
-          [draggable]="false" [resizable]="false">
-        <form #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)" >
-          <input class="p-3 m-4" type = "text" name = "otp" placeholder = "Enter Otp" ngModel>
-        <br>
-        <button class="btn theme m-4" type = "submit" >Verify</button>
-        </form>
-        <!-- <ng-template pTemplate="footer">
+            <hr />
+            <p class="card-text">
+              Product Name :
+              {{ item.filledProduct.productCategory.productName }}
+            </p>
+            <p class="card-text">Order Date : {{ item.orderDate | date }}</p>
+
+            <p class="card-titler card-title fw-bold">Address</p>
+            <hr />
+            <p class="card-text">
+              Street : {{ item.address.addressStreetName }}
+            </p>
+            <p class="card-text">City : {{ item.address.addressCity }}</p>
+            <p class="card-text">
+              State & Country : {{ item.address.addressState }},{{
+                item.address.addressCountry
+              }}
+            </p>
+            <p class="card-text">Phone : {{ item.customer.customerPhone }}</p>
+
+            <p-button
+              (click)="showMaximizableDialog(item.orderId)"
+              [style]="{ 'background-color': 'var(--red-500)' }"
+              icon="pi pi-external-link"
+              label="Deliver Product"
+            ></p-button>
+            <p-dialog
+              header="  Get OTP From Customer "
+              [(visible)]="displayMaximizable"
+              [modal]="true"
+              [style]="{ width: '50vw' }"
+              [maximizable]="true"
+              [baseZIndex]="10000"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <form
+                #userlogin="ngForm"
+                (ngSubmit)="onClickSubmit(userlogin.value)"
+              >
+                <input
+                  class="p-3 m-4"
+                  type="text"
+                  name="otp"
+                  placeholder="Enter Otp"
+                  ngModel
+                />
+                <br />
+                <button class="btn theme m-4" type="submit">Verify</button>
+              </form>
+              <!-- <ng-template pTemplate="footer">
             <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Yes" class="p-button-text"></p-button>
             <p-button icon="pi pi-times" (click)="displayMaximizable=false" label="No"></p-button>
         </ng-template> -->
-        </p-dialog>
 
+              <p-button
+                (click)="showMaximizableDialog(item.orderId)"
+                icon="pi pi-external-link"
+                label="Deliver Product"
+              ></p-button>
+              <p-dialog
+                header="  Get Otp From Customer "
+                align="center"
+                [(visible)]="displayMaximizable"
+                [modal]="true"
+                [style]="{ width: '50vw' }"
+                [maximizable]="true"
+                [baseZIndex]="10000"
+                [draggable]="false"
+                [resizable]="false"
+              >
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-7">
+                    <form
+                      #inputOtp="ngForm"
+                      (ngSubmit)="
+                        onClickSubmit(inputOtp.value); inputOtp.resetForm()
+                      "
+                    >
+                      <input
+                        class="p-3 m-4 form-control"
+                        type="text"
+                        name="otp"
+                        placeholder="Enter Otp XXXXXX"
+                        ngModel
+                      />
+                      <br />
+
+                      <button class="btn theme m-4 form-control" type="submit">
+                        Verify
+                      </button>
+                    </form>
+                  </div>
+                  <div class="col-md-3"></div>
+                </div>
+              </p-dialog>
+            </p-dialog>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<ng-template #progressLoader>
+  <p-progressBar
+    mode="indeterminate"
+    [style]="{ height: '10px' }"
+  ></p-progressBar>
+</ng-template>

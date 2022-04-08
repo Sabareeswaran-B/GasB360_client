@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import Order from 'src/app/model/order.model';
 import { PrimeNGConfig } from 'primeng/api';
 import { ToastrService } from 'ngx-toastr';
+import { debounce } from 'lodash';
 
 @Component({
   selector: 'app-delivery-orders',
@@ -23,6 +24,7 @@ export class DeliveryOrdersComponent implements OnInit {
   OrderList:any=[];
   displayMaximizable!: boolean;
   orderid:any;
+  progress:boolean=true;
 
   CustomerNameFilter:string="";
   OrderListWithoutFilter:any=[];
@@ -35,13 +37,14 @@ export class DeliveryOrdersComponent implements OnInit {
 
   }
 
+  //Get Orders Which is Yet To Be Delivered
   refreshOrderList(id:any){
-    console.log(id);
     this.service.getOrderByEmployeeId(id).subscribe({
       next: (response) => {
         console.log(response.data)
         this.OrderList=response.data as Order[];
         this.OrderListWithoutFilter=response.data as Order[];
+        this.progress=false;
 
       },
       error: (error) => {
@@ -50,8 +53,11 @@ export class DeliveryOrdersComponent implements OnInit {
     });
   }
 
-  FilterFn(){
-  
+  //Debounce Function
+  FilterFn = debounce(this.search, 400)
+
+  search(){
+    console.log(this.CustomerNameFilter);
     var CustomerNameFilter = this.CustomerNameFilter;
 
     this.OrderList = this.OrderListWithoutFilter.filter(function (el:any){
@@ -61,26 +67,22 @@ export class DeliveryOrdersComponent implements OnInit {
     });
   }
 
-  sortResult(prop:any,asc:any){
-    this.OrderList = this.OrderListWithoutFilter.sort(function(a:any,b:any){
-      if(asc){
-          return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-      }else{
-        return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-      }
-    })
-  }
-
   showMaximizableDialog(orderid:any) {
     this.displayMaximizable = true;
     this.orderid=orderid;
   }
 
+  //Check Otp Is Same
   onClickSubmit(data:any) {
+
     this.service.OrderDeliveryCheckByOtp(this.orderid,data.otp).subscribe({
       next: (response) => {
+
         this.toaster.success(response.message);
         this.router.navigate(['/deliveredorders']);
+
+        alert(response.message);
+        this.router.navigate(['/delivery/deliveredorders']);
 
       },
       error: (error) => {
@@ -92,3 +94,7 @@ export class DeliveryOrdersComponent implements OnInit {
 
 
 }
+function ms(getData: () => void, ms: any) {
+  throw new Error('Function not implemented.');
+}
+

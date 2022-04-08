@@ -4,10 +4,8 @@ import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
-import { SignIn } from 'src/models/SignIn';
-import { SignUp } from 'src/models/SignUp';
-import { IUser } from 'src/models/IUser';
-
+import { LoginRequest } from '../model/login.request';
+import { LoginResponse } from '../model/login.response';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +16,10 @@ export class AuthService {
     private _router: Router,
     ) {}
 
-  loginUser(signinForm: SignIn) {
+  //Employee Login
+  employeeLogin(signinForm: LoginRequest) {
     console.log(signinForm);
-    return this.http.post(environment.apiUrl + '/Employee/Login', signinForm).pipe(
+    return this.http.post(environment.baseUrl + '/Employee/Login', signinForm).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(err);
@@ -28,30 +27,22 @@ export class AuthService {
     );
   }
 
-  registerUser(signupForm: SignUp) {
-    return this.http.post(environment.apiUrl + '/users/register', signupForm).pipe(
-      catchError((err) => {
-        console.log(err);
-        return throwError(err);
-      })
-    );
-  }
+  //Check if LoggedIn or Not
   isLoggedIn(): boolean {
-    const userJson = JSON.parse(localStorage.getItem('user')!) as IUser;
+    const userJson = JSON.parse(localStorage.getItem('user')!) as LoginResponse;
     return userJson == null?false:true;
   }
 
-  userData():IUser
+  userData():LoginResponse
   {
-    return JSON.parse(localStorage.getItem('user')!) as IUser;
+    return JSON.parse(localStorage.getItem('user')!) as LoginResponse;
   }
 
+  //Employee Logout
   logout()
   {
     localStorage.removeItem("user");
-    this._router.navigate(['/login']);
-
-
+    this._router.navigate(['/employeelogin']);
   }
 
 }
