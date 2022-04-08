@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
 import { AuthService } from 'src/app/service/auth.service';
@@ -24,7 +24,7 @@ export class EmployeeLoginComponent implements OnInit {
     private service: AuthService,
     private router: Router,
     private toaster: ToastrService
-  ) {}
+  ) { }
   ngOnInit(): void {
   }
 
@@ -39,61 +39,55 @@ export class EmployeeLoginComponent implements OnInit {
   }
 
   public signinHandler() {
-    this.isLoading = true;
-    if (this.signInForm.valid) {
 
-      this.service.loginUser(this.signInForm.value).subscribe({
-        next:(result:any) => {
-      this.service.employeeLogin(this.signInForm.value).subscribe((result:any) => {
-        if (result != null) {
-          this.userData = result;
-          localStorage.setItem('user', JSON.stringify(this.userData));
-          JSON.parse(localStorage.getItem('user')!);
-          this.router.navigate(['']);
-          this.userData = result.data;
-          console.log(this.userData)
-          localStorage.setItem('token',this.userData.token);
-          localStorage.setItem('id',this.userData.id);
-          localStorage.setItem('isLoggedin','true');
-          localStorage.setItem('role',this.userData.role);
+        this.isLoading = true;
+        if (this.signInForm.valid) {
 
-          this.toaster.success("Login Successfull")
-          this.router.navigate(['/ordersbyemployee']);
 
-          if(localStorage.getItem('role') == "admin")
-          {
-            this.router.navigate(['admin/dashboard'],{ replaceUrl: true });
-          }
-          else
-          {
-            this.router.navigate(['ordersbyemployee'],{ replaceUrl: true });
-          }
+          this.service.employeeLogin(this.signInForm.value).subscribe({
+            next: (result: any) => {
+               if (result != null) {
+                                    this.userData = result;
+                                    localStorage.setItem('user', JSON.stringify(this.userData));
+                                    JSON.parse(localStorage.getItem('user')!);
+                                    this.router.navigate(['']);
+                                    this.userData = result.data;
+                                    console.log(this.userData)
+                                    localStorage.setItem('token', this.userData.token);
+                                    localStorage.setItem('id', this.userData.id);
+                                    localStorage.setItem('isLoggedin', 'true');
+                                    localStorage.setItem('role', this.userData.role);
 
-          this.router.navigate(['/delivery/ordersbyemployee']);
+                                    this.toaster.success("Login Successfull")
+                                    this.router.navigate(['/ordersbyemployee']);
 
-        } else {
+              if (localStorage.getItem('role') == "admin") {
+                this.router.navigate(['admin/dashboard'], { replaceUrl: true });
+              }
+              else {
+                this.router.navigate(['delivery/ordersbyemployee'], { replaceUrl: true });
+              }
 
-          localStorage.setItem('user', 'null');
-          JSON.parse(localStorage.getItem('user')!);
-          localStorage.setItem('token','null');
-          localStorage.setItem('id','null');
-          localStorage.setItem('isLoggedin','null');
-          localStorage.setItem('role','null');
+              // this.router.navigate(['/delivery/ordersbyemployee']);
 
-        }
-      },
-      error: (err)=>{
-        this.isLoading = false;
-        this.toaster.error("Invalid email or Password, Enter Correctly!!");
-      }
-    });
+            }
+            
+          
+          },
+            error: (err:any) => {
+              this.isLoading = false;
+              this.toaster.error("Invalid email or Password, Enter Correctly!!");
+            }
+    })
       this.signInForm.reset();
 
     }
-    else{
+    else {
       this.isLoading = false;
       this.toaster.error("Invalid email or Password, Enter Correctly!!");
     }
+    // this.signInForm.markAllAsTouched();
+    // this._pageloaderservice.requestEnded();
 
   }
 
