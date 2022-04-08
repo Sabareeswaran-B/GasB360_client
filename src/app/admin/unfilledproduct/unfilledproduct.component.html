@@ -1,7 +1,12 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid " *ngIf="!componentLoading;else progresloading">
-    <br /><br><br><br>
+<ng-sidenav
+(collapsedEvent)="receiveCollapsed($event)"
+[adminMenuItems]="adminMenuItems"
+[employeeMenuItems]="employeeMenuItems"
+></ng-sidenav>
+
+<div class="main-container" *ngIf="!componentLoading;else progresloading">
     <div class="row">
       <div class="col-md-2 text-center">
         <p-card title="Create New Product">
@@ -180,7 +185,6 @@
         </p-card>
       </div>
     </div>
-    <br />
   </div>
 
   <!-- Creating Filled Product -->
@@ -369,6 +373,6 @@ header="Create a new Product"
   </form>
 </p-dialog>
 <ng-template #progresloading>
-  <br><br><br>
-  <p-progressBar mode="indeterminate" [style]="{'height': '9px'}"></p-progressBar>
+  <br>
+  <p-progressBar mode="indeterminate" [style]="{'height': '35px'}"></p-progressBar>
 </ng-template>

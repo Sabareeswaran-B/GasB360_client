@@ -7,6 +7,7 @@ import Type from 'src/app/model/type.model';
 import Branch from 'src/app/model/branch.model';
 import { process, aggregateBy } from "@progress/kendo-data-query";
 import UnfilledProducts from 'src/app/model/unfilled-product.model';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-unfilledproduct',
@@ -32,6 +33,7 @@ export class UnfilledproductComponent implements OnInit {
 
   gridData!: UnfilledProducts[];
   gridView!: any[];
+  collapedSideBar!: boolean;
   constructor(private service: AdminService, private builder: FormBuilder, private toaster: ToastrService) {
     this.unfilledDataUpdate = this.builder.group({
       unfilledProductId: [''], productCategoryId: [''], unfilledProductQuantity: [''],
@@ -49,6 +51,26 @@ export class UnfilledproductComponent implements OnInit {
     this.LoadingPage();
   }
 
+  
+  receiveCollapsed($event: boolean) {
+    this.collapedSideBar = $event;
+  }
+
+  adminMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
+    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
+    { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
+  employeeMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
+    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
+    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
   LoadingPage() {
     this.service.GetAllUnfilledProducts().subscribe({
       next: (data) => {

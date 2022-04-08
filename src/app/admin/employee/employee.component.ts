@@ -1,9 +1,10 @@
-import Employee  from 'src/app/model/employee.model';
+import Employee from 'src/app/model/employee.model';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import Role from 'src/app/model/role.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-employee',
@@ -17,17 +18,17 @@ export class EmployeeComponent implements OnInit {
   role_data!: Role[];
   displayModalCreate!: boolean;
   displayModalEdit!: boolean;
-  displayModalDelete!:boolean;
-  deleteMemberId! : string;
+  displayModalDelete!: boolean;
+  deleteMemberId!: string;
   componentLoading: boolean = true;
-
-  displayDelete!:string;
-  dataCount!:number;
+  collapedSideBar!: boolean;
+  displayDelete!: string;
+  dataCount!: number;
 
   constructor(private service: AdminService, private builder: FormBuilder, private toaster: ToastrService) {
     this.employeeDataUpdate = this.builder.group({
       employeeId: [''], employeeName: [''], roleId: [''],
-      active: [''], employeePhone: [''], employeeEmail: [''],password:['']
+      active: [''], employeePhone: [''], employeeEmail: [''], password: ['']
     });
     this.employeeCreateForm = this.builder.group({
       employeeName: [''], roleId: [''],
@@ -39,11 +40,32 @@ export class EmployeeComponent implements OnInit {
     this.displayModalCreate = false;
     this.LoadingPage();
   }
+
+  receiveCollapsed($event: boolean) {
+    this.collapedSideBar = $event;
+  }
+
+  adminMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
+    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
+    { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
+  employeeMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
+    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
+    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
+
   LoadingPage() {
     this.service.GetAllEmployees().subscribe({
       next: (data) => {
         this.employeeDataForGrid = data['data' as keyof Object];
-        this.dataCount = this.employeeDataForGrid.length; 
+        this.dataCount = this.employeeDataForGrid.length;
         this.componentLoading = false;
       },
       error: (err) => {
@@ -89,7 +111,7 @@ export class EmployeeComponent implements OnInit {
         console.log(err)
       }
     });
-  
+
     this.employeeDataUpdate.setValue({
       'employeeId': dataItem.employeeId,
       'employeeName': dataItem.employeeName,
@@ -106,35 +128,35 @@ export class EmployeeComponent implements OnInit {
     this.displayModalEdit = false;
     let updateGrid = this.employeeDataUpdate.value;
     updateGrid.roleId = updateGrid.roleId.roleId;
-    this.service.UpdateEmployee(updateGrid,updateGrid.employeeId).subscribe({
-      next : (data)=>{
+    this.service.UpdateEmployee(updateGrid, updateGrid.employeeId).subscribe({
+      next: (data) => {
         this.LoadingPage()
       },
-      error: (err)=>{
+      error: (err) => {
         console.log(err)
       }
     })
 
   }
   // Delete Pop up
-  deleteGridElementPopup(dataItem : any) {
+  deleteGridElementPopup(dataItem: any) {
     this.displayDelete = "Are You Sure want to delete, ";
     this.displayDelete += dataItem.employeeName;
     this.displayDelete += "?";
     this.displayModalDelete = true;
     this.deleteMemberId = dataItem.employeeId;
-    
+
   }
   // Delete Employee Row element
   deleteGridElement() {
     this.displayModalDelete = false;
     this.service.DeleteEmployee(this.deleteMemberId).subscribe({
-      next : (data)=>{
+      next: (data) => {
         console.log(data)
         this.toaster.error("Successfully Deleted");
         this.LoadingPage()
       },
-      error: (err)=>{
+      error: (err) => {
         console.log(err)
       }
     })

@@ -4,6 +4,7 @@ import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import ProductCategory  from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-productcategory',
@@ -23,6 +24,7 @@ export class ProductcategoryComponent implements OnInit {
 
   displayDelete!:string;
   dataCount!:number;
+  collapedSideBar!: boolean;
   constructor(private service: AdminService, private builder: FormBuilder, private toaster: ToastrService) {
     this.productDataUpdate = this.builder.group({
       productId: [''], productName: [''], productWeight: [''],
@@ -38,6 +40,26 @@ export class ProductcategoryComponent implements OnInit {
     this.displayModalCreate = false;
     this.LoadingPage();
   }
+  
+  receiveCollapsed($event: boolean) {
+    this.collapedSideBar = $event;
+  }
+
+  adminMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
+    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
+    { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
+  employeeMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
+    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
+    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
   LoadingPage() {
     this.service.GetAllProductCategories().subscribe({
       next: (data) => {
