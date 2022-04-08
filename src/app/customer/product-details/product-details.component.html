@@ -3,7 +3,7 @@
   <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
   <kendo-tilelayout [columns]="4" [rowHeight]="230" [resizable]="false" [reorderable]="false">
-    <kendo-tilelayout-item title="Other products" [col]="1" [colSpan]="1" [rowSpan]="2" class="shadow">
+    <kendo-tilelayout-item pTooltip="Other products" [col]="1" [colSpan]="1" [rowSpan]="2" class="shadow">
       <kendo-tilelayout-item-body>
         <div class="order-list">
           <div *ngFor="let otherProduct of otherProducts">
@@ -64,7 +64,7 @@
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
 
-    <kendo-tilelayout-item title="Conversion Rate" [col]="4" class="shadow">
+    <kendo-tilelayout-item pTooltip="Conversion Rate" [col]="4" class="shadow">
       <kendo-tilelayout-item-body>
         <h6 class='address-heading'>
           Product price :
@@ -86,7 +86,7 @@
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
 
-    <kendo-tilelayout-item title="Branch" [col]="4" class="shadow">
+    <kendo-tilelayout-item pTooltip="Branch" [col]="4" class="shadow">
       <kendo-tilelayout-item-body>
         <h6 class='address-heading'>
           Branch name :

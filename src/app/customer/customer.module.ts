@@ -36,6 +36,7 @@ import { OrderIndexComponent } from './order-index/order-index.component';
 import { CookieService } from 'ngx-cookie-service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import {PaginatorModule} from 'primeng/paginator';
+import {TooltipModule} from 'primeng/tooltip';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import {PaginatorModule} from 'primeng/paginator';
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('profile', ProfileReducer),
     ChipModule,
+    TooltipModule,
     PaginatorModule,
     ProgressBarModule,
     LayoutModule,
