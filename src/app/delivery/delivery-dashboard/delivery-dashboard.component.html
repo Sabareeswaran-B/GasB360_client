@@ -1,33 +1,66 @@
-<div class="container">
-  <br>
+<app-navbar></app-navbar>
+
+<ng-sidenav
+  (collapsedEvent)="receiveCollapsed($event)"
+  [adminMenuItems]="adminMenuItems"
+  [employeeMenuItems]="employeeMenuItems"
+></ng-sidenav>
+<div class="main-container">
+  <br />
   <div class="row">
     <div class="col-md-6">
-      <div class="card " style="height: 20vh; box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;">
+      <div
+        class="card"
+        style="
+          height: 20vh;
+          box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+            rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+        "
+      >
         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-       <div class="job card-body">
-          <p class="card-text" style="font-weight: bolder;text-align: center;">Total No.Of.Orders </p>
-       <h1 class="card-text" style="font-weight: bolder; font-size: 50px; text-align: center;">
-            {{TotalOrders}}
-       </h1>
-       </div>
-     </div>
+        <div class="job card-body">
+          <p class="card-text" style="font-weight: bolder; text-align: center">
+            Total No.Of.Orders
+          </p>
+          <h1
+            class="card-text"
+            style="font-weight: bolder; font-size: 50px; text-align: center"
+          >
+            {{ TotalOrders }}
+          </h1>
+        </div>
+      </div>
+      <br>
     </div>
     <div class="col-md-6">
-
-  <div class="card " style="height: 20vh; box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;">
-    <div class="job card-body">
-       <p class="card-text" style="font-weight: bolder;text-align: center;">Total No.Of.Orders Delivered</p>
-    <h1 class="card-text" style="font-weight: bolder; font-size: 50px; text-align: center;">
-         {{TotalDeliveryOrder}}
-    </h1>
-    </div>
-   </div>
+      <div
+        class="card"
+        style="
+          height: 20vh;
+          box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+            rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+        "
+      >
+        <div class="job card-body">
+          <p class="card-text" style="font-weight: bolder; text-align: center">
+            Total No.Of.Orders Delivered
+          </p>
+          <h1
+            class="card-text"
+            style="font-weight: bolder; font-size: 50px; text-align: center"
+          >
+            {{ TotalDeliveryOrder }}
+          </h1>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<br>
-<table class="table table-dark container">
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+      <table class="table table-hover   main-container ">
   <thead>
     <tr>
       <th scope="col">OrderId</th>
@@ -36,24 +69,23 @@
       <th scope="col">Date</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let ordervalue of OrderList">
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
+      <th>
+        <img
+          [src]="ordervalue.customer.customerImage"
+          height="70"
+          width="70"
+          alt=""
+        />
+      </th>
+      <td>{{ ordervalue.customer.customerName }}</td>
+      <td>{{ ordervalue.filledProduct.productCategory.productName }}</td>
+      <td>{{ ordervalue.orderDate | date }}</td>
     </tr>
   </tbody>
 </table>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+

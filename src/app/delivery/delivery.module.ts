@@ -8,6 +8,8 @@ import { DeliveryCompletedordersComponent } from './delivery-completedorders/del
 import { DeliveryRouterModule } from './delivery-router/delivery-router.module';
 import {ProgressBarModule} from 'primeng/progressbar';
 import { DeliveryDashboardComponent } from './delivery-dashboard/delivery-dashboard.component';
+import { NgSidenavModule } from 'ng-sidenav';
+import { SplitButtonModule } from 'primeng/splitbutton';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { DeliveryDashboardComponent } from './delivery-dashboard/delivery-dashbo
     ButtonModule,
     FormsModule,
     DeliveryRouterModule,
-    ProgressBarModule
+    ProgressBarModule,
+    SplitButtonModule,
+    NgSidenavModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

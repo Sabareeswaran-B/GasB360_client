@@ -26,7 +26,6 @@ const routes: Routes = [
     // loadChildren: () => import('./customer/customer.module').then(customer => customer.CustomerModule),
     // canActivate: [AuthGuard]
 
-  {path:"employeelogin",component:EmployeeLoginComponent},
   {
     path: 'delivery',
     loadChildren: () => import('./delivery/delivery.module').then(delivery => delivery.DeliveryModule),
