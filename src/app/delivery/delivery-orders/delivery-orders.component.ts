@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
 import Order from 'src/app/model/order.model';
 import { PrimeNGConfig } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-delivery-orders',
@@ -13,7 +14,10 @@ import { PrimeNGConfig } from 'primeng/api';
 
 export class DeliveryOrdersComponent implements OnInit {
   constructor(private service: DeliveryService,
-    private router: Router, private aservice:AuthService,private primengConfig: PrimeNGConfig) {
+    private router: Router, private aservice:AuthService,
+    private primengConfig: PrimeNGConfig,
+    private toaster: ToastrService
+    ) {
 
      }
   OrderList:any=[];
@@ -75,12 +79,12 @@ export class DeliveryOrdersComponent implements OnInit {
   onClickSubmit(data:any) {
     this.service.OrderDeliveryCheckByOtp(this.orderid,data.otp).subscribe({
       next: (response) => {
-        alert(response.message);
+        this.toaster.success(response.message);
         this.router.navigate(['/deliveredorders']);
 
       },
       error: (error) => {
-        alert(error.error.message);
+        this.toaster.error(error.error.message);
       }
     });
  }

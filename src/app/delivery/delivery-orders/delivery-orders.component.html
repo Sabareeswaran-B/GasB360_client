@@ -34,13 +34,13 @@
         <p class="card-text">City : {{item.address.addressCity}}</p>
         <p class="card-text">State & Country : {{item.address.addressState}},{{item.address.addressCountry}}</p>
         <p class="card-text">Phone : {{item.customer.customerPhone}}</p>
-        <p-button (click)="showMaximizableDialog(item.orderId)" icon="pi pi-external-link" label="Deliver Product"></p-button>
+        <p-button (click)="showMaximizableDialog(item.orderId)" [style]="{ 'background-color': 'var(--red-500)'}" icon="pi pi-external-link" label="Deliver Product"></p-button>
         <p-dialog header="  Get OTP From Customer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true" [baseZIndex]="10000"
           [draggable]="false" [resizable]="false">
         <form #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)" >
           <input class="p-3 m-4" type = "text" name = "otp" placeholder = "Enter Otp" ngModel>
         <br>
-        <button class="btn btn-primary m-4" type = "submit" >Verify</button>
+        <button class="btn theme m-4" type = "submit" >Verify</button>
         </form>
         <!-- <ng-template pTemplate="footer">
             <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Yes" class="p-button-text"></p-button>

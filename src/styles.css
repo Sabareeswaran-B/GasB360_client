@@ -111,7 +111,12 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
 }
 
 .theme{
-  background-color: var(--theme);
+  background-color: var(--red-500);
   color:white;
 
 }
+.theme:hover{
+    background-color: var(--red-500);
+    color:white;
+  
+  }

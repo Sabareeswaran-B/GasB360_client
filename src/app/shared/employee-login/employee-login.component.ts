@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
-
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-login',
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./employee-login.component.css']
 })
 export class EmployeeLoginComponent implements OnInit {
-
+  isLoading: boolean = false;
   @ViewChild('password') public textbox!: TextBoxComponent;
 
   // responsedata!: any;
@@ -25,9 +25,11 @@ export class EmployeeLoginComponent implements OnInit {
   constructor(
     private service: AuthService,
     private router: Router,
+    private toaster: ToastrService
   ) {}
   ngOnInit(): void {
   }
+
 
   public ngAfterViewInit(): void {
     this.textbox.input.nativeElement.type = 'password';
@@ -39,8 +41,10 @@ export class EmployeeLoginComponent implements OnInit {
   }
 
   public signinHandler() {
+    this.isLoading = true;
     if (this.signInForm.valid) {
-      this.service.loginUser(this.signInForm.value).subscribe((result:any) => {
+      this.service.loginUser(this.signInForm.value).subscribe({
+        next:(result:any) => {
         if (result != null) {
           this.userData = result;
           localStorage.setItem('user', JSON.stringify(this.userData));
@@ -52,15 +56,16 @@ export class EmployeeLoginComponent implements OnInit {
           localStorage.setItem('id',this.userData.id);
           localStorage.setItem('isLoggedin','true');
           localStorage.setItem('role',this.userData.role);
+          this.toaster.success("Login Successfull")
           this.router.navigate(['/ordersbyemployee']);
 
           if(localStorage.getItem('role') == "admin")
           {
-            this.router.navigate(['admin/dashboard']);
+            this.router.navigate(['admin/dashboard'],{ replaceUrl: true });
           }
           else
           {
-            this.router.navigate(['user']);
+            this.router.navigate(['ordersbyemployee'],{ replaceUrl: true });
           }
 
         } else {
@@ -73,12 +78,17 @@ export class EmployeeLoginComponent implements OnInit {
           localStorage.setItem('role','null');
 
         }
-      });
+      },
+      error: (err)=>{
+        this.isLoading = false;
+        this.toaster.error("Invalid email or Password, Enter Correctly!!");
+      }});
       this.signInForm.reset();
 
     }
     else{
-      alert("Invalid email or Password, Enter Correctly!!");
+      this.isLoading = false;
+      this.toaster.error("Invalid email or Password, Enter Correctly!!");
     }
     // this.signInForm.markAllAsTouched();
     // this._pageloaderservice.requestEnded();

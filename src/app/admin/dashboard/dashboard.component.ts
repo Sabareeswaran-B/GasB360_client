@@ -1,10 +1,5 @@
 import { Component, OnInit,  ViewChild  } from '@angular/core';
-import {
-  ApexNonAxisChartSeries,
-  ApexPlotOptions,
-  ApexChart,
-  ChartComponent
-} from "ng-apexcharts";
+import {ApexNonAxisChartSeries,ApexPlotOptions,ApexChart,ChartComponent} from "ng-apexcharts";
 import { MenuItem } from 'primeng/api';
 
 export type ChartOptions = {

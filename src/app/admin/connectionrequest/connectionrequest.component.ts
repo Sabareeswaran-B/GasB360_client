@@ -33,7 +33,24 @@ export class ConnectionrequestComponent implements OnInit {
       }
     });
   }
-  AcceptRequest( customerId : number){
-    console.log(customerId)
+  AcceptRequest( customerId : string){
+    // console.log(customerId)
+    this.service.AcceptCustomerConnection(customerId).subscribe({
+      next: (data)=>{
+        this.toaster.success("Accepted Customer Request")
+        this.LoadingPage()
+      },
+      error: (err)=>{}
+    })
+  }
+  RejectRequest(customerId : string){
+    // console.log(customerId)
+    this.service.RejectCustomerConnection(customerId).subscribe({
+      next: (data)=>{
+        this.toaster.error("ARejected Customer Request")
+        this.LoadingPage()
+      },
+      error: (err)=>{}
+    })
   }
 }
