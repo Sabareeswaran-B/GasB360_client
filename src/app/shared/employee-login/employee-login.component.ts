@@ -1,7 +1,6 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TextBoxComponent } from '@progress/kendo-angular-inputs';
-
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
 
@@ -14,8 +13,6 @@ import { Router } from '@angular/router';
 export class EmployeeLoginComponent implements OnInit {
 
   @ViewChild('password') public textbox!: TextBoxComponent;
-
-  // responsedata!: any;
 
   public signInForm: FormGroup = new FormGroup({
     email: new FormControl(),
@@ -41,7 +38,7 @@ export class EmployeeLoginComponent implements OnInit {
 
   public signinHandler() {
     if (this.signInForm.valid) {
-      this.service.loginUser(this.signInForm.value).subscribe((result:any) => {
+      this.service.employeeLogin(this.signInForm.value).subscribe((result:any) => {
         if (result != null) {
           this.userData = result.data;
           console.log(this.userData)
@@ -49,16 +46,7 @@ export class EmployeeLoginComponent implements OnInit {
           localStorage.setItem('id',this.userData.id);
           localStorage.setItem('isLoggedin','true');
           localStorage.setItem('role',this.userData.role);
-          this.router.navigate(['/ordersbyemployee']);
-
-          // if(this.userData.roleId == 1)
-          // {
-          //   this.router.navigate(['admin']);
-          // }
-          // else
-          // {
-          //   this.router.navigate(['user']);
-          // }
+          this.router.navigate(['/delivery/ordersbyemployee']);
 
         } else {
 
