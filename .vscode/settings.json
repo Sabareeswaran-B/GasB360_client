@@ -1,4 +1,11 @@
 {
+<<<<<<< HEAD
     "appService.defaultWebAppToDeploy": "/subscriptions/a50d2c41-9717-4ab1-a854-ad8d1be31df9/resourceGroups/GasB360/providers/Microsoft.Web/sites/GasB360api",
     "appService.deploySubpath": "."
+=======
+    "cSpell.words": [
+        "productcategory",
+        "progressload"
+    ]
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 }

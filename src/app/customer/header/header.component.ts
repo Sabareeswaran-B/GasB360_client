@@ -2,7 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
+<<<<<<< HEAD
 import { ToastrService } from 'ngx-toastr';
+=======
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import { profile } from 'src/app/ngrx/profile.action';
@@ -26,8 +29,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private store: Store, 
     private profile: Store<{ profile: Customer }>,
+<<<<<<< HEAD
     private cookie: CookieService,
     private toastr: ToastrService
+=======
+    private cookie: CookieService
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
     ) { }
 
   ngOnInit(): void {

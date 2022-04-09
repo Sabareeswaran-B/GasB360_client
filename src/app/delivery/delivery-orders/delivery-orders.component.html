@@ -1,0 +1,161 @@
+<app-navbar></app-navbar>
+<ng-sidenav
+  (collapsedEvent)="receiveCollapsed($event)"
+  [adminMenuItems]="adminMenuItems"
+  [employeeMenuItems]="employeeMenuItems"
+></ng-sidenav>
+<div  *ngIf="!progress; else progressLoader" class="main-container" [ngClass]="{ collapsed: collapedSideBar } ">
+  <div class="row m-5 p-3">
+    <div class="grid">
+      <div class="col-12 md:col-4">
+        <div class="p-inputgroup card-shadow">
+          <button type="button" pButton pRipple label="Search"></button>
+          <div style="width: 100%">
+            <input
+              [(ngModel)]="CustomerNameFilter"
+              style="position: relative; border: 1px solid white"
+              class="form-control"
+              type="text"
+              (keyup)="FilterFn()"
+              pInputText
+              placeholder="Search Customer.."
+            />
+          </div>
+          <div style="width: 30px; position: relative; top: 7px">
+            <i class="pi pi-search" style="font-size: 1.5rem"></i>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 my-3" *ngFor="let item of OrderList">
+          <div class="card carder card-shadow">
+            <div class="card-body">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <h5 class="card-titler card-title fw-bold">
+                  Customer Name : {{ item.customer.customerName }}
+                </h5>
+                <button pButton type="button" class="p-button-raised">
+                  {{ item.orderStatus }}
+                </button>
+              </div>
+
+              <hr />
+              <p class="card-text">
+                Product Name :
+                {{ item.filledProduct.productCategory.productName }}
+              </p>
+              <p class="card-text">Order Date : {{ item.orderDate | date }}</p>
+
+              <p class="card-titler card-title fw-bold">Address</p>
+              <hr />
+              <p class="card-text">
+                Street : {{ item.address.addressStreetName }}
+              </p>
+              <p class="card-text">City : {{ item.address.addressCity }}</p>
+              <p class="card-text">
+                State & Country : {{ item.address.addressState }},{{
+                  item.address.addressCountry
+                }}
+              </p>
+              <p class="card-text">Phone : {{ item.customer.customerPhone }}</p>
+
+              <p-button
+                (click)="showMaximizableDialog(item.orderId)"
+                [style]="{ 'background-color': 'var(--red-500)' }"
+                icon="pi pi-external-link"
+                label="Deliver Product"
+              ></p-button>
+              <p-dialog
+                header="  Get OTP From Customer "
+                [(visible)]="displayMaximizable"
+                [modal]="true"
+                [style]="{ width: '50vw' }"
+                [maximizable]="true"
+                [baseZIndex]="10000"
+                [draggable]="false"
+                [resizable]="false"
+              >
+                <form
+                  #userlogin="ngForm"
+                  (ngSubmit)="onClickSubmit(userlogin.value)"
+                >
+                  <input
+                    class="p-3 m-4"
+                    type="text"
+                    name="otp"
+                    placeholder="Enter Otp"
+                    ngModel
+                  />
+                  <br />
+                  <button class="btn theme m-4" type="submit">Verify</button>
+                </form>
+                <!-- <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Yes" class="p-button-text"></p-button>
+            <p-button icon="pi pi-times" (click)="displayMaximizable=false" label="No"></p-button>
+        </ng-template> -->
+
+                <p-button
+                  (click)="showMaximizableDialog(item.orderId)"
+                  icon="pi pi-external-link"
+                  label="Deliver Product"
+                ></p-button>
+                <p-dialog
+                  header="  Get Otp From Customer "
+                  align="center"
+                  [(visible)]="displayMaximizable"
+                  [modal]="true"
+                  [style]="{ width: '50vw' }"
+                  [maximizable]="true"
+                  [baseZIndex]="10000"
+                  [draggable]="false"
+                  [resizable]="false"
+                >
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-7">
+                      <form
+                        #inputOtp="ngForm"
+                        (ngSubmit)="
+                          onClickSubmit(inputOtp.value); inputOtp.resetForm()
+                        "
+                      >
+                        <input
+                          class="p-3 m-4 form-control"
+                          type="text"
+                          name="otp"
+                          placeholder="Enter Otp XXXXXX"
+                          ngModel
+                        />
+                        <br />
+
+                        <button
+                          class="btn theme m-4 form-control"
+                          type="submit"
+                        >
+                          Verify
+                        </button>
+                      </form>
+                    </div>
+                    <div class="col-md-3"></div>
+                  </div>
+                </p-dialog>
+              </p-dialog>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #progressLoader>
+  <p-progressBar
+    mode="indeterminate"
+    [style]="{ height: '65px' }"
+  ></p-progressBar>
+</ng-template>

@@ -47,6 +47,7 @@ export class ProductIndexComponent implements OnInit, OnDestroy {
   getAllProductCategories() {
     var subscription = this.customerService.GetAllProductCategories().subscribe({
       next: (response) => {
+        console.log(response)
         this.products = response.data as ProductCategory[];
         console.log(this.products);
         this.componentLoading = false;

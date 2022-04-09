@@ -7,5 +7,6 @@ export default class ProductCategory {
     productWeight!: number;
     productPrice!: number;
     typeId!: string;
+    active!: string;
     type!: Type;
 }

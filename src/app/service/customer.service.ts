@@ -15,47 +15,79 @@ export class CustomerService {
 
   httpHeader: HttpHeaders = new HttpHeaders();
 
+<<<<<<< HEAD
   constructor(private httpClient: HttpClient) {
+=======
+  constructor(private httpClient: HttpClient, private cookie: CookieService) {
+    var token = localStorage.getItem('token')!;
+    this.httpHeader = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //login api
   login(customerCredential: LoginRequest) {
-    return this.httpClient.post<Response>(`${env.baseUrl}/customer/login`, customerCredential)
+    return this.httpClient.post<Response>(`${env.baseUrl}/customer/login`, customerCredential, { headers: this.httpHeader })
   }
 
   //Signup Api
   Signup(customerDetails: Customer) {
-    return this.httpClient.post<Response>(`${env.baseUrl}/customer/addnewcustomer`, customerDetails)
+    return this.httpClient.post<Response>(`${env.baseUrl}/customer/addnewcustomer`, customerDetails, { headers: this.httpHeader })
   }
 
   //get all types api
   GetAllTypes() {
+<<<<<<< HEAD
     return this.httpClient.get<Response>(`${env.baseUrl}/type/getalltypes`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    return this.httpClient.get<Response>(`${env.baseUrl}/type/getalltypes`, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //get all product categories api
   GetAllProductCategories() {
+<<<<<<< HEAD
     return this.httpClient.get<Response>(`${env.baseUrl}/productcategory/getallproductcategories`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    return this.httpClient.get<Response>(`${env.baseUrl}/productcategory/getallproductcategories`, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //get a single product category by product category id
   GetProductCategoryById(productCategoryId: string) {
+<<<<<<< HEAD
     return this.httpClient.get<Response>(`${env.baseUrl}/filledproduct/GetFilledProductByProductCategoryId/${productCategoryId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    return this.httpClient.get<Response>(`${env.baseUrl}/filledproduct/GetFilledProductByProductCategoryId/${productCategoryId}`, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //get address of a single customer
   GetAddressByCustomerId(customerId: string) {
+<<<<<<< HEAD
     return this.httpClient.get<Response>(`${env.baseUrl}/address/GetAddressByCustomerId/${customerId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    return this.httpClient.get<Response>(`${env.baseUrl}/address/GetAddressByCustomerId/${customerId}`, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //add a new address
   AddNewAddress(address: Address) {
+<<<<<<< HEAD
     return this.httpClient.post<Response>(`${env.baseUrl}/address/AddNewCustomerAddress`, address, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+=======
+    return this.httpClient.post<Response>(`${env.baseUrl}/address/AddNewCustomerAddress`, address, { headers: this.httpHeader });
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //delete address
   DeleteAddress(addressId: string) {
+<<<<<<< HEAD
     return this.httpClient.delete<Response>(`${env.baseUrl}/address/DeleteCustomerAddress/${addressId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+=======
+    return this.httpClient.delete<Response>(`${env.baseUrl}/address/DeleteCustomerAddress/${addressId}`, { headers: this.httpHeader });
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //order payment gateway
@@ -65,7 +97,11 @@ export class CustomerService {
       orderTotalprice: order.orderTotalprice,
       filledProductId: order.filledProductId,
       addressId: order.addressId
+<<<<<<< HEAD
     }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    }, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //Order add new
@@ -76,17 +112,26 @@ export class CustomerService {
       orderTotalprice: order.orderTotalprice,
       filledProductId: order.filledProductId,
       addressId: order.addressId
+<<<<<<< HEAD
     }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    }, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //update customer profile image
   UpdateCustomerImage(formData: FormData, customerId: string) {
+<<<<<<< HEAD
     return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomerImage/${customerId}`, formData, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+=======
+    return this.httpClient.put<Response>(`${env.baseUrl}/customer/UpdateCustomerImage/${customerId}`, formData, { headers: this.httpHeader });
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
 
   //get customer by customer id
   GetCustomerById(customerId: string) {
+<<<<<<< HEAD
     return this.httpClient.get<Response>(`${env.baseUrl}/customer/getcustomerbyid/${customerId}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
   }
 
@@ -94,6 +139,9 @@ export class CustomerService {
   //get orders by customer id with pagination
   GetOrdersByCustomerId(customerId: string, pageNumber: number) {
     return this.httpClient.get<Response>(`${env.baseUrl}/order/GetOrdersByCustomerIdWithPagination/${customerId}/${pageNumber}`, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+=======
+    return this.httpClient.get<Response>(`${env.baseUrl}/customer/getcustomerbyid/${customerId}`, { headers: this.httpHeader })
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
   //get all orders by customer id

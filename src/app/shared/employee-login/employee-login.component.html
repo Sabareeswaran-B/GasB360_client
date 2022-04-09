@@ -1,0 +1,88 @@
+<span >
+<div class="selector">
+  <div class="cls_container cls_aligncenter centering">
+    <div class="wrapper fadeInDown">
+      <br /><br /><br /><br /><br /><br />
+      <div id="formContent">
+        <!-- <div class="fadeIn first" >
+       
+      -</div> -->
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <form class="k-form" [formGroup]="signInForm">
+              <fieldset class="k-form-fieldset">
+                <div>
+                  <br />
+                  <h3 class="fadeIn first text-danger">Employee Login</h3>
+                </div>
+                <kendo-formfield>
+                  <kendo-label [for]="email" text="Email"></kendo-label>
+                  <kendo-textbox
+                    formControlName="email"
+                    [clearButton]="true"
+                    #email
+                    id="login"
+                    class="fadeIn second"
+                    required
+                  ></kendo-textbox>
+                  <kendo-formhint>Your email</kendo-formhint>
+                  <kendo-formerror>Error: email is required</kendo-formerror>
+                </kendo-formfield>
+                <kendo-formfield>
+                  <kendo-label [for]="password" text="Password"> </kendo-label>
+                  <kendo-textbox
+                    formControlName="password"
+                    #password
+                    id="password"
+                    class="fadeIn third"
+                    required
+                    [clearButton]="true"
+                  >
+                    <ng-template
+                      class="text-center btn-primary"
+                      kendoTextBoxSuffixTemplate
+                    >
+                      <button
+                        kendoButton
+                        class="fadeIn fourth"
+                        look="clear"
+                        icon="eye"
+                        (click)="toggleVisibility()"
+                      ></button>
+                    </ng-template>
+                  </kendo-textbox>
+                  <kendo-formhint>Your password</kendo-formhint>
+                  <kendo-formerror>Error: password is required</kendo-formerror>
+                </kendo-formfield>
+                <div class="cls_textalign">
+                  <br />
+                </div>
+                <div kendoRippleContainer>
+                  <div id="formFooter">
+                    <button
+                      *ngIf="!isLoading; else loader"
+                      kendoButton
+                      class="loginbutton fadeIn fourth pi"
+                      (click)="signinHandler()"
+                    >
+                      Login
+                    </button>
+                    <ng-template #loader>
+                      <div class="loginspin">
+                        <button
+                          class="w-100 p-2 p-button-raised"
+                          pButton
+                          pRipple
+                          type="button"
+                          [disabled]="true"
+                        >
+                         Loading..<i class="pi pi-spin pi-spinner"></i>
+                        </button>
+                      </div>
+                    </ng-template>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+</div></div></div></div></div></div>

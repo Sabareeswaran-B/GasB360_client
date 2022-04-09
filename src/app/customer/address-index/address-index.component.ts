@@ -29,7 +29,11 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
   selectedAddress!: Address;
   orderLoading: boolean = false;
   items!: MenuItem[];
+<<<<<<< HEAD
   home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" };
+=======
+  home: MenuItem = { icon: "pi pi-home", routerLink: "/customer/dashboard" };
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
   constructor(
     private customerService: CustomerService,

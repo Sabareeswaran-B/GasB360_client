@@ -35,11 +35,15 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
 import { OrderIndexComponent } from './order-index/order-index.component';
 import { CookieService } from 'ngx-cookie-service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+<<<<<<< HEAD
 import {PaginatorModule} from 'primeng/paginator';
 import {SkeletonModule} from 'primeng/skeleton';
 import {TooltipModule} from 'primeng/tooltip';
 import {ChartModule} from 'primeng/chart';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+=======
+
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
 @NgModule({
   declarations: [
@@ -60,9 +64,12 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     ToastrModule.forRoot(),
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('profile', ProfileReducer),
+<<<<<<< HEAD
     ChartModule,
     SkeletonModule,
     NgbCarouselModule,
+=======
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
     ChipModule,
     TooltipModule,
     PaginatorModule,
@@ -84,6 +91,8 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     InputTextModule,
     DropdownModule,
     RippleModule,
+    ProgressBarModule
+    
   ],
   exports: [
     CustomerLoginComponent,

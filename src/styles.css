@@ -8,13 +8,9 @@
 
 @import '../node_modules/ngx-toastr/toastr.css';
 
-/* @import '../node_modules/ngx-toastr/toastr-bs4-alert.scss'; */
-
-/* @import '~bootstrap/css/functions'; */
-/* @import '~bootstrap/scss/variables'; */
-/* @import '~bootstrap/scss/mixins'; */
-/* @import '~ngx-toastr/toastr-bs4-alert'; */
-
+:root{
+  --theme:#ff6358;
+}
 a {
     text-decoration: none;
 }
@@ -25,13 +21,6 @@ body {
     width: 100%;
     background-color: #fafafa;
 }
-
-/* body { */
-    /* display: grid; */
-    /* align-items: center; */
-    /* background-color: #f5f5f5; */
-/* } */
-
 
 p-inputnumber, .p-inputnumber, p-calendar, .p-calendar, p-password, .p-password, .p-password-input, .p-inputtext, p-dropdown, .p-dropdown {
     width: 100%
@@ -44,10 +33,13 @@ p-breadcrumb, .p-breadcrumb {
     background-color: transparent;
 }
 
+<<<<<<< HEAD
 p-paginator .p-paginator {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
     border-radius: 20px;
 }
+=======
+>>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
     background-color: red;
@@ -108,5 +100,73 @@ p-menuitem-text .p-menuitem-text {
 
 .table-container{
     border-radius: 20px;
-    /* padding: 10px; */
 }
+
+.centering{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme{
+  background-color: var(--red-500);
+  color:white;
+
+}
+
+.theme:hover{
+    background-color: var(--red-500);
+    color:white;
+  
+  }
+
+.p-button{
+  background:var(--theme);
+  border:1px solid var(--theme);
+}
+
+.p-button:hover{
+  color: var(--theme)!important;
+  background-color: white!important;
+  border: 1px solid white!important;
+}
+
+.p-button-raised{
+  background: white;
+  color: var(--theme);
+}
+
+.p-button-raised:hover{
+  color: var(--theme)!important;
+  background-color: white!important;
+  border: 1 px solid var(--theme);
+}
+
+.card-titler{
+  color: var(--theme);
+
+}
+
+.card-shadow{
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
+}
+
+.carder:hover .card-titler{
+  color: #fafafa;
+}
+
+.carder:hover {
+  background-color: var(--theme);
+  color: #fafafa;
+}
+
+.carder{
+  border-radius: 4px;
+}
+
+.p-dialog-title{
+  color: var(--theme);
+  position: relative;
+  left:250px;
+}
+
