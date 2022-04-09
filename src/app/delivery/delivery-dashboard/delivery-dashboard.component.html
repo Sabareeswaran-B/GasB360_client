@@ -4,7 +4,7 @@
   (collapsedEvent)="receiveCollapsed($event)"
   [adminMenuItems]="adminMenuItems"
   [employeeMenuItems]="employeeMenuItems"
-></ng-sidenav>  
+></ng-sidenav>
 
 <div  *ngIf="!progress; else progressLoader"  class="main-container"
 [ngClass]="{ collapsed: collapedSideBar }">
