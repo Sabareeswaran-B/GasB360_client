@@ -18,6 +18,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { StoreModule } from '@ngrx/store';
 import { ProductReducer } from './ngrx/product.reducer';
 import { ProfileReducer } from './ngrx/profile.reducer';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -41,6 +42,7 @@ import { ProfileReducer } from './ngrx/profile.reducer';
     ListViewModule,
     LayoutModule,
     StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
+    NgbModule,
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

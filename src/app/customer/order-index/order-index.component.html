@@ -1,27 +1,72 @@
 <app-header></app-header>
-<div class="container vh-100" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
-    <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+<div class="container vh-100" style="margin-top: 70px;">
+    <p-breadcrumb [model]=" items" [home]="home">
+    </p-breadcrumb>
     <br>
     <br>
-    <div class="card w-100 shadow my-4" style="min-height: 150px; border-radius: 20px; border: none; padding: 15px;" *ngFor="let order of orders">
+    <div *ngIf="!shimmerLoading;else shimmer">
+    <div class="card w-100 shadow my-4" style="min-height: 150px; border-radius: 20px; border: none; padding: 15px;"
+        *ngFor="let order of orders">
         <div class="row">
             <div class="col-lg-2 col-md-4 col-sm-4">
-                <img [src]="order.filledProduct.productCategory.productImage" width="100%" style="border-radius: 20px;" >
+                <img [src]="order.filledProduct.productCategory.productImage" width="100%" style="border-radius: 20px;">
             </div>
             <div class="col-lg-10 col-md-8 col-sm-8">
-                <h4 class="mt-2">{{order.filledProduct.productCategory.productName}}  <span class="h6" style="float: right; color: #000;">{{order.orderDate | date}}</span> </h4>                
-                <h6 style="color: rgb(177,177,177);" class="mt-1">Weight: <span style="color: black;"> {{order.filledProduct.productCategory.productWeight}} KG</span> <span class="h6" style="float: right; color: #000;">₹ {{order.filledProduct.productCategory.productPrice}}</span></h6>
-                <h6 style="color: rgb(177,177,177);" *ngIf="order.orderStatus != 'Delivered'">Otp: <span style="color: black;"> {{ order.orderOtp }}</span><span style="float: right; color: rgb(177,177,177);">Paid</span></h6>
-                <h6 style="color: rgb(177,177,177);">Status: <span style="color: black;"> {{ order.orderStatus }}</span></h6>
+                <h4 class="mt-2">{{order.filledProduct.productCategory.productName}} <span class="h6"
+                        style="float: right; color: #000;">{{order.orderDate | date}}</span> </h4>
+                <h6 style="color: rgb(177,177,177);" class="mt-1">Weight: <span style="color: black;">
+                        {{order.filledProduct.productCategory.productWeight}} KG</span> <span class="h6"
+                        style="float: right; color: #000;">₹
+                        {{order.filledProduct.productCategory.productPrice}}</span></h6>
+                <h6 style="color: rgb(177,177,177);" *ngIf="order.orderStatus != 'Delivered'">Otp: <span
+                        style="color: black;"> {{ order.orderOtp }}</span><span
+                        style="float: right; color: rgb(177,177,177);">Paid</span></h6>
+                <h6 style="color: rgb(177,177,177);">Status: <span style="color: black;"> {{ order.orderStatus
+                        }}</span></h6>
             </div>
         </div>
-        <h6 style="color: rgb(177,177,177);" class="mt-2">Address: <span style="color: black;"> {{order.address.addressStreetName}}, {{order.address.addressCity}}, {{order.address.addressState}}, {{order.address.addressCountry}} - {{order.address.addressPincode}}</span></h6>
+        <h6 style="color: rgb(177,177,177);" class="mt-2">Address: <span style="color: black;">
+                {{order.address.addressStreetName}}, {{order.address.addressCity}}, {{order.address.addressState}},
+                {{order.address.addressCountry}} - {{order.address.addressPincode}}</span></h6>
     </div>
-    <p-paginator [rows]="5" [totalRecords]="totalRecords" (onPageChange)="onPageChage($event)" class="shadow"></p-paginator>
+    </div>
+    <p-paginator [rows]="3" [totalRecords]="totalRecords" (onPageChange)="onPageChage($event)" class="shadow">
+    </p-paginator>
     <br>
     <br>
 </div>
 
 <ng-template #componentLoader>
     <p-progressBar mode="indeterminate" [style]="{'height': '4px', 'margin-top': '60px'}"></p-progressBar>
+</ng-template>
+
+<ng-template #shimmer>
+    <div class="card w-100 shadow my-4" style="min-height: 150px; border-radius: 20px; border: none; padding: 15px;">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4">
+                <p-skeleton width="100%" height="100px" borderRadius="20px"></p-skeleton>
+            </div>
+            <div class="col-lg-10 col-md-8 col-sm-8">
+                <h4 class="mt-2">
+                    <p-skeleton width="50%" height="1rem" borderRadius="20px"></p-skeleton><span class="h6"
+                        style="float: right; color: #000;">
+                        <p-skeleton width="70px" height="1rem" borderRadius="20px"></p-skeleton>
+                    </span>
+                </h4>
+                <h6 class="mt-1">
+                    <p-skeleton width="40%" height="1rem" borderRadius="20px"></p-skeleton> <span class="h6"
+                        style="float: right; color: #000;">
+                        <p-skeleton width="70px" height="1rem" borderRadius="20px"></p-skeleton>
+                    </span>
+                </h6>
+                <h6>
+                    <p-skeleton width="30%" height="1rem" borderRadius="20px"></p-skeleton> <span
+                        style="color: black;"></span>
+                </h6>
+            </div>
+        </div>
+        <h6 style="color: rgb(177,177,177);" class="mt-2">
+            <p-skeleton width="60%" height="1rem" borderRadius="20px"></p-skeleton>
+        </h6>
+    </div>
 </ng-template>

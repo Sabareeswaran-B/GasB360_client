@@ -56,6 +56,10 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
     background-color: red;
 }
 
+p-menuitem-text .p-menuitem-text {
+    font-size: larger !important;
+}
+
 .p-chip {
     background-color: white;
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);

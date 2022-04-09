@@ -36,8 +36,10 @@ import { OrderIndexComponent } from './order-index/order-index.component';
 import { CookieService } from 'ngx-cookie-service';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import {PaginatorModule} from 'primeng/paginator';
+import {SkeletonModule} from 'primeng/skeleton';
 import {TooltipModule} from 'primeng/tooltip';
-
+import {ChartModule} from 'primeng/chart';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,9 @@ import {TooltipModule} from 'primeng/tooltip';
     ToastrModule.forRoot(),
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('profile', ProfileReducer),
+    ChartModule,
+    SkeletonModule,
+    NgbCarouselModule,
     ChipModule,
     TooltipModule,
     PaginatorModule,

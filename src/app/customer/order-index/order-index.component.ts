@@ -19,6 +19,8 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
   home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" };
   componentLoading:boolean = true;
   totalRecords:number = 1;
+  shimmerLoading:boolean = true;
+
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
@@ -38,6 +40,7 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
   }
 
   onPageChage(event: any){
+    this.shimmerLoading = true;
     this.pageNumber = event.page + 1;
     console.log(event);
     this.getAllOrdersByCustomerId()
@@ -49,6 +52,7 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
         this.totalRecords = Number.parseInt(response.message)
         this.orders = response.data as Order[];
         this.componentLoading = false;
+        this.shimmerLoading = false;
         console.log(this.orders);
       },
       error: (error) => {
