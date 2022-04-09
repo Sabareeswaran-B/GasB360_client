@@ -10,6 +10,7 @@ import {ProgressBarModule} from 'primeng/progressbar';
 import { DeliveryDashboardComponent } from './delivery-dashboard/delivery-dashboard.component';
 import { NgSidenavModule } from 'ng-sidenav';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     DeliveryOrdersComponent,
     DeliveryCompletedordersComponent,
     DeliveryDashboardComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,

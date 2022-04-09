@@ -22,6 +22,7 @@ export class DeliveryDashboardComponent implements OnInit {
   DeliveryOrderList: any = [];
   TotalOrders: number = 0;
   TotalDeliveryOrder: number = 0;
+  progress : boolean = true;
 
   ngOnInit(): void {
     var id = localStorage.getItem('id');
@@ -43,9 +44,9 @@ export class DeliveryDashboardComponent implements OnInit {
     { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
   ];
   employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/delivery/dashboard' },
+    { label: 'Delivery', icon: 'pi pi-user', routerLink: '/delivery/deliveredorders' },
+    { label: 'Order', icon: 'pi pi-star', routerLink: '/delivery/ordersbyemployee' },
     { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
   ];
 
@@ -71,6 +72,7 @@ LoadOrder(){
         console.log(response.data.length)
         this.TotalDeliveryOrder = response.data.length;
         this.DeliveryOrderList = response.data as Order[];
+        this.progress= false;
       },
       error: (error) => {
         console.log(error)
