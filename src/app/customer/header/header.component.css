@@ -1,0 +1,55 @@
+.profile-button {
+    cursor: pointer;
+}
+
+.profile-menu {
+    display: none;
+    background-color: #ffffff;
+    top: 75x;
+    width: 350px;
+    align-items: center;
+    min-height: 300px;
+    z-index: 1000;
+    position: absolute;
+    align-items: center;
+    border-radius: 20px;
+    right: 5%;
+}
+
+.profile-menu .menu-item {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    text-align: left;
+    cursor: pointer;
+}
+
+.menu-item :hover {
+    background-color: whitesmoke;
+}
+
+.profile-card {
+    margin-left: auto;
+    margin-right: 5%;
+}
+
+.profile-card:hover .profile-menu {
+    display: block;
+}
+
+.logout-button {
+    width: 300px;
+    border: none;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: 450px) {
+    .profile-card {
+        margin-right: 7%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .profile-card {
+        margin-right: 10%;
+    }
+}

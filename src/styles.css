@@ -33,6 +33,60 @@ p-breadcrumb, .p-breadcrumb {
     background-color: transparent;
 }
 
+
+p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
+    background-color: red;
+}
+p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:after{
+    background-color: red;
+}
+
+.p-chip {
+    background-color: white;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+    height: 40px;
+    overflow: hidden;
+    max-width: 300px;
+    padding-right: 5px;
+    padding-right: 5px;
+}
+
+.p-chip-text {
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 450px) {
+    .p-chip {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 790px) {
+    .p-chip {
+        width: 30%;
+    }
+}
+
+/* kendo-tilelayout, .kendo-tilelayout{
+    background-color: #f5f5f5;
+} */
+
+/* .main-container {
+    margin-top: 56px;
+    margin-left: 235px;
+    padding: 15px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    overflow: hidden;
+}
+
+.collapsed {
+    margin-left: 60px;
+} */
+
+
 .table-container{
     border-radius: 20px;
 }
@@ -44,10 +98,17 @@ p-breadcrumb, .p-breadcrumb {
 }
 
 .theme{
-  background-color: var(--theme);
+  background-color: var(--red-500);
   color:white;
 
 }
+
+.theme:hover{
+    background-color: var(--red-500);
+    color:white;
+  
+  }
+
 .p-button{
   background:var(--theme);
   border:1px solid var(--theme);

@@ -21,6 +21,20 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { AddressIndexComponent } from './address-index/address-index.component';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { StoreModule } from '@ngrx/store';
+import { ProductReducer } from '../ngrx/product.reducer';
+import { HeaderComponent } from './header/header.component';
+import { ChipModule } from 'primeng/chip';
+import { ProfileComponent } from './profile/profile.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProfileReducer } from '../ngrx/profile.reducer';
+import { HeaderOldComponent } from './header-old/header-old.component';
+import { PlaceOrderComponent } from './place-order/place-order.component';
+import { OrderIndexComponent } from './order-index/order-index.component';
+import { CookieService } from 'ngx-cookie-service';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 
 @NgModule({
@@ -28,10 +42,22 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     CustomerLoginComponent,
     CustomerSignupComponent,
     ProductIndexComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    AddressIndexComponent,
+    HeaderComponent,
+    ProfileComponent,
+    DashboardComponent,
+    HeaderOldComponent,
+    PlaceOrderComponent,
+    OrderIndexComponent,
+    OrderDetailsComponent
   ],
   imports: [
     ToastrModule.forRoot(),
+    StoreModule.forFeature('product', ProductReducer),
+    StoreModule.forFeature('profile', ProfileReducer),
+    ChipModule,
+    ProgressBarModule,
     LayoutModule,
     BreadcrumbModule,
     ListViewModule,
@@ -49,8 +75,18 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextModule,
     DropdownModule,
     RippleModule,
+    ProgressBarModule
+    
   ],
-  providers: [MessageService, ConfirmationService],
+  exports: [
+    CustomerLoginComponent,
+    CustomerSignupComponent,
+    ProductIndexComponent,
+    ProductDetailsComponent,
+    AddressIndexComponent,
+    HeaderComponent
+  ],
+  providers: [MessageService, ConfirmationService, CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CustomerModule { }

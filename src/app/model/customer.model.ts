@@ -1,3 +1,6 @@
+import Role from "./role.model";
+import Type from "./type.model";
+
 export default class Customer {
     customerId!: string;
     customerName!: string;
@@ -9,6 +12,7 @@ export default class Customer {
     customerConnection!: number;
     allowedLimit!: number;
     requested!: string;
-    role!: string;
-    type!: string;
+    customerImage!: string;
+    role!: Role;
+    type!: Type;
 }

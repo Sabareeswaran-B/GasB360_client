@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
+import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
@@ -35,11 +36,13 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     private router: Router,
     private messageService: MessageService,
     private customerService: CustomerService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private cookie: CookieService
   ) { }
 
   ngOnInit(): void {
     localStorage.clear();
+    this.cookie.deleteAll()
     this.signupForm = this.formBuilder.group({
       customerName: ['', Validators.required],
       customerPhone: ['', Validators.required],

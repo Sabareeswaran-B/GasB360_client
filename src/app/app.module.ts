@@ -1,3 +1,4 @@
+import { ExcelModule } from '@progress/kendo-angular-grid';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,12 +12,17 @@ import { CustomerModule } from './customer/customer.module';
 import { DeliveryModule } from './delivery/delivery.module';
 import { SharedModule } from './shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {AccordionModule} from 'primeng/accordion';    
 import { RouterModule } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ToastrModule } from 'ngx-toastr';
-import { ListViewModule} from '@progress/kendo-angular-listview';
+import { LayoutModule } from '@progress/kendo-angular-layout';
+import { StoreModule } from '@ngrx/store';
+import { ProductReducer } from './ngrx/product.reducer';
+import { ProfileReducer } from './ngrx/profile.reducer';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
+import { ListViewModule} from '@progress/kendo-angular-listview';
 import { TextBoxModule } from '@progress/kendo-angular-inputs';
 import {  ButtonModule } from '@progress/kendo-angular-buttons';
 import {DialogModule} from 'primeng/dialog';
@@ -24,7 +30,6 @@ import {DialogModule} from 'primeng/dialog';
 // Kendo
 import { LabelModule } from "@progress/kendo-angular-label";
 import { InputsModule } from '@progress/kendo-angular-inputs';
-import { LayoutModule } from '@progress/kendo-angular-layout';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { RippleModule } from "@progress/kendo-angular-ripple";
 import { IconsModule } from "@progress/kendo-angular-icons";
@@ -33,11 +38,10 @@ import { IconsModule } from "@progress/kendo-angular-icons";
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeLoginComponent,
+    EmployeeLoginComponent
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -53,7 +57,9 @@ import { IconsModule } from "@progress/kendo-angular-icons";
     ToastModule,
     ListViewModule,
     LayoutModule,
+    StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
     FormsModule,
+    ReactiveFormsModule,
     ReactiveFormsModule,
     TextBoxModule,
     ButtonsModule,

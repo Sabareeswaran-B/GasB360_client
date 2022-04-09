@@ -2,11 +2,11 @@
     width: 100%;
     font-size: 20px;
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-top: auto;
 }
 
 .card-image{
-    min-height: 250px;
-    border-radius: 20px;
+    min-height: 200px;
+    border-radius: 10px;
 }

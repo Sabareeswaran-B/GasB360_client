@@ -1,0 +1,51 @@
+.address-card {
+    border-radius: 10px;
+    background-color: white;
+    min-height: 410px;
+    margin-bottom: 25px;
+    margin-right: 5px;
+}
+
+.address-add-card {
+    border-radius: 10px;
+    background-color: white;
+    min-height: 410px;
+}
+
+.address-bg {
+    background-color: white;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)
+}
+
+.address-bg-active {
+    box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
+    background-color: #ff6358;
+    color: white;
+}
+
+.address-heading {
+    color: rgb(177, 177, 177);
+    font-weight: 500;    
+}
+
+.address-heading-active {
+    color: white;
+    font-weight: 500;
+}
+
+.address-close {
+    color: #ff6358;
+}
+
+.address-close-active {
+    color: white;
+}
+
+.product-button {
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    margin-top: auto;
+    bottom: 0px;
+}

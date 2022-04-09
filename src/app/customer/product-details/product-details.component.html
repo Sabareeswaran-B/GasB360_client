@@ -1,4 +1,5 @@
-<div class="container-fluid vh-100">
+<app-header></app-header>
+<div class="container vh-100" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
   <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
 
   <kendo-tilelayout [columns]="4" [rowHeight]="300" [resizable]="false" [reorderable]="false">
@@ -7,9 +8,10 @@
         <div class="order-list">
           <div *ngFor="let otherProduct of otherProducts">
             <div class="contact">
+              <img [src]="otherProduct.productImage" class="img-rounded img-responsive" style="max-height: 40px; border-radius: 50%">
               <div class="contact-details">
                 <div class="contact-name">{{ otherProduct.productName }}</div>
-                <div class="contact-name">₹ {{ otherProduct.productPrice }}</div>
+                <div class="contact-email">₹ {{ otherProduct.productPrice }}</div>
               </div>
               <button class="k-button k-button-solid-primary k-button-solid-base messages-label"
                 (click)="changeProduct( otherProduct.productId )">View</button>
@@ -23,7 +25,9 @@
     <kendo-tilelayout-item [col]="2" [colSpan]="2" [rowSpan]="2" class="shadow">
       <kendo-tilelayout-item-body>
         <div class="row px-2">
-          <div class="col-lg-6 col-md-12 col-sm-12 bg-dark" style="border-radius: 20px; min-height: 350px;"></div>
+          <div class="col-lg-6 col-md-12 col-sm-12">
+            <img [src]="product.productCategory.productImage" alt="product-image" width="100%" height="300px" style="border-radius: 10px;">
+          </div>
           <div class="col-lg-6 col-md-12 col-sm-12 h3 fw-normal">{{ product.productCategory.productName }}</div>
         </div>
       </kendo-tilelayout-item-body>
@@ -52,3 +56,7 @@
   </kendo-tilelayout>
   <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
 </div>
+
+<ng-template #componentLoader>
+  <p-progressBar mode="indeterminate" [style]="{'height': '4px', 'margin-top': '60px'}"></p-progressBar>
+</ng-template>

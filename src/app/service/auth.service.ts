@@ -11,6 +11,9 @@ import { LoginResponse } from '../model/login.response';
   providedIn: 'root'
 })
 export class AuthService {
+  loginUser(value: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http: HttpClient,
     private _router: Router,
@@ -41,8 +44,8 @@ export class AuthService {
   //Employee Logout
   logout()
   {
-    localStorage.removeItem("user");
-    this._router.navigate(['/employeelogin']);
+    localStorage.clear();
+    this._router.navigate(['/ login']);
   }
 
 }
