@@ -12,14 +12,15 @@ import { CustomerService } from 'src/app/service/customer.service';
 export class OrderIndexComponent implements OnInit, OnDestroy {
 
   orders!: Order[];
-  pageNumber:number = 1;
+  noOrdersYet: boolean = false;
+  pageNumber: number = 1;
   customerId!: string;
   subscriptions: Subscription[] = [];
   items!: MenuItem[];
   home: MenuItem = { icon: "pi pi-home", routerLink: "/customer" };
-  componentLoading:boolean = true;
-  totalRecords:number = 1;
-  shimmerLoading:boolean = true;
+  componentLoading: boolean = true;
+  totalRecords: number = 1;
+  shimmerLoading: boolean = true;
 
   constructor(private customerService: CustomerService) { }
 
@@ -39,7 +40,7 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
     })
   }
 
-  onPageChage(event: any){
+  onPageChage(event: any) {
     this.shimmerLoading = true;
     this.pageNumber = event.page + 1;
     console.log(event);
@@ -48,11 +49,14 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
 
   getAllOrdersByCustomerId() {
     var subscription = this.customerService.GetOrdersByCustomerId(this.customerId, this.pageNumber).subscribe({
-      next:(response)=> {
+      next: (response) => {
         this.totalRecords = Number.parseInt(response.message)
         this.orders = response.data as Order[];
         this.componentLoading = false;
         this.shimmerLoading = false;
+        if (this.orders.length < 0) {
+          this.noOrdersYet = true;
+        }
         console.log(this.orders);
       },
       error: (error) => {

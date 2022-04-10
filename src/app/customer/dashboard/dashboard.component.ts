@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   orders!: Order[];
   subscriptions: Subscription[] = [];
   nextOrderDate: Date = new Date();
-  chartDate: number[] = [0,0,0,0,0,0,0,0,0,0,0,0]
+  chartDate: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   products: ProductCategory[] = [];
 
@@ -59,11 +59,13 @@ export class DashboardComponent implements OnInit {
     var subscription = this.customerService.GetAllOrdersByCustomerId(this.customerId).subscribe({
       next: (response) => {
         this.orders = response.data as Order[];
-        this.orders = this.orders.sort((a, b) => new Date(b.orderDate).valueOf() - new Date(a.orderDate).valueOf());
-        this.nextOrderDate.setDate(new Date(this.orders[0].orderDate).getDate() + 30)
+        if (this.orders.length > 0) {
+          this.orders = this.orders.sort((a, b) => new Date(b.orderDate).valueOf() - new Date(a.orderDate).valueOf());
+          this.nextOrderDate.setDate(new Date(this.orders[0].orderDate).getDate() + 30)
+        }
         this.orderLoading = false;
         this.orders.forEach((order) => {
-          let index:number = new Date(order.orderDate).getMonth();
+          let index: number = new Date(order.orderDate).getMonth();
           this.chartDate[index] += 1;
         })
         this.basicData = {
