@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import Type from 'src/app/model/type.model';
+import { profile } from 'src/app/ngrx/profile.action';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit {
     private cookie: CookieService,
     private formBuilder: FormBuilder,
     private profile: Store<{ profile: Customer }>,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -131,6 +133,7 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         this.customer = response.data as Customer;
         this.componentLoading = false;
+        this.store.dispatch(profile(this.customer));
       },
       error: (error) => {
         console.log(error);

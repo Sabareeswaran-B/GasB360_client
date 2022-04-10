@@ -38,11 +38,11 @@ export class PlaceOrderComponent implements OnInit, OnDestroy {
     var subscription = this.customerService.AddNewOrder(params).subscribe({
       next: (response) => {
         this.toastr.success(response.message);
-        this.router.navigateByUrl('/customer/products');
+        this.router.navigate(['/customer/orders'], {replaceUrl: true});
       },
       error: (error) => {
         this.toastr.success(error.error.message);
-        this.router.navigateByUrl('/customer/products');
+        this.router.navigate(['/customer/orders/address'], {replaceUrl: true});
       }
     });
     this.subscriptions.push(subscription);

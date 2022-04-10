@@ -1,8 +1,12 @@
 {
-    "appService.defaultWebAppToDeploy": "/subscriptions/a50d2c41-9717-4ab1-a854-ad8d1be31df9/resourceGroups/GasB360/providers/Microsoft.Web/sites/GasB360api",
-    "appService.deploySubpath": "."
+    "appService.defaultWebAppToDeploy": "/subscriptions/a50d2c41-9717-4ab1-a854-ad8d1be31df9/resourceGroups/GasB360/providers/Microsoft.Web/sites/GasB360",
+    "appService.deploySubpath": ".",
     "cSpell.words": [
         "productcategory",
         "progressload"
+    ],
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
     ]
 }
