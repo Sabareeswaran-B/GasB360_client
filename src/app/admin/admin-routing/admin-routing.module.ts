@@ -1,3 +1,4 @@
+import { LogoutComponent } from './../logout/logout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -17,7 +18,9 @@ const routes: Routes = [
   {path: "filledproduct", component:FilledproductComponent , pathMatch: "prefix"},  
   {path: "unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix"},
   {path: "dashboard", component:DashboardComponent , pathMatch: "prefix"},
-  {path: "connection", component:ConnectionrequestComponent , pathMatch: "prefix"}
+  {path: "connection", component:ConnectionrequestComponent , pathMatch: "prefix"},
+  {path: "logout", component:LogoutComponent , pathMatch: "prefix"},
+  {path: "", component:DashboardComponent , pathMatch: "prefix"},
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
   [adminMenuItems]="adminMenuItems"
-  [employeeMenuItems]="employeeMenuItems"
+  
 ></ng-sidenav>
 
 <div
@@ -18,7 +18,7 @@
           <p-card>
             <h5 valign="top" align="left">Customer Request</h5>
             <hr />
-            Total Customer requested to new connection.
+           <span> Total Customer requested to new connection.</span>
             <p valign="bottom" align="right" class="small-knob">
               <p-knob
                 [(ngModel)]="requestedCustomer"

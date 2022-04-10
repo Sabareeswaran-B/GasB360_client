@@ -25,6 +25,7 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenubarModule } from 'primeng/menubar';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NgSidenavModule } from 'ng-sidenav';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgSidenavModule } from 'ng-sidenav';
     UnfilledproductComponent,
     ConnectionrequestComponent,
     NavbarComponent,
+    LogoutComponent,
 
 
   ],
