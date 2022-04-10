@@ -12,12 +12,12 @@ import { ConnectionrequestComponent } from '../connectionrequest/connectionreque
 
 
 const routes: Routes = [
-  {path: "employee", component:EmployeeComponent , pathMatch: "prefix"},
-  {path: "productcategory", component:ProductcategoryComponent , pathMatch: "prefix"},
-  {path: "filledproduct", component:FilledproductComponent , pathMatch: "prefix"},  
-  {path: "unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix"},
-  {path: "dashboard", component:DashboardComponent , pathMatch: "prefix"},
-  {path: "connection", component:ConnectionrequestComponent , pathMatch: "prefix"}
+  {path: "admin/employee", component:EmployeeComponent , pathMatch: "prefix"},
+  {path: "admin/productcategory", component:ProductcategoryComponent , pathMatch: "prefix"},
+  {path: "admin/filledproduct", component:FilledproductComponent , pathMatch: "prefix"},  
+  {path: "admin/unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix"},
+  {path: "admin/dashboard", component:DashboardComponent , pathMatch: "prefix"},
+  {path: "admin/connection", component:ConnectionrequestComponent , pathMatch: "prefix"}
 ];
 
 @NgModule({

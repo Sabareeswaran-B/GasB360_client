@@ -1,4 +1,3 @@
-import { ExcelModule } from '@progress/kendo-angular-grid';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,9 +20,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { StoreModule } from '@ngrx/store';
 import { ProductReducer } from './ngrx/product.reducer';
 import { ProfileReducer } from './ngrx/profile.reducer';
-<<<<<<< HEAD
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-=======
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
 import { ListViewModule} from '@progress/kendo-angular-listview';
 import { TextBoxModule } from '@progress/kendo-angular-inputs';
@@ -37,7 +34,6 @@ import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { RippleModule } from "@progress/kendo-angular-ripple";
 import { IconsModule } from "@progress/kendo-angular-icons";
 
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
 
 
@@ -62,9 +58,7 @@ import { IconsModule } from "@progress/kendo-angular-icons";
     ListViewModule,
     LayoutModule,
     StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
-<<<<<<< HEAD
     NgbModule,
-=======
     FormsModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
@@ -78,7 +72,6 @@ import { IconsModule } from "@progress/kendo-angular-icons";
     ButtonModule,
     DialogModule
 
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   ],
   providers: [MessageService],
   bootstrap: [AppComponent],

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,10 +7,6 @@ import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import Type from 'src/app/model/type.model';
-=======
-import { CookieService } from 'ngx-cookie-service';
-import { ToastrService } from 'ngx-toastr';
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -22,7 +17,6 @@ import { CustomerService } from 'src/app/service/customer.service';
 export class ProfileComponent implements OnInit {
 
   customerId!: string
-<<<<<<< HEAD
   customer!: Customer;
   componentLoading: boolean = true;
   subscriptions: Subscription[] = [];
@@ -84,31 +78,11 @@ export class ProfileComponent implements OnInit {
       next: (data) => {
         this.toastr.success("image uploaded successful");
         this.getCustomerById();
-=======
-
-  constructor(private customerService: CustomerService, private toastr:ToastrService,  private cookie: CookieService) { }
-
-  ngOnInit(): void {
-    this.customerId = localStorage.getItem('id')!;
-  }
-
-  uploadFile = (files: any) => {
-    let fileToUpload = <File>files[0];
-    let fileName:string = this.customerId //get name from form for example
-    let fileExtension:string = fileToUpload.name.split('?')[0].split('.').pop() || '';
-    const formData = new FormData();
-    formData.append('file', fileToUpload, fileName + '.' + fileExtension);
-    console.log(formData);
-    this.customerService.UpdateCustomerImage(formData, this.customerId).subscribe({
-      next: (data) => {
-        this.toastr.success("image uploaded successful");
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
       },
       error: (error) => {
         this.toastr.success("image uploaded failed");
       }
     });
-<<<<<<< HEAD
     this.subscriptions.push(subscription);
   }
 
@@ -163,8 +137,6 @@ export class ProfileComponent implements OnInit {
       }
     });
     this.subscriptions.push(subscription);
-=======
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
   }
 
 }

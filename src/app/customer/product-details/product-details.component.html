@@ -8,12 +8,8 @@
         <div class="order-list">
           <div *ngFor="let otherProduct of otherProducts">
             <div class="contact">
-<<<<<<< HEAD
               <img [src]="otherProduct.productImage" class="img-rounded img-responsive"
                 style="max-height: 40px; border-radius: 50%">
-=======
-              <img [src]="otherProduct.productImage" class="img-rounded img-responsive" style="max-height: 40px; border-radius: 50%">
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
               <div class="contact-details">
                 <div class="contact-name">{{ otherProduct.productName }}</div>
                 <div class="contact-email">₹ {{ otherProduct.productPrice }}</div>
@@ -31,7 +27,6 @@
       <kendo-tilelayout-item-body>
         <div class="row px-2">
           <div class="col-lg-6 col-md-12 col-sm-12">
-<<<<<<< HEAD
             <img [src]="product.productCategory.productImage" alt="product-image" width="100%" height="300px"
               style="border-radius: 10px;">
           </div>
@@ -65,11 +60,6 @@
           <h6 class="h6">The product {{ product.productCategory.productWeight }} kg {{
             product.productCategory.productName }} is a {{ product.productCategory.type.typeName }} product which cost ₹
             {{product.productCategory.productPrice}} including all tax. For more information contact {{ product.branch.branchName }} branch</h6>
-=======
-            <img [src]="product.productCategory.productImage" alt="product-image" width="100%" height="300px" style="border-radius: 10px;">
-          </div>
-          <div class="col-lg-6 col-md-12 col-sm-12 h3 fw-normal">{{ product.productCategory.productName }}</div>
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
         </div>
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>

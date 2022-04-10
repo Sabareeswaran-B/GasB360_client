@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import Order from 'src/app/model/order.model';
 import ProductCategory from 'src/app/model/product-category.model';
 import { CustomerService } from 'src/app/service/customer.service';
-=======
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +13,6 @@ import { CustomerService } from 'src/app/service/customer.service';
 })
 export class DashboardComponent implements OnInit {
 
-<<<<<<< HEAD
   customerLoading: boolean = true;
   orderLoading: boolean = true;
   customerId!: string;
@@ -116,11 +112,4 @@ export class DashboardComponent implements OnInit {
     });
     this.subscriptions.push(subscription);
   }
-=======
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 }

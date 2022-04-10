@@ -1,18 +1,11 @@
 <header *ngIf="!componentLoading;else componentLoader">
     <nav class="navbar navbar-expand-lg fixed-top w-100 shadow" style="background-color: #fff;">
-<<<<<<< HEAD
         <a class="navbar-brand mx-5 fw-bolder h1" style="color: #ff6358;" routerLink="/customer">GasB360</a>
-=======
-        <a class="navbar-brand mx-5 fw-bolder h1" style="color: #ff6358;" routerLink="/customer/dashboard">GasB360</a>
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
         <div class="profile-card">
             <p-chip class="profile-button" [label]="customer.customerName" [image]="customer.customerImage">
             </p-chip>
             <div class="profile-menu shadow-lg text-center">
-<<<<<<< HEAD
                 <!-- <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" accept="application/jpeg,application/jpg,application/png"><app-header></app-header> -->
-=======
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
                 <img [src]="customer.customerImage" class="img-rounded"
                     style="max-height: 125px; padding: 10px; border-radius: 50%;">
                 <div style="overflow: hidden; text-overflow: ellipsis; text-align: center;" class="text-nowrap">
@@ -22,11 +15,7 @@
                     {{ customer.customerEmail }}
                 </div>
                 <hr>
-<<<<<<< HEAD
                 <div class="text-nowrap h6 px-5 w-100 menu-item py-2" routerLink="/customer">
-=======
-                <div class="text-nowrap h6 px-5 w-100 menu-item py-2" routerLink="/customer/dashboard">
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
                     Home
                 </div>
                 <div class="text-nowrap h6 px-5 w-100 menu-item py-2" routerLink="/customer/profile">
@@ -46,11 +35,7 @@
 <ng-template #componentLoader>
     <header>
         <nav class="navbar navbar-expand-lg fixed-top w-100 shadow" style="background-color: #fff;">
-<<<<<<< HEAD
             <a class="navbar-brand mx-5 fw-bolder h1" style="color: #ff6358;" routerLink="/customer">GasB360</a>
-=======
-            <a class="navbar-brand mx-5 fw-bolder h1" style="color: #ff6358;" routerLink="/customer/dashboard">GasB360</a>
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
         </nav>
     </header>
 </ng-template>

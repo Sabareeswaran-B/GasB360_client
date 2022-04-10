@@ -20,7 +20,7 @@ export class AuthService {
 
   loginUser(signinForm: SignIn) {
     console.log(signinForm);
-    return this.http.post(environment.apiUrl + '/Employee/Login', signinForm).pipe(
+    return this.http.post(environment.baseUrl + '/Employee/Login', signinForm).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(err);
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   registerUser(signupForm: SignUp) {
-    return this.http.post(environment.apiUrl + '/users/register', signupForm).pipe(
+    return this.http.post(environment.baseUrl + '/users/register', signupForm).pipe(
       catchError((err) => {
         console.log(err);
         return throwError(err);

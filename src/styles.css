@@ -23,29 +23,26 @@ body {
 }
 
 p-inputnumber, .p-inputnumber, p-calendar, .p-calendar, p-password, .p-password, .p-password-input, .p-inputtext, p-dropdown, .p-dropdown {
-    width: 100%
+    width: 100%!important
 }
 
 p-breadcrumb, .p-breadcrumb {
-    border: none;
-    font-size: small;
-    font-weight: bold;
-    background-color: transparent;
+    border: none!important;
+    font-size: small!important;
+    font-weight: bold!important;
+    background-color: transparent!important;
 }
 
-<<<<<<< HEAD
 p-paginator .p-paginator {
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
-    border-radius: 20px;
+    border-radius: 20px!important;
 }
-=======
->>>>>>> 8b853ec716387c9c8240e4249ea2d90191ca1a6f
 
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
-    background-color: red;
+    background-color: #ff6358!important;
 }
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:after{
-    background-color: red;
+    background-color: #ff6358!important;
 }
 
 p-menuitem-text .p-menuitem-text {
@@ -53,13 +50,14 @@ p-menuitem-text .p-menuitem-text {
 }
 
 .p-chip {
-    background-color: white;
-    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
-    height: 40px;
-    overflow: hidden;
-    max-width: 300px;
-    padding-right: 5px;
-    padding-right: 5px;
+    background-color: white!important;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.25)!important;
+    height: 40px!important;
+    overflow: hidden!important;
+    max-width: 300px!important;
+    padding-right: 5px!important;
+    padding-right: 5px!important;
+    background-color: #fff!important;
 }
 
 .p-chip-text {
@@ -68,13 +66,13 @@ p-menuitem-text .p-menuitem-text {
 
 @media only screen and (max-width: 450px) {
     .p-chip {
-        width: 50%;
+        width: 50%!important;
     }
 }
 
 @media only screen and (max-width: 790px) {
     .p-chip {
-        width: 30%;
+        width: 50%!important;
     }
 }
 
