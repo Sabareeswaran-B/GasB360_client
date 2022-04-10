@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
     //     console.log(error)
     //   }
     // });
-    
+
     // this.subscriptions.push(subscription);
     this.getCustomerById();
     this.getAllTypes();
@@ -89,6 +89,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    this.isLoading = true;
     let customer = this.customer;
     customer.typeId = this.profileEditForm.controls['typeId'].value.typeId;
     customer.customerName = this.profileEditForm.controls['customerName'].value;
@@ -96,10 +97,13 @@ export class ProfileComponent implements OnInit {
     customer.customerPhone = this.profileEditForm.controls['customerPhone'].value;
     this.customerService.UpdateCustomer(this.customerId, customer).subscribe({
       next: (response) => {
-        this.toastr.success(response.message);
+        this.displayEditModal = false;
         this.getCustomerById();
+        this.isLoading = false;
+        this.toastr.success(response.message);
       },
       error: (error) => {
+        this.isLoading = false;
         console.log(error);
       }
     })
