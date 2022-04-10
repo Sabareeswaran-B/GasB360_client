@@ -106,12 +106,13 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
 .theme:hover{
     background-color: var(--red-500);
     color:white;
-  
+
   }
 
 .p-button{
-  background:var(--theme);
-  border:1px solid var(--theme);
+  background:var(--theme)!important;
+  border:1px solid var(--theme)!important;
+  color: #fafafa!important;
 }
 
 .p-button:hover{
@@ -121,13 +122,13 @@ p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressb
 }
 
 .p-button-raised{
-  background: white;
-  color: var(--theme);
+  background: white!important;
+  color: var(--theme)!important;
 }
 
 .p-button-raised:hover{
-  color: var(--theme)!important;
-  background-color: white!important;
+  color: var(--theme);
+  background-color: white;
   border: 1 px solid var(--theme);
 }
 

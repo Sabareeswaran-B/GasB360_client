@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import Order from 'src/app/model/order.model';
 import { MenuItem, PrimeNGConfig } from 'primeng/api';
 import { debounce } from 'lodash';
+import Delivery from 'src/app/model/delivery.model';
 
 @Component({
   selector: 'app-delivery-completedorders',
@@ -54,8 +55,8 @@ export class DeliveryCompletedordersComponent implements OnInit {
     this.service.GetDeliveriesByEmployeeId(id).subscribe({
       next: (response) => {
         console.log(response.data)
-        this.OrderList=response.data as Order[];
-        this.OrderListWithoutFilter=response.data as Order[];
+        this.OrderList=response.data as Delivery[];
+        this.OrderListWithoutFilter=response.data as Delivery[];
         this.progress = false;
       },
       error: (error) => {
@@ -72,7 +73,8 @@ export class DeliveryCompletedordersComponent implements OnInit {
     var CustomerNameFilter = this.CustomerNameFilter;
 
     this.OrderList = this.OrderListWithoutFilter.filter(function (el:any){
-         return el.customer.customerName.toString().toLowerCase().includes(
+      console.log(el);
+         return el.order.customer.customerName.toString().toLowerCase().includes(
           CustomerNameFilter.toString().trim().toLowerCase()
         )
     });
