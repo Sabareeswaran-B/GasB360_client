@@ -2,18 +2,18 @@
 <div class="container" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
     <kendo-tilelayout [columns]="4" [rowHeight]="275" [resizable]="false" [reorderable]="false">
-        <kendo-tilelayout-item title="Addresses" [col]="1" [colSpan]="3" [rowSpan]="2"
+        <kendo-tilelayout-item pTooltip="Addresses" [col]="1" [colSpan]="3" [rowSpan]="2"
             style="border: none; background-color: transparent;">
             <kendo-tilelayout-item-body>
                 <div class="row" style="height: 100%; overflow-y: auto;">
                     <div class="col-lg-4 col-md-12 col-sm-12 k-cursor-pointer mt-2" (click)="displayAddAddress=true">
                         <div class="address-add-card shadow-lg px-4 py-3 d-grid justify-content-center"
-                            title="Add address">
+                        pTooltip="Add address">
                             <div class="pi pi-plus-circle fw-bolder align-self-center"
                                 style="font-size: 75px; color: #ff6358;"></div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-12 col-sm-12 k-cursor-pointer mt-2" title="Select address"
+                    <div class="col-lg-4 col-md-12 col-sm-12 k-cursor-pointer mt-2" pTooltip="Select address"
                         *ngFor="let address of addresses">
                         <div class="address-card px-4 py-3" (click)="setAddress(address)"
                             [class]="address == selectedAddress ? 'address-bg-active' : 'address-bg'">
@@ -59,7 +59,7 @@
                 </div>
             </kendo-tilelayout-item-body>
         </kendo-tilelayout-item>
-        <kendo-tilelayout-item title="Order Summary" [col]="4" [rowSpan]="2" class="shadow">
+        <kendo-tilelayout-item pTooltip="Order Summary" [col]="4" [rowSpan]="2" class="shadow">
             <kendo-tilelayout-item-body>
                 <div class="row py-2 px-2">
                     <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
@@ -109,10 +109,10 @@
                         </h5>
                     </div>
 
-                    <button class="product-button k-bg-primary text-light shadow py-1" (click)="confirmOrder()"
+                    <button class="product-button k-bg-primary text-light shadow py-1" style="margin-top: 150px;" (click)="confirmOrder()"
                         *ngIf="!orderLoading;else orderLoader">ORDER</button>
                     <ng-template #orderLoader>
-                        <button class="product-button k-bg-primary text-light shadow py-1" [disabled]="true">
+                        <button class="product-button k-bg-primary text-light shadow py-1"  style="margin-top: 150px;" [disabled]="true">
                             <i class="pi pi-spin pi-spinner"></i>
                         </button>
                     </ng-template>

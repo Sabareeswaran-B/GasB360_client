@@ -1,5 +1,5 @@
 <div class="container-fluid signup-container">
-    <main class="form-signup shadow-lg">
+    <main class="form-signup shadow-lg mt-5 px-5">
         <form [formGroup]="signupForm">
             <h1 class="h3 mb-4 fw-normal">Register</h1>
 
@@ -50,7 +50,7 @@
             </div>
 
             <button class="w-100 p-2 p-button-raised" *ngIf="!isLoading;else loader" pButton pRipple (click)="verifyAndSignup()"
-                title="Signin" type="button" label="Sign up"></button>
+            pTooltip="Signup" type="button" label="Sign up"></button>
 
             <a routerLink="/customer/login" style="float: right;">Already an User?</a>
             <ng-template #loader>

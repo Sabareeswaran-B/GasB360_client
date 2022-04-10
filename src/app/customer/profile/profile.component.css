@@ -1,0 +1,15 @@
+.profile-card {
+    min-height: 65%;
+    align-items: center;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 25px;
+}
+
+.profile-button {
+    padding: 25px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    margin-top: auto;
+}

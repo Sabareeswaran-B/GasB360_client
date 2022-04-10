@@ -46,3 +46,8 @@
     line-height: 11px;
     text-transform: none;
 }
+
+.address-heading {
+    color: rgb(177, 177, 177);
+    font-weight: 500;    
+}
