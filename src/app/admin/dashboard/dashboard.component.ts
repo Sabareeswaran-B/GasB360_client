@@ -215,6 +215,7 @@ export class DashboardComponent implements OnInit {
           }
         }
         this.employeeCount = this.count1;
+        console.log(this.employeeCount)
         this.count1 = 0;
         // Employee and delivery separation  
         for (let i = 0; i < this.dash.employee.length; i++) {
@@ -223,6 +224,7 @@ export class DashboardComponent implements OnInit {
           }
         }
         this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
+        
         // product Count
         this.rpmr[0] = this.dash.productCategory.length * 23.12;
         this.stockdata[0] =  this.rpmr[0] ;

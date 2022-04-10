@@ -83,7 +83,7 @@ export class AdminService {
     return this.http.put(`${environment.apiUrl}/UnfilledProduct/UpdateUnfilledProduct/` + unfilledId, unfilledProduct, { headers: this.httpHeader });
   }
   DeleteUnfilledProduct(unfilledId: string) {
-    return this.http.delete(`${environment.apiUrl}UnfilledProduct/DeleteUnfilledProduct/` + unfilledId, { headers: this.httpHeader });
+    return this.http.delete(`${environment.apiUrl}/UnfilledProduct/DeleteUnfilledProduct/` + unfilledId, { headers: this.httpHeader });
   }
 
   // Connection Request from Customer

@@ -195,9 +195,9 @@ decreaseQuantity(dataItem: FilledProducts){
     })
   }
   deleteGridElementPopup(dataItem : any){
-    console.log(dataItem)
+    // console.log(dataItem)
     this.displayDelete = "Are You Sure want to delete, ";
-    this.displayDelete += dataItem.productcategory.productName;
+    this.displayDelete += dataItem.productCategory.productName;
     this.displayDelete += "?";
     this.displayModalDelete = true;
     this.deleteMemberId = dataItem.filledProductId;
