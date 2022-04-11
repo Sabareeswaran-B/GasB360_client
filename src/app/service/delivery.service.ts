@@ -45,8 +45,6 @@ export class DeliveryService {
 
     //Get Delivered Order By Passing EmployeeId As Parameter
     GetDeliveriesByEmployeeId(id:any){
-      return this.http.get<Response>(environment.baseUrl+'/Delivery/GetDeliveriesByEmployeeId/'+id,{
-        headers:this.header,
-      })
+      return this.http.get<Response>(environment.baseUrl+'/Delivery/GetDeliveriesByEmployeeId/'+id, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
     }
 }

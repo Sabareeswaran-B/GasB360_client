@@ -21,7 +21,7 @@ export class DeliveryCompletedordersComponent implements OnInit {
   OrderList:any=[];
   CustomerNameFilter:string="";
   OrderListWithoutFilter:any=[];
-  progress: boolean=true;
+  progress: boolean= true ;
 
 
   ngOnInit(): void {
