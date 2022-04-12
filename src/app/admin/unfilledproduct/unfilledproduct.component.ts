@@ -58,19 +58,15 @@ export class UnfilledproductComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
+ 
+
   LoadingPage() {
     this.service.GetAllUnfilledProducts().subscribe({
       next: (data) => {

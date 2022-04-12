@@ -179,21 +179,17 @@ export class DashboardComponent implements OnInit {
     this.collapedSideBar = $event;
   }
 
+ 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
+ 
 
   LoadingPage() {
     this.service.GetAdminDashboard().subscribe({
@@ -215,6 +211,7 @@ export class DashboardComponent implements OnInit {
           }
         }
         this.employeeCount = this.count1;
+        console.log(this.employeeCount)
         this.count1 = 0;
         // Employee and delivery separation  
         for (let i = 0; i < this.dash.employee.length; i++) {
@@ -223,16 +220,17 @@ export class DashboardComponent implements OnInit {
           }
         }
         this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
+        
         // product Count
-        this.rpmr[0] = this.dash.productCategory.length * 23.12;
+        this.rpmr[0] =Math.floor( (this.dash.productCategory.length * 24.12)/2);
         this.stockdata[0] =  this.rpmr[0] ;
         this.saleskdata[0] = this.rpmr[0] / 1.3;
         // Filled Product
-        this.rpmr[1] = this.dash.filledProduct.length * 15.3 ;
+        this.rpmr[1] = Math.floor( (this.dash.filledProduct.length * 15.3)/2) ;
         this.stockdata[1] =  this.rpmr[1] ;
         this.saleskdata[1] = this.rpmr[1] / 1.3;
         // Unfilled Product
-        this.rpmr[2] = this.dash.unfilledProducts.length * 13.3;
+        this.rpmr[2] = Math.floor((this.dash.unfilledProducts.length * 13.3)/2);
         this.stockdata[2] =  this.rpmr[2] ;
         this.saleskdata[2] = this.rpmr[2] / 1.3;
         // console.log(this.productCount)
@@ -253,6 +251,7 @@ export class DashboardComponent implements OnInit {
   deliveryConvert() {
     this.exportAsExcelFile(this.dash.delivery, "delivery-data");
   }
+
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };

@@ -3,10 +3,9 @@
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
   [adminMenuItems]="adminMenuItems"
-  [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 
-<div class="main-container" *ngIf="!componentLoading; else progresloading">
+<div  [ngClass]="{ collapsed: collapedSideBar }" class="main-container" *ngIf="!componentLoading; else progresloading">
   <div class="row">
     <div class="col-md-2 text-center">
       <p-card title="Create New Employee">

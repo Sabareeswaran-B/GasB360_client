@@ -3,16 +3,15 @@
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
   [adminMenuItems]="adminMenuItems"
-  [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 
-<div class="main-container" *ngIf="!componentLoading;else progresloading">
+<div  [ngClass]="{ collapsed: collapedSideBar }" class="main-container" *ngIf="!componentLoading;else progresloading">
   <div class="row mt-3">
     <div class="col-lg-3" *ngFor="let request of CustomerRequest">
       <p-card class="my-3 shadow">
         <div class="row">
           <div class="col-md-3">
-            <img [src]="request.customerImage" height="70" width="70" alt="" />
+            <img [src]="request.customerImage" height="70" class="borderc" width="70" alt="" />
           </div>
           <!-- <div class="col-md-2">
             <hr style="width: 1px; height: 100%" />

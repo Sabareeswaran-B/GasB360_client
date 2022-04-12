@@ -4,11 +4,12 @@ import { AdminGuard } from './guard/admin.guard';
 import { AuthGuard } from './guard/auth.guard';
 import { DeliveryGuard } from './guard/delivery.guard';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'customer',
+    component: HomePageComponent,
     pathMatch: 'full'
   },
   {
@@ -18,14 +19,15 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(admin => admin.AdminModule),
-    // pathMatch: "prefix"
-    canActivate: [AuthGuard, AdminGuard]
+    canActivate: [AdminGuard]
   },
-  { path: "login", component: EmployeeLoginComponent, pathMatch: "full" },
+  { path: "login", component: EmployeeLoginComponent },
+
   {
     path: 'delivery',
     loadChildren: () => import('./delivery/delivery.module').then(delivery => delivery.DeliveryModule),
-    canActivate: [AuthGuard, DeliveryGuard]
+    canActivate: [DeliveryGuard]
+
   },
 ];
 

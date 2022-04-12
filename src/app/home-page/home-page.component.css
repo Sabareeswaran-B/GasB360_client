@@ -1,0 +1,14 @@
+.color {
+    background-color:  #6280FF !important;
+    color: white !important;
+}
+
+#multi{
+    background-image: url('/assets/pipeline.svg');
+    background-size: cover;
+    background-color: #FFFFFF;
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    height: calc(100vh - 60px);
+ }

@@ -33,6 +33,8 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { RippleModule } from "@progress/kendo-angular-ripple";
 import { IconsModule } from "@progress/kendo-angular-icons";
+import { HomePageComponent } from './home-page/home-page.component';
+import { NgFooterModule } from 'ng-footer';
 
 
 
@@ -41,12 +43,14 @@ import { IconsModule } from "@progress/kendo-angular-icons";
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeLoginComponent
+    EmployeeLoginComponent,
+    HomePageComponent
   ],
   imports: [
     ToastrModule.forRoot(),
     BrowserModule,
     BrowserAnimationsModule,
+    NgFooterModule,
     RouterModule,
     AppRoutingModule,
     SharedModule,
