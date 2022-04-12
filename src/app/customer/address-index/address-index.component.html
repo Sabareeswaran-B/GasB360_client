@@ -1,8 +1,9 @@
 <app-header-old></app-header-old>
 <div class="container" style="margin-top: 70px;" *ngIf="!componentLoading;else componentLoader">
     <p-breadcrumb [model]="items" [home]="home"></p-breadcrumb>
+    <!-- <hr><h1 class="h5 fw-normal mx-3">Select Address</h1><hr> -->
     <kendo-tilelayout [columns]="4" [rowHeight]="275" [resizable]="false" [reorderable]="false">
-        <kendo-tilelayout-item pTooltip="Addresses" [col]="1" [colSpan]="3" [rowSpan]="2"
+        <kendo-tilelayout-item [col]="1" [colSpan]="3" [rowSpan]="2" title="Select Address"
             style="border: none; background-color: transparent;">
             <kendo-tilelayout-item-body>
                 <div class="row" style="height: 100%; overflow-y: auto;">
@@ -59,7 +60,7 @@
                 </div>
             </kendo-tilelayout-item-body>
         </kendo-tilelayout-item>
-        <kendo-tilelayout-item pTooltip="Order Summary" [col]="4" [rowSpan]="2" class="shadow">
+        <kendo-tilelayout-item [col]="4" [rowSpan]="2" class="shadow" title="Order Summary">
             <kendo-tilelayout-item-body>
                 <div class="row py-2 px-2">
                     <div class="col-lg-4 col-md-12 col-sm-12 mb-3">
@@ -93,7 +94,7 @@
                     </div>
                     <div class="col-lg-8 col-md-12 col-sm-12 mb-3">
                         <h5 class="fw-normal">
-                            {{selectedProduct.productCategory.productPrice}}
+                            {{selectedProduct.productCategory.productPrice | currency:'INR'}}
                         </h5>
                     </div>
 
@@ -167,7 +168,7 @@
             </ng-template>
         </ng-template>
     </p-dialog>
-    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+    <p-confirmDialog [style]="{width: '25vw'}" [baseZIndex]="10000"></p-confirmDialog>
 
 </div>
 
