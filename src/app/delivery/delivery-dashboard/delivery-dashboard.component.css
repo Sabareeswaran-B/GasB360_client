@@ -1,40 +1,86 @@
+:root{
+  --theme:#ff6358;
+}
+
 .main-container {
-    margin-top: 56px;
+  margin-top: 56px;
+  margin-left: 235px;
+  padding: 15px;
+  -ms-overflow-x: hidden;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: relative;
+  overflow: hidden;
+}
 
-    margin-left: 235px;
+.collapsed {
+  margin-left: 60px;
+}
 
-    padding: 15px;
+.centering {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    -ms-overflow-x: hidden;
+.theme {
+  background-color: var(--red-500);
+  color: white;
 
-    overflow-x: hidden;
+}
 
-    overflow-y: scroll;
+.theme:hover {
+  background-color: var(--red-500);
+  color: white;
 
-    position: relative;
+}
 
-    overflow: hidden;
-  }
+.p-button {
+  background: var(--theme);
+  border: 1px solid var(--theme);
+}
 
-  .collapsed {
+.p-button:hover {
+  color: var(--theme) !important;
+  background-color: white !important;
+  border: 1px solid white !important;
+}
 
-    margin-left: 60px;
-  }
+.p-button-raised {
+  background: white;
+  color: var(--theme);
+}
 
+.p-button-raised:hover {
+  color: var(--theme) !important;
+  background-color: white !important;
+  border: 1 px solid var(--theme);
+}
 
-  .carder:hover {
-    background-color: var(--theme);
-    color: #fafafa;
-  }
+.card-titler {
+  color: var(--theme);
 
-  .carder{
-    border-radius: 4px;
-  }
+}
 
-  .carder:hover .card-titler{
-    color: #fafafa;
-  }
+.card-shadow {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
+}
 
-  .card-shadow{
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
-  }
+.carder:hover .card-titler {
+  color: #fafafa;
+}
+
+.carder:hover {
+  background-color: var(--theme);
+  color: #fafafa;
+}
+
+.carder {
+  border-radius: 4px;
+}
+
+.p-dialog-title {
+  color: var(--theme);
+  position: relative;
+  left: 250px;
+}
