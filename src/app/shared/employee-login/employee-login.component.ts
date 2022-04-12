@@ -26,6 +26,7 @@ export class EmployeeLoginComponent implements OnInit {
     private toaster: ToastrService
   ) { }
   ngOnInit(): void {
+    localStorage.clear();
   }
 
 
@@ -40,45 +41,45 @@ export class EmployeeLoginComponent implements OnInit {
 
   public signinHandler() {
 
-        this.isLoading = true;
-        if (this.signInForm.valid) {
+    this.isLoading = true;
+    if (this.signInForm.valid) {
 
 
-          this.service.employeeLogin(this.signInForm.value).subscribe({
-            next: (result: any) => {
-               if (result != null) {
-                                    this.userData = result;
-                                    localStorage.setItem('user', JSON.stringify(this.userData));
-                                    JSON.parse(localStorage.getItem('user')!);
-                                    this.router.navigate(['']);
-                                    this.userData = result.data;
-                                    console.log(this.userData)
-                                    localStorage.setItem('token', this.userData.token);
-                                    localStorage.setItem('id', this.userData.id);
-                                    localStorage.setItem('isLoggedin', 'true');
-                                    localStorage.setItem('role', this.userData.role);
+      this.service.employeeLogin(this.signInForm.value).subscribe({
+        next: (result: any) => {
+          if (result != null) {
+            this.userData = result;
+            localStorage.setItem('user', JSON.stringify(this.userData));
+            JSON.parse(localStorage.getItem('user')!);
+            this.router.navigate(['']);
+            this.userData = result.data;
+            console.log(this.userData)
+            localStorage.setItem('token', this.userData.token);
+            localStorage.setItem('id', this.userData.id);
+            localStorage.setItem('isLoggedin', 'true');
+            localStorage.setItem('role', this.userData.role);
 
-                                    this.toaster.success("Login Successfull")
-                                    this.router.navigate(['/ordersbyemployee']);
+            this.toaster.success("Login Successfull")
+            this.router.navigate(['/ordersbyemployee']);
 
-              if (localStorage.getItem('role') == "admin") {
-                this.router.navigate(['admin/dashboard'], { replaceUrl: true });
-              }
-              else {
-                this.router.navigate(['delivery/ordersbyemployee'], { replaceUrl: true });
-              }
-
-              // this.router.navigate(['/delivery/ordersbyemployee']);
-
+            if (localStorage.getItem('role') == "admin") {
+              this.router.navigate(['admin/dashboard'], { replaceUrl: true });
             }
-            
-          
-          },
-            error: (err:any) => {
-              this.isLoading = false;
-              this.toaster.error("Invalid email or Password, Enter Correctly!!");
+            else {
+              this.router.navigate(['delivery/dashboard'], { replaceUrl: true });
             }
-    })
+
+            // this.router.navigate(['/delivery/ordersbyemployee']);
+
+          }
+
+
+        },
+        error: (err: any) => {
+          this.isLoading = false;
+          this.toaster.error("Invalid email or Password, Enter Correctly!!");
+        }
+      })
       this.signInForm.reset();
 
     }

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl:"https://localhost:7076"
+  baseUrl: "https://gasb360api.azurewebsites.net"
 };

@@ -7,15 +7,20 @@ import { Observable } from 'rxjs';
 })
 export class AdminGuard implements CanActivate {
   constructor(private router: Router) {}
-  canActivate(){
  
-    var isLoggedin = localStorage.getItem("isLoggedin");
-    var role = localStorage.getItem("role");
-    if (isLoggedin == "true" && role == "admin")
+
+  canActivate() {
+    var role = localStorage.getItem("role")!;
+    if (role == "admin")
       return true;
 
-    this.router.navigate(['/login'], { replaceUrl: true })
+    if (role == "delivery"){
+      this.router.navigate(['/delivery/dashboard'], { replaceUrl: true })
+      return false;
+    }
+
+    this.router.navigate(['/customer'], { replaceUrl: true })
     return false;
   }
-  
+
 }

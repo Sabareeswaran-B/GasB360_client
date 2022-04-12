@@ -6,7 +6,6 @@ import { DeliveryGuard } from './guard/delivery.guard';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
 
 const routes: Routes = [
-
   {
     path: 'customer',
     loadChildren: () => import('./customer/customer.module').then(customer => customer.CustomerModule),

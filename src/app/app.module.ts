@@ -1,4 +1,3 @@
-import { ExcelModule } from '@progress/kendo-angular-grid';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +20,7 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { StoreModule } from '@ngrx/store';
 import { ProductReducer } from './ngrx/product.reducer';
 import { ProfileReducer } from './ngrx/profile.reducer';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
 import { ListViewModule} from '@progress/kendo-angular-listview';
 import { TextBoxModule } from '@progress/kendo-angular-inputs';
@@ -58,6 +58,7 @@ import { IconsModule } from "@progress/kendo-angular-icons";
     ListViewModule,
     LayoutModule,
     StoreModule.forRoot({ product: ProductReducer, profile: ProfileReducer}),
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     ReactiveFormsModule,
