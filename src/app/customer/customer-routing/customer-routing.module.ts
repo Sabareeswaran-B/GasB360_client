@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: "customer/order/address", component: AddressIndexComponent, canActivate: [AuthGuard] },
   { path: "customer/order", component: PlaceOrderComponent, canActivate: [AuthGuard] },
   { path: "customer/orders", component: OrderIndexComponent, canActivate: [AuthGuard] },
-  { path: "customer/orders/:id", component: PlaceOrderComponent, canActivate: [AuthGuard] },
+  { path: "customer/orders/:id", component: OrderIndexComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

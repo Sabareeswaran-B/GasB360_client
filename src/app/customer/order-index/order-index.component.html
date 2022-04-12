@@ -1,34 +1,35 @@
 <app-header></app-header>
-<div class="container vh-100" style="margin-top: 70px;">
+<div class="container vh-100" style="margin-top: 70px;" *ngIf="!noOrdersYet;else componentLoader">
     <p-breadcrumb [model]=" items" [home]="home">
     </p-breadcrumb>
     <br>
     <br>
     <div *ngIf="!shimmerLoading;else shimmer">
-    <div class="card w-100 shadow my-4" style="min-height: 150px; border-radius: 20px; border: none; padding: 15px;"
-        *ngFor="let order of orders">
-        <div class="row">
-            <div class="col-lg-2 col-md-4 col-sm-4">
-                <img [src]="order.filledProduct.productCategory.productImage" width="100%" style="border-radius: 20px;">
+        <div class="card w-100 shadow my-4" style="min-height: 150px; border-radius: 20px; border: none; padding: 15px;"
+            *ngFor="let order of orders">
+            <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-4">
+                    <img [src]="order.filledProduct.productCategory.productImage" width="100%"
+                        style="border-radius: 20px;">
+                </div>
+                <div class="col-lg-10 col-md-8 col-sm-8">
+                    <h4 class="mt-2">{{order.filledProduct.productCategory.productName}} <span class="h6"
+                            style="float: right; color: #000;">{{order.orderDate | date}}</span> </h4>
+                    <h6 style="color: rgb(177,177,177);" class="mt-1">Weight: <span style="color: black;">
+                            {{order.filledProduct.productCategory.productWeight}} KG</span> <span class="h6"
+                            style="float: right; color: #000;">₹
+                            {{order.filledProduct.productCategory.productPrice}}</span></h6>
+                    <h6 style="color: rgb(177,177,177);" *ngIf="order.orderStatus != 'Delivered'">Otp: <span
+                            style="color: black;"> {{ order.orderOtp }}</span><span
+                            style="float: right; color: rgb(177,177,177);">Paid</span></h6>
+                    <h6 style="color: rgb(177,177,177);">Status: <span style="color: black;"> {{ order.orderStatus
+                            }}</span></h6>
+                </div>
             </div>
-            <div class="col-lg-10 col-md-8 col-sm-8">
-                <h4 class="mt-2">{{order.filledProduct.productCategory.productName}} <span class="h6"
-                        style="float: right; color: #000;">{{order.orderDate | date}}</span> </h4>
-                <h6 style="color: rgb(177,177,177);" class="mt-1">Weight: <span style="color: black;">
-                        {{order.filledProduct.productCategory.productWeight}} KG</span> <span class="h6"
-                        style="float: right; color: #000;">₹
-                        {{order.filledProduct.productCategory.productPrice}}</span></h6>
-                <h6 style="color: rgb(177,177,177);" *ngIf="order.orderStatus != 'Delivered'">Otp: <span
-                        style="color: black;"> {{ order.orderOtp }}</span><span
-                        style="float: right; color: rgb(177,177,177);">Paid</span></h6>
-                <h6 style="color: rgb(177,177,177);">Status: <span style="color: black;"> {{ order.orderStatus
-                        }}</span></h6>
-            </div>
+            <h6 style="color: rgb(177,177,177);" class="mt-2">Address: <span style="color: black;">
+                    {{order.address.addressStreetName}}, {{order.address.addressCity}}, {{order.address.addressState}},
+                    {{order.address.addressCountry}} - {{order.address.addressPincode}}</span></h6>
         </div>
-        <h6 style="color: rgb(177,177,177);" class="mt-2">Address: <span style="color: black;">
-                {{order.address.addressStreetName}}, {{order.address.addressCity}}, {{order.address.addressState}},
-                {{order.address.addressCountry}} - {{order.address.addressPincode}}</span></h6>
-    </div>
     </div>
     <p-paginator [rows]="3" [totalRecords]="totalRecords" (onPageChange)="onPageChage($event)" class="shadow">
     </p-paginator>
@@ -37,7 +38,9 @@
 </div>
 
 <ng-template #componentLoader>
-    <p-progressBar mode="indeterminate" [style]="{'height': '4px', 'margin-top': '60px'}"></p-progressBar>
+    <div class="text-center d-lg-grid align-items-center" style="margin-top: 200px;">
+        <h1>No orders yet!</h1>
+    </div>
 </ng-template>
 
 <ng-template #shimmer>

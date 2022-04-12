@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import Customer from 'src/app/model/customer.model';
 import Type from 'src/app/model/type.model';
+import { profile } from 'src/app/ngrx/profile.action';
 import { CustomerService } from 'src/app/service/customer.service';
 
 @Component({
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit {
     private cookie: CookieService,
     private formBuilder: FormBuilder,
     private profile: Store<{ profile: Customer }>,
+    private store: Store,
   ) { }
 
   ngOnInit(): void {
@@ -54,7 +56,7 @@ export class ProfileComponent implements OnInit {
     //     console.log(error)
     //   }
     // });
-    
+
     // this.subscriptions.push(subscription);
     this.getCustomerById();
     this.getAllTypes();
@@ -87,6 +89,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateProfile() {
+    this.isLoading = true;
     let customer = this.customer;
     customer.typeId = this.profileEditForm.controls['typeId'].value.typeId;
     customer.customerName = this.profileEditForm.controls['customerName'].value;
@@ -94,10 +97,13 @@ export class ProfileComponent implements OnInit {
     customer.customerPhone = this.profileEditForm.controls['customerPhone'].value;
     this.customerService.UpdateCustomer(this.customerId, customer).subscribe({
       next: (response) => {
-        this.toastr.success(response.message);
+        this.displayEditModal = false;
         this.getCustomerById();
+        this.isLoading = false;
+        this.toastr.success(response.message);
       },
       error: (error) => {
+        this.isLoading = false;
         console.log(error);
       }
     })
@@ -131,6 +137,7 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         this.customer = response.data as Customer;
         this.componentLoading = false;
+        this.store.dispatch(profile(this.customer));
       },
       error: (error) => {
         console.log(error);

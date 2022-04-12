@@ -60,7 +60,6 @@ export class EmployeeLoginComponent implements OnInit {
             localStorage.setItem('role', this.userData.role);
 
             this.toaster.success("Login Successfull")
-            this.router.navigate(['/ordersbyemployee']);
 
             if (localStorage.getItem('role') == "admin") {
               this.router.navigate(['admin/dashboard'], { replaceUrl: true });

@@ -8,17 +8,19 @@ import { FilledproductComponent } from '../filledproduct/filledproduct.component
 import { UnfilledproductComponent } from '../unfilledproduct/unfilledproduct.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { ConnectionrequestComponent } from '../connectionrequest/connectionrequest.component';
+import { AuthGuard } from 'src/app/guard/auth.guard';
+import { AdminGuard } from 'src/app/guard/admin.guard';
 
 
 
 
 const routes: Routes = [
-  {path: "admin/employee", component:EmployeeComponent , pathMatch: "prefix"},
-  {path: "admin/productcategory", component:ProductcategoryComponent , pathMatch: "prefix"},
-  {path: "admin/filledproduct", component:FilledproductComponent , pathMatch: "prefix"},  
-  {path: "admin/unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix"},
-  {path: "admin/dashboard", component:DashboardComponent , pathMatch: "prefix"},
-  {path: "admin/connection", component:ConnectionrequestComponent , pathMatch: "prefix"}
+  {path: "admin/employee", component:EmployeeComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]},
+  {path: "admin/productcategory", component:ProductcategoryComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]},
+  {path: "admin/filledproduct", component:FilledproductComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]},  
+  {path: "admin/unfilledproduct", component:UnfilledproductComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]},
+  {path: "admin/dashboard", component:DashboardComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]},
+  {path: "admin/connection", component:ConnectionrequestComponent , pathMatch: "prefix", canActivate: [AuthGuard, AdminGuard]}
 ];
 
 @NgModule({
