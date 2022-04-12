@@ -5,7 +5,11 @@
   [adminMenuItems]="adminMenuItems"
 ></ng-sidenav>
 
-<div  [ngClass]="{ collapsed: collapedSideBar }" class="main-container" *ngIf="!componentLoading; else progresloading">
+<div
+  [ngClass]="{ collapsed: collapedSideBar }"
+  class="main-container"
+  *ngIf="!componentLoading; else progresloading"
+>
   <div class="row">
     <div class="col-md-2 text-center">
       <p-card title="Create New Employee">
@@ -60,6 +64,12 @@
           [columnMenu]="{ filter: true }"
         >
           <ng-template kendoGridToolbarTemplate>
+            <input
+              [style.width.px]="165"
+              placeholder="Search in all columns..."
+              kendoTextBox
+              (input)="onFilter($event)"
+            />
             <span pTooltip="Click to Export Excel " tooltipPosition="right">
               <button
                 type="button"
@@ -119,7 +129,7 @@
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-pencil-square"
+                  class="bi bi-pencil-square text-primary"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -139,7 +149,7 @@
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-trash3-fill"
+                  class="bi bi-trash3-fill text-danger"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -154,7 +164,6 @@
       </p-card>
     </div>
   </div>
-
 </div>
 <!-- Creating Pop Up -->
 <p-dialog
@@ -375,7 +384,7 @@
   </form>
 </p-dialog>
 <ng-template #progresloading>
-  <br>
+  <br />
   <p-progressBar
     mode="indeterminate"
     [style]="{ height: '35px' }"

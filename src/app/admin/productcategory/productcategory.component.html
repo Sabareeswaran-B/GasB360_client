@@ -1,117 +1,114 @@
 <app-navbar></app-navbar>
 
-
 <ng-sidenav
-(collapsedEvent)="receiveCollapsed($event)"
-[adminMenuItems]="adminMenuItems"
+  (collapsedEvent)="receiveCollapsed($event)"
+  [adminMenuItems]="adminMenuItems"
 ></ng-sidenav>
 
-<div  [ngClass]="{ collapsed: collapedSideBar }" class="main-container" *ngIf="!componentLoading;else progresloading">
-    
-    <div class="row">
-      <div class="col-md-2 text-center">
-        <p-card >
-          <span  
-          pTooltip="  Create a Product"
-          tooltipPosition="bottom">
+<div
+  [ngClass]="{ collapsed: collapedSideBar }"
+  class="main-container"
+  *ngIf="!componentLoading; else progresloading"
+>
+  <div class="row">
+    <div class="col-md-2 text-center">
+      <p-card>
+        <span pTooltip="  Create a Product" tooltipPosition="bottom">
           <svg
             (click)="this.createNewUserPopup()"
             xmlns="http://www.w3.org/2000/svg"
             width="70"
             height="90"
-           
             fill="currentColor"
-            class="bi bi-person-plus-fill"
+            class="bi bi-bag-plus-fill"
             viewBox="0 0 16 16"
           >
             <path
-              d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-            <path
               fill-rule="evenodd"
-              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+              d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"
             />
           </svg>
         </span>
-        </p-card>
-        <br />
-        <p-card>
-          <span >
-          <h5>Count<hr>{{dataCount}}</h5>
+      </p-card>
+      <br />
+      <p-card>
+        <span>
+          <h5>
+            Count
+            <hr />
+            {{ dataCount }}
+          </h5>
         </span>
-        </p-card>
-        <br>
-      </div>
-      <div class="col-md-10">
-        <p-card>
-          <h5>Product Category</h5><hr> 
-          <kendo-grid
-            [kendoGridBinding]="productDataForGrid"
-            kendoGridSelectBy="productName"
-            [pageSize]="10"
-            [pageable]="true"
-            [pageable]="true"
-              [sortable]="true"
-              [groupable]="true"
-              [reorderable]="true"
-              [resizable]="true"
-            [height]="500"
-            [columnMenu]="{ filter: true }"
-          >
-        
-            <ng-template kendoGridToolbarTemplate>
-              <button 
-              type="button" 
-              class="btn btn-success" 
-              kendoGridExcelCommand 
+      </p-card>
+      <br />
+    </div>
+    <div class="col-md-10">
+      <p-card>
+        <h5>Product Category</h5>
+        <hr />
+        <kendo-grid
+          [kendoGridBinding]="productDataForGrid"
+          kendoGridSelectBy="productName"
+          [pageSize]="10"
+          [pageable]="true"
+          [pageable]="true"
+          [sortable]="true"
+          [groupable]="true"
+          [reorderable]="true"
+          [resizable]="true"
+          [height]="500"
+          [columnMenu]="{ filter: true }"
+        >
+          <ng-template kendoGridToolbarTemplate>
+            <button
+              type="button"
+              class="btn btn-success"
+              kendoGridExcelCommand
               icon="file-excel"
               pTooltip="Click to Convert Excel"
-               tooltipPosition="right"
-              >
-                   Export to Excel
-              </button>
-              
-            </ng-template>
-            <kendo-grid-column
-              field="productName"
-              title="product Name"
-              [width]="140"
-              [headerStyle] ="{'font-weight' : 'bold'}" 
+              tooltipPosition="right"
             >
-            </kendo-grid-column>
-            <kendo-grid-column 
-            field="productWeight" 
-            title="productWeight" 
+              Export to Excel
+            </button>
+          </ng-template>
+          <kendo-grid-column
+            field="productName"
+            title="Product Name"
+            [width]="140"
+            [headerStyle]="{ 'font-weight': 'bold' }"
+          >
+          </kendo-grid-column>
+          <kendo-grid-column
+            field="productWeight"
+            title="Product Quantity"
             [width]="100"
-            [headerStyle] ="{'font-weight' : 'bold'}" 
-            >
-            </kendo-grid-column>
-            <kendo-grid-column 
+            [headerStyle]="{ 'font-weight': 'bold' }"
+          >
+          </kendo-grid-column>
+          <kendo-grid-column
             field="productPrice"
-            title="productPrice" 
+            title="Product Price"
             [width]="60"
-            [headerStyle] ="{'font-weight' : 'bold'}" 
-            >
-            </kendo-grid-column>
-            <kendo-grid-column
-              field="type.typeName"
-              title="Type Name"
-              [width]="120"
-              [headerStyle] ="{'font-weight' : 'bold'}" 
-            >
-            </kendo-grid-column>
-            <kendo-grid-column title="" [width]="120">
-              <ng-template kendoGridCellTemplate let-dataItem>
-                <span  
-          pTooltip="Edit Row "
-          tooltipPosition="left">
+            [headerStyle]="{ 'font-weight': 'bold' }"
+          >
+          </kendo-grid-column>
+          <kendo-grid-column
+            field="type.typeName"
+            title="Type Name"
+            [width]="120"
+            [headerStyle]="{ 'font-weight': 'bold' }"
+          >
+          </kendo-grid-column>
+          <kendo-grid-column title="" [width]="120">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              <span pTooltip="Edit Row " tooltipPosition="left">
                 <svg
                   (click)="updateGridElementPopup(dataItem)"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-pencil-square"
+                  class="bi bi-pencil-square text-primary"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -122,36 +119,34 @@
                     d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
                   />
                 </svg>
-                </span>
-                &nbsp;&nbsp;&nbsp;
-                <span  
-          pTooltip="Delete Row"
-          tooltipPosition="right">
+              </span>
+              &nbsp;&nbsp;&nbsp;
+              <span pTooltip="Delete Row" tooltipPosition="right">
                 <svg
-                (click)="deleteGridElementPopup(dataItem)"
+                  (click)="deleteGridElementPopup(dataItem)"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-trash3-fill"
+                  class="bi bi-trash3-fill text-danger"
                   viewBox="0 0 16 16"
                 >
                   <path
                     d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z"
                   />
                 </svg>
-                </span>
-              </ng-template>
-            </kendo-grid-column>
-            <kendo-grid-excel fileName="ProductCategory.xlsx"></kendo-grid-excel>
-          </kendo-grid>
-        </p-card>
-      </div>
+              </span>
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-excel fileName="ProductCategory.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+      </p-card>
     </div>
   </div>
+</div>
 
-  <!-- Creating Product -->
-  <p-dialog
+<!-- Creating Product -->
+<p-dialog
   header="Create a new Product"
   [(visible)]="displayModalCreate"
   [modal]="true"
@@ -200,7 +195,7 @@
         pInputText
         required
       />
-      <label for="float-input">  product Price </label> </span
+      <label for="float-input"> product Price </label> </span
     ><br />
     <div class="row">
       <div class="col-md-6">
@@ -209,7 +204,9 @@
           style="background-color: var(--red-500); width: 100%"
           type="button"
           label="Exit"
-          (click)="this.productDataUpdate.reset(); this.displayModalCreate = false"
+          (click)="
+            this.productDataUpdate.reset(); this.displayModalCreate = false
+          "
         ></button>
       </div>
       <div class="col-md-6">
@@ -226,7 +223,6 @@
 </p-dialog>
 <!-- Editing Pop Up -->
 
-
 <p-dialog
   header="Edit Employee Data"
   [(visible)]="displayModalEdit"
@@ -238,58 +234,58 @@
   <div class="grid p-fluid">
     <form [formGroup]="productDataUpdate">
       <br />
-        <span class="p-float-label" width="100">
-          <input
-            id="float-input"
-            type="text"
-            name="id_text"
-            [readonly]="true"
-            formControlName="productId"
-            pInputText
-          />
-          <label for="float-input">product Id </label> </span
-        ><br />
-        <span class="p-float-label" width="100">
-          <input
-            id="float-input"
-            type="text"
-            name="name_text"
-            formControlName="productName"
-            pInputText
-            required
-          />
-          <label for="float-input">product Name </label> </span
-        ><br />
-        <span class="p-float-label" width="100">
-          <p-dropdown
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="text"
+          name="id_text"
+          [readonly]="true"
+          formControlName="productId"
+          pInputText
+        />
+        <label for="float-input">product Id </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="text"
+          name="name_text"
+          formControlName="productName"
+          pInputText
+          required
+        />
+        <label for="float-input">product Name </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <p-dropdown
           [options]="type_data"
           optionLabel="typeName"
           formControlName="typeId"
           [showClear]="true"
-          ></p-dropdown>
-          <label for="float-input"> type Name </label> </span
-        ><br />
-        <span class="p-float-label" width="100">
-          <input
-            id="float-input"
-            type="number"
-            name="Phone_num"
-            formControlName="productWeight"
-            pInputText
-            required
-          />
-          <label for="float-input"> product Weight</label> </span
-        ><br />
-        <span class="p-float-label" width="100">
-          <input
-            id="float-input"
-            type="email"
-            formControlName="productPrice"
-            pInputText
-            required
-          />
-          <label for="float-input">  product Price </label> </span
-        ><br />
+        ></p-dropdown>
+        <label for="float-input"> type Name </label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="number"
+          name="Phone_num"
+          formControlName="productWeight"
+          pInputText
+          required
+        />
+        <label for="float-input"> product Weight</label> </span
+      ><br />
+      <span class="p-float-label" width="100">
+        <input
+          id="float-input"
+          type="email"
+          formControlName="productPrice"
+          pInputText
+          required
+        />
+        <label for="float-input"> product Price </label> </span
+      ><br />
       <br />
       <div class="row">
         <div class="col-md-6">
@@ -299,18 +295,20 @@
             style="background-color: var(--red-600)"
             type="button"
             label="Exit"
-            (click)="this.productDataUpdate.reset(); this.displayModalEdit = false"
+            (click)="
+              this.productDataUpdate.reset(); this.displayModalEdit = false
+            "
           ></button>
         </div>
         <div class="col-md-6">
           <button
-          width="50%"
-          pButton
-          style="background-color: var(--green-600)"
-          type="button"
-          label="Submit"
-          (click)="updateGridElement()"
-        ></button>
+            width="50%"
+            pButton
+            style="background-color: var(--green-600)"
+            type="button"
+            label="Submit"
+            (click)="updateGridElement()"
+          ></button>
         </div>
       </div>
     </form>
@@ -319,7 +317,6 @@
         <p-button icon="pi pi-check" (click)="displayModalEdit=false" label="Ok" styleClass="p-button-text"></p-button>
         </ng-template> -->
 </p-dialog>
-
 
 <!-- Delete Modal -->
 
@@ -331,30 +328,33 @@
   [draggable]="false"
   [resizable]="true"
 >
-<form [formGroup]="productDataUpdate">
-<div class="row">
-  <div class="col-md-6">
-    <h4> {{displayDelete}} </h4>
-  </div>
-  <div class="col-md-6"></div>
-</div>
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4"><button
-    width="50%"
-    pButton
-    style="background-color: var(--red-600)"
-    type="button"
-    label="Confirm Delete"
-    (click)="this.displayModalEdit = false;deleteGridElement()"
-    ></button>
-  </div>
-</div>
-</form>
-
+  <form [formGroup]="productDataUpdate">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>{{ displayDelete }}</h4>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <button
+          width="50%"
+          pButton
+          style="background-color: var(--red-600)"
+          type="button"
+          label="Confirm Delete"
+          (click)="this.displayModalEdit = false; deleteGridElement()"
+        ></button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 <ng-template #progresloading>
-  <br>
-  <p-progressBar mode="indeterminate" [style]="{'height': '35px'}"></p-progressBar>
+  <br />
+  <p-progressBar
+    mode="indeterminate"
+    [style]="{ height: '35px' }"
+  ></p-progressBar>
 </ng-template>

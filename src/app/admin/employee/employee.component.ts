@@ -5,6 +5,7 @@ import Role from 'src/app/model/role.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { MenuItem } from 'primeng/api';
+import { process } from "@progress/kendo-data-query";
 
 @Component({
   selector: 'app-employee',
@@ -13,6 +14,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class EmployeeComponent implements OnInit {
   employeeDataForGrid!: any;
+  employeeDataForGridData!: any;
   employeeDataUpdate!: FormGroup;
   employeeCreateForm!: FormGroup;
   role_data!: Role[];
@@ -155,6 +157,42 @@ export class EmployeeComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.employeeDataForGrid = process(this.employeeDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "employeeName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "job_title",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "budget",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "phone",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "address",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 
 }
