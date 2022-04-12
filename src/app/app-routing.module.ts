@@ -5,12 +5,14 @@ import { AuthGuard } from './guard/auth.guard';
 import { DeliveryGuard } from './guard/delivery.guard';
 import { EmployeeLoginComponent } from './shared/employee-login/employee-login.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { HomeGuard } from './guard/home.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [HomeGuard]
   },
   {
     path: 'customer',
