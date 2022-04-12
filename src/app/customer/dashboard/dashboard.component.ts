@@ -20,12 +20,16 @@ export class DashboardComponent implements OnInit {
   orders!: Order[];
   subscriptions: Subscription[] = [];
   nextOrderDate: Date = new Date();
-  chartDate: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  linechartDate: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  barChartPrice: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   products: ProductCategory[] = [];
+  dateDifference = 0;
 
   constructor(private customerService: CustomerService, private toastr: ToastrService) { }
-  basicData: any;
+  lineGraphData: any;
+  barGraphData: any;
+  barGraphOptions: any;
 
   ngOnInit(): void {
     this.customerId = localStorage.getItem('id')!;
@@ -62,20 +66,35 @@ export class DashboardComponent implements OnInit {
         if (this.orders.length > 0) {
           this.orders = this.orders.sort((a, b) => new Date(b.orderDate).valueOf() - new Date(a.orderDate).valueOf());
           this.nextOrderDate.setDate(new Date(this.orders[0].orderDate).getDate() + 30)
+          this.dateDifference = this.calculateDiff(this.nextOrderDate);
         }
         this.orderLoading = false;
         this.orders.forEach((order) => {
           let index: number = new Date(order.orderDate).getMonth();
-          this.chartDate[index] += 1;
+          this.linechartDate[index] += 1;
+          this.barChartPrice[index] += order.orderTotalprice;
         })
-        this.basicData = {
+        this.lineGraphData = {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
           datasets: [
             {
-              label: 'First Dataset',
-              data: this.chartDate,
+              label: 'No. of orders per month',
+              data: this.linechartDate,
               fill: false,
-              borderColor: '#42A5F5',
+              borderColor: '#6280ff',
+              tension: .4
+            }
+          ]
+        };
+        this.barGraphData = {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [
+            {
+              label: 'Monthly Expenditure',
+              data: this.barChartPrice,
+              fill: false,
+              borderColor: '#6280ff',
+              backgroundColor: '#6280ff',
               tension: .4
             }
           ]
@@ -86,6 +105,11 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.subscriptions.push(subscription);
+  }
+
+  calculateDiff(dateSent: Date) {
+    let currentDate = new Date();
+    return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
   }
 
   getAllProductCategories() {
@@ -115,3 +139,5 @@ export class DashboardComponent implements OnInit {
     this.subscriptions.push(subscription);
   }
 }
+
+

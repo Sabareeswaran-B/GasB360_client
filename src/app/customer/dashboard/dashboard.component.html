@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container vh-100" style="margin-top: 100px;" *ngIf="!customerLoading && !orderLoading;else componentLoader">
-    <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="row mb-3">
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
             <div class="card request-card shadow-lg text-center justify-content-center"
                 *ngIf="customer.requested != 'true';else requested" (click)="requestConnection()">
                 <h1 class="pi pi-plus fw-bolder" style="font-size: 50px;"></h1>
@@ -10,18 +10,41 @@
             <ng-template #requested>
                 <div class="card request-card shadow-lg text-center justify-content-center">
                     <h1 class="h6 fw-normal">Connection status</h1>
-                    <h1 class="h1 fw-bold">Requested</h1>
+                    <h1 class="h3 fw-bold">Requested</h1>
+                    <h1 class="pi pi-check-circle fw-bolder" style="font-size: 50px;"></h1>
                 </div>
             </ng-template>
 
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+            <div class="card shadow-lg text-center justify-content-center" *ngIf="orders.length > 0;else orderNow">
+                <h1 class="h6 fw-normal" style="color: rgb(177, 177, 177);">Last ordered date</h1>
+                <h1 class="h3 fw-bold">{{orders[0].orderDate | date}}</h1>
+
+                <h1 class="h6 fw-normal mt-3" style="color: rgb(177, 177, 177);">Next order date</h1>
+                <h1 class="h3 fw-bold">{{nextOrderDate | date}}</h1>
+            </div>
+            <ng-template #orderNow>
+                <div class="card shadow-lg text-center justify-content-center" routerLink="/customer/products">
+                    <h1 class="h6 fw-normal mt-3" style="color: rgb(177, 177, 177);">Welcome to GasB360</h1>
+                    <h1 class="h3 fw-bold">Order now</h1>
+                </div>
+            </ng-template>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+            <div class="card shadow-lg text-center justify-content-center">
+                <h1 class="h5 fw-normal">Allowed Connections limit</h1>
+                <p-knob [(ngModel)]="customer.allowedLimit" [min]="0" [max]="4" [readonly]=true></p-knob>
+                <button pButton class="gasb-bg-primary mt-2 w-50" label="Order Now!" routerLink="/customer/products" style="margin-left: auto; margin-right: auto; border-radius: 20px;"></button>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-6 col-sm-12 mt-3">
             <div class="card shadow-lg text-center justify-content-center" style="cursor: pointer;"
                 routerLink="/customer/products">
                 <ngb-carousel>
                     <ng-template ngbSlide *ngFor="let product of products">
                         <div class="picsum-img-wrapper">
-                            <img [src]="product.productImage" style="height: 250px; width: 100%; border-radius: 20px;"
+                            <img [src]="product.productImage" style="height: 520px; width: 100%; border-radius: 20px;"
                                 alt="Random first slide">
                         </div>
                         <div class="carousel-caption">
@@ -31,25 +54,26 @@
                     </ng-template>
                 </ngb-carousel>
             </div>
-        </div>
-        <div class="col-lg-4 col-md-6 col-sm-12">
-            <div class="card shadow-lg text-center justify-content-center" *ngIf="orders.length > 0;else orderNow">
-                <h1 class="h6 fw-normal" style="color: rgb(177, 177, 177);">Last ordered date</h1>
-                <h1 class="h1 fw-bold">{{orders[0].orderDate | date}}</h1>
-
-                <h1 class="h6 fw-normal mt-3" style="color: rgb(177, 177, 177);">Next order date</h1>
-                <h1 class="h1 fw-bold">{{nextOrderDate | date}}</h1>
+        </div>        
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
+            <div class="card shadow-lg text-center justify-content-center">
+                <h1 class="h5 fw-normal">Number of Connections</h1>
+                <p-knob [(ngModel)]="customer.customerConnection" [min]="0" [max]="4" [readonly]=true></p-knob>
             </div>
-            <ng-template #orderNow>
-                <div class="card shadow-lg text-center justify-content-center" routerLink="/customer/products">
-                    <h1 class="h6 fw-normal mt-3" style="color: rgb(177, 177, 177);">Welcome to GasB360</h1>
-                    <h1 class="h1 fw-bold">Order now</h1>
-                </div>
-            </ng-template>
+            <div class="card shadow-lg text-center justify-content-center mt-3">
+                <h1 class="h5 fw-normal">Number of days for next order</h1>
+                <p-knob [(ngModel)]="dateDifference" [min]="0" [max]="30" [readonly]=true></p-knob>
+            </div>
         </div>
-        <div class="col-lg-12 col-md-12 col-sm-12 mt-4">
-            <div class="card">
-                <p-chart type="line" [data]="basicData"></p-chart>
+        
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-4">
+            <div class="card shadow-lg" style="height: 350px;">
+                <p-chart type="line" [data]="lineGraphData"></p-chart>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-4">
+            <div class="card shadow-lg" style="height: 350px;">
+                <p-chart type="bar" [data]="barGraphData"></p-chart>
             </div>
         </div>
 

@@ -40,6 +40,7 @@ import {SkeletonModule} from 'primeng/skeleton';
 import {TooltipModule} from 'primeng/tooltip';
 import {ChartModule} from 'primeng/chart';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import {KnobModule} from 'primeng/knob';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
     ToastrModule.forRoot(),
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('profile', ProfileReducer),
+    KnobModule,
     ChartModule,
     SkeletonModule,
     NgbCarouselModule,
