@@ -9,7 +9,7 @@
 @import '../node_modules/ngx-toastr/toastr.css';
 
 :root{
-  --theme:#ff6358;
+  --theme:#6280ff;
 }
 a {
     text-decoration: none;
@@ -39,10 +39,10 @@ p-paginator .p-paginator {
 }
 
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
-    background-color: #ff6358!important;
+    background-color: #6280ff!important;
 }
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:after{
-    background-color: #ff6358!important;
+    background-color: #6280ff!important;
 }
 
 p-menuitem-text .p-menuitem-text {
@@ -101,3 +101,6 @@ p-menuitem-text .p-menuitem-text {
 }
 
 
+.gasb-bg-primary {
+  background-color: #6280ff;
+}

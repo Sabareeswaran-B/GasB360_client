@@ -48,8 +48,7 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
       customerPhone: ['', Validators.required],
       customerEmail: ['', Validators.required],
       typeId: ['', Validators.required],
-      password: ['', Validators.required],
-      cpassword: ['', Validators.required],
+      password: ['', Validators.required]
     });
     this.getAllTypes();
   }

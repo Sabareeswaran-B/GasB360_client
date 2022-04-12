@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // baseUrl: "https://localhost:7076"
-  baseUrl: "https://gasb360api.azurewebsites.net"
+  baseUrl: "https://localhost:7076"
+  // baseUrl: "https://gasb360api.azurewebsites.net"
 };
 
 /*

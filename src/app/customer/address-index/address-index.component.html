@@ -10,7 +10,7 @@
                         <div class="address-add-card shadow-lg px-4 py-3 d-grid justify-content-center"
                         pTooltip="Add address">
                             <div class="pi pi-plus-circle fw-bolder align-self-center"
-                                style="font-size: 75px; color: #ff6358;"></div>
+                                style="font-size: 75px; color: #6280ff;"></div>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-12 col-sm-12 k-cursor-pointer mt-2" pTooltip="Select address"
@@ -52,7 +52,7 @@
                             <h5 class="fw-normal overflow-hidden" style="height: 40px;">
                                 {{ address.addressPincode }}
                             </h5>
-                            <!-- <button pButton pRipple class="k-bg-primary w-100 mt-3" label="Select"
+                            <!-- <button pButton pRipple class="gasb-bg-primary w-100 mt-3" label="Select"
                                 (click)="selectedAddress=address"></button> -->
                         </div>
                     </div>
@@ -109,10 +109,10 @@
                         </h5>
                     </div>
 
-                    <button class="product-button k-bg-primary text-light shadow py-1" style="margin-top: 150px;" (click)="confirmOrder()"
+                    <button class="product-button gasb-bg-primary text-light shadow py-1" style="margin-top: 150px;" (click)="confirmOrder()"
                         *ngIf="!orderLoading;else orderLoader">ORDER</button>
                     <ng-template #orderLoader>
-                        <button class="product-button k-bg-primary text-light shadow py-1"  style="margin-top: 150px;" [disabled]="true">
+                        <button class="product-button gasb-bg-primary text-light shadow py-1"  style="margin-top: 150px;" [disabled]="true">
                             <i class="pi pi-spin pi-spinner"></i>
                         </button>
                     </ng-template>
