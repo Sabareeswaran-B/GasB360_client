@@ -221,15 +221,15 @@ export class DashboardComponent implements OnInit {
         this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
         
         // product Count
-        this.rpmr[0] =Math.floor( this.dash.productCategory.length * 19.12);
+        this.rpmr[0] =Math.floor( (this.dash.productCategory.length * 24.12)/2);
         this.stockdata[0] =  this.rpmr[0] ;
         this.saleskdata[0] = this.rpmr[0] / 1.3;
         // Filled Product
-        this.rpmr[1] = Math.floor( this.dash.filledProduct.length * 15.3) ;
+        this.rpmr[1] = Math.floor( (this.dash.filledProduct.length * 15.3)/2) ;
         this.stockdata[1] =  this.rpmr[1] ;
         this.saleskdata[1] = this.rpmr[1] / 1.3;
         // Unfilled Product
-        this.rpmr[2] = Math.floor(this.dash.unfilledProducts.length * 13.3);
+        this.rpmr[2] = Math.floor((this.dash.unfilledProducts.length * 13.3)/2);
         this.stockdata[2] =  this.rpmr[2] ;
         this.saleskdata[2] = this.rpmr[2] / 1.3;
         // console.log(this.productCount)

@@ -83,7 +83,7 @@ export class AdminService {
     return this.http.put(`${environment.baseUrl}/UnfilledProduct/UpdateUnfilledProduct/` + unfilledId, unfilledProduct, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
   }
   DeleteUnfilledProduct(unfilledId: string) {
-    return this.http.delete(`${environment.baseUrl}UnfilledProduct/DeleteUnfilledProduct/` + unfilledId, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
+    return this.http.delete(`${environment.baseUrl}/UnfilledProduct/DeleteUnfilledProduct/` + unfilledId, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } });
   }
 
   // Connection Request from Customer
