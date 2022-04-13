@@ -24,13 +24,13 @@
 }
 
 .theme {
-  background-color: var(--red-500);
+  background-color: var(--theme);
   color: white;
 
 }
 
 .theme:hover {
-  background-color: var(--red-500);
+  background-color: var(--theme);
   color: white;
 
 }
@@ -79,8 +79,9 @@
   border-radius: 4px;
 }
 
-.p-dialog-title {
-  color: var(--theme);
-  position: relative;
-  left: 250px;
-}
+
+
+
+
+
+

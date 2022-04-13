@@ -39,10 +39,10 @@ p-paginator .p-paginator {
 }
 
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:before{
-    background-color: #6280ff!important;
+    background-color:var(--theme)!important;
 }
 p-progressbar .p-progressbar .p-progressbar-indeterminate-container .p-progressbar-value:after{
-    background-color: #6280ff!important;
+    background-color: var(--theme)!important;
 }
 
 p-menuitem-text .p-menuitem-text {

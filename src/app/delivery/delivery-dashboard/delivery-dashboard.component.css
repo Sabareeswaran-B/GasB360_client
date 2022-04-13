@@ -17,7 +17,7 @@
   margin-left: 60px;
 }
 
-.centering {
+/* .centering {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@
   color: var(--theme) !important;
   background-color: white !important;
   border: 1 px solid var(--theme);
-}
+} */
 
 .card-titler {
   color: var(--theme);
@@ -66,14 +66,6 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4), 0 12px 40px 0 rgba(0, 0, 0, 0.38);
 }
 
-.carder:hover .card-titler {
-  color: #fafafa;
-}
-
-.carder:hover {
-  background-color: var(--theme);
-  color: #fafafa;
-}
 
 .carder {
   border-radius: 4px;
