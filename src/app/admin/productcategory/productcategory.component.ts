@@ -5,6 +5,8 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import ProductCategory  from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
 import { MenuItem } from 'primeng/api';
+import { process } from "@progress/kendo-data-query";
+
 
 @Component({
   selector: 'app-productcategory',
@@ -13,6 +15,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class ProductcategoryComponent implements OnInit {
   productDataForGrid!: any;
+  productDataForGridData!: any;
   productDataUpdate!: FormGroup;
   productCreateForm!: FormGroup;
   type_data!:Type[] ;
@@ -59,6 +62,7 @@ export class ProductcategoryComponent implements OnInit {
     this.service.GetAllProductCategories().subscribe({
       next: (data) => {
         this.productDataForGrid = data['data' as keyof Object];
+        this.productDataForGridData = data['data' as keyof Object];
         this.dataCount = this.productDataForGrid.length; 
         this.componentLoading = false;
         // console.log(this.productDataForGrid)
@@ -154,5 +158,35 @@ export class ProductcategoryComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.productDataForGrid = process(this.productDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "productName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "productWeight",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "productPrice",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "type.typeName",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 }

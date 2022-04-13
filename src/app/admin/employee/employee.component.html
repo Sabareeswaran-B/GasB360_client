@@ -64,16 +64,23 @@
           [columnMenu]="{ filter: true }"
         >
           <ng-template kendoGridToolbarTemplate>
-            <input
-              [style.width.px]="165"
-              placeholder="Search in all columns..."
+           <!--   <b> Search :</b> -->
+           <span
+           pTooltip="Search in  employee "
+           tooltipPosition="right">
+           <input
+              class="form-control"
+              [style.width.px]="500"
+              placeholder="Search"
               kendoTextBox
               (input)="onFilter($event)"
             />
-            <span pTooltip="Click to Export Excel " tooltipPosition="right">
+          </span>
+        <kendo-grid-spacer></kendo-grid-spacer>
+            <span  pTooltip="Click to Export Excel " tooltipPosition="left">
               <button
+              class="btn btn-primary"
                 type="button"
-                class="btn btn-success"
                 kendoGridExcelCommand
                 icon="file-excel"
               >

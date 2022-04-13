@@ -60,13 +60,25 @@
           [columnMenu]="{ filter: true }"
         >
           <ng-template kendoGridToolbarTemplate>
+            <span
+            pTooltip="Search in product category "
+            tooltipPosition="right">
+            <input
+               class="form-control"
+               [style.width.px]="500"
+               placeholder="Search"
+               kendoTextBox
+               (input)="onFilter($event)"
+             />
+           </span>
+            <kendo-grid-spacer></kendo-grid-spacer>
             <button
               type="button"
-              class="btn btn-success"
+              class="btn btn-primary"
               kendoGridExcelCommand
               icon="file-excel"
               pTooltip="Click to Convert Excel"
-              tooltipPosition="right"
+              tooltipPosition="left"
             >
               Export to Excel
             </button>

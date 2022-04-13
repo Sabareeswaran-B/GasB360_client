@@ -17,6 +17,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class FilledproductComponent implements OnInit {
   filledDataForGrid!: any;
+  filledDataForGridData!: any;
   filledDataUpdate!: FormGroup;
   filledCreateForm!: FormGroup;
 
@@ -70,6 +71,7 @@ export class FilledproductComponent implements OnInit {
     this.service.GetAllFilledProducts().subscribe({
       next: (data) => {
         this.filledDataForGrid = data['data' as keyof Object];
+        this.filledDataForGridData = data['data' as keyof Object];
         this.dataCount = this.filledDataForGrid.length; 
         this.componentLoading = false;  
         // console.log(this.productDataForGrid)
@@ -213,33 +215,29 @@ decreaseQuantity(dataItem: FilledProducts){
   
 
 
-  onFilter(inputValue: string): void {
-    this.gridView = process(this.gridData, {
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.filledDataForGrid = process(this.filledDataForGridData, {
       filter: {
         logic: "or",
         filters: [
           {
-            field: "full_name",
+            field: "productCategory.productName",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "job_title",
+            field: "filledProductQuantity",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "budget",
+            field: "productbranch.branchNamerice",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "phone",
-            operator: "contains",
-            value: inputValue,
-          },
-          {
-            field: "address",
+            field: "branch.branchLocation",
             operator: "contains",
             value: inputValue,
           },

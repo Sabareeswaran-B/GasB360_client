@@ -55,13 +55,26 @@
           [columnMenu]="{ filter: true }"
         >
           <ng-template kendoGridToolbarTemplate>
+           <span
+           pTooltip="Search in filled product "
+           tooltipPosition="right">
+           <input
+              class="form-control"
+              [style.width.px]="500"
+              placeholder="Search"
+              kendoTextBox
+              (input)="onFilter($event)"
+            />
+          </span>
+           
+            <kendo-grid-spacer></kendo-grid-spacer>
             <span  
             pTooltip="Click to Export Excel "
-            tooltipPosition="right">
+            tooltipPosition="left">
             <button
               kendoGridExcelCommand
               type="button"
-              class="btn btn-success"
+              class="btn btn-primary"
               icon="file-excel"
             >
               Export to Excel
@@ -130,7 +143,7 @@
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-arrow-up-circle-fill text-success"
+                class="bi bi-arrow-up-circle-fill text-secondary"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -148,7 +161,7 @@
                 width="30"
                 height="30"
                 fill="currentColor"
-                class="bi bi-arrow-down-circle-fill text-warning"
+                class="bi bi-arrow-down-circle-fill text-secondary"
                 viewBox="0 0 16 16"
               >
                 <path

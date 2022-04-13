@@ -62,6 +62,7 @@ export class EmployeeComponent implements OnInit {
     this.service.GetAllEmployees().subscribe({
       next: (data) => {
         this.employeeDataForGrid = data['data' as keyof Object];
+        this.employeeDataForGridData = data['data' as keyof Object];
         this.dataCount = this.employeeDataForGrid.length;
         this.componentLoading = false;
       },

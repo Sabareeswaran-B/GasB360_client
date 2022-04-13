@@ -16,6 +16,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class UnfilledproductComponent implements OnInit {
   unfilledDataForGrid!: any;
+  unfilledDataForGridData!: any;
   unfilledDataUpdate!: FormGroup;
   unfilledCreateForm!: FormGroup;
 
@@ -71,6 +72,7 @@ export class UnfilledproductComponent implements OnInit {
     this.service.GetAllUnfilledProducts().subscribe({
       next: (data) => {
         this.unfilledDataForGrid = data['data' as keyof Object];
+        this.unfilledDataForGridData = data['data' as keyof Object];
         this.dataCount = this.unfilledDataForGrid.length; 
         this.componentLoading = false;
         // console.log(this.unfilledDataForGrid)
@@ -208,5 +210,35 @@ export class UnfilledproductComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.unfilledDataForGrid = process(this.unfilledDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "productCategory.productName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "unfilledProductQuantity",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "branch.branchName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "branch.branchLocation",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 }
