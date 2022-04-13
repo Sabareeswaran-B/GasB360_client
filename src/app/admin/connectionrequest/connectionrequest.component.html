@@ -13,10 +13,9 @@
           <div class="col-md-3">
             <img [src]="request.customerImage" height="70" class="borderc" width="70" alt="" />
           </div>
-          <!-- <div class="col-md-2">
-            <hr style="width: 1px; height: 100%" />
-          </div> -->
-          <div class="col-md-9">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-8">
             Name: <b>{{ request.customerName }}</b
             ><br />
             Phone: {{ request.customerPhone }}<br />
@@ -29,7 +28,7 @@
             <div class="col-md-6">
               <button
                 pButton
-                style="background-color: var(--red-500); width: 100%"
+                style="background-color:#ff618b ; width: 100%"
                 type="button"
                 label="Decline"
                 (click)="this.RejectRequest(request.customerId)"
@@ -38,7 +37,7 @@
             <div class="col-md-6">
               <button
                 pButton
-                style="background-color: var(--green-500); width: 100%"
+                style="background-color: #28c9a4; width: 100%"
                 type="button"
                 label="Accept"
                 (click)="this.AcceptRequest(request.customerId)"
@@ -47,6 +46,7 @@
           </div>
         </ng-template>
       </p-card>
+      <br>
     </div>
   </div>
 </div>
