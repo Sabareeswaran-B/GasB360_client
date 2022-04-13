@@ -2,88 +2,96 @@
 
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
-  [adminMenuItems]="adminMenuItems"
   [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 
-<div  *ngIf="!progress; else progressLoader"  class="main-container"
-[ngClass]="{ collapsed: collapedSideBar }">
-  <br />
+<div
+  *ngIf="!progress; else progressLoader"
+  class="main-container"
+  [ngClass]="{ collapsed: collapedSideBar }"
+>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <p-card>
+        <h4 style="color: var(--theme)">Pending Orders</h4>
+        <hr />
+
+        <p-knob
+          [(ngModel)]="TotalOrders"
+          [readonly]="true"
+          [size]="200"
+        ></p-knob>
+      </p-card>
+      <br />
+    </div>
+    <div class="col-md-4">
+      <p-card>
+        <h4 style="color: var(--theme)">Delivered Orders</h4>
+        <hr />
+        <p-knob
+          [(ngModel)]="TotalDeliveryOrder"
+          [readonly]="true"
+          [size]="200"
+        ></p-knob>
+      </p-card>
+      <br />
+    </div>
+    <div class="col-md-4">
+      <p-card [style]="{ width: '88%', height: '89%' }">
+        <h4 style="color: var(--theme)">Total Orders</h4>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-9" [style]="{ width: '80%' }">
+            <p-chart
+              type="doughnut"
+              [data]="data"
+              [options]="chartOptions"
+            ></p-chart>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <br />
+      </p-card>
+    </div>
+  </div>
+  <!-- <div class="row text-center">
+    <div class="card">
+      <h4 style="color: var(--theme)"></h4>
+      <p-chart
+        type="bar"
+        [data]="basicData"
+        [options]="horizontalOptions"
+        [style]="{height:'300'}"
+      ></p-chart>
+    </div>
+  </div> -->
   <div class="row">
     <div class="col-md-6">
-      <div
-        class="card carder card-shadow"
-        style="
-          height: 20vh;
-        "
-      >
-        <div class="job card-body">
-          <p class="card-text " style="font-weight: bolder; text-align: center;">
-            Pending Orders
-          </p>
-          <h1
-            class="card-text"
-            style="font-weight: bolder; font-size: 50px; text-align: center"
-          >
-            {{ TotalOrders }}
-          </h1>
-        </div>
+      <div class="card">
+        <h5 class="text-center" style="color: var(--theme); padding-left: 20px">
+          Customers
+        </h5>
+        <p-chart
+          type="line"
+          [data]="basicData"
+          [options]="basicOptions"
+        ></p-chart>
       </div>
-      <br>
     </div>
     <div class="col-md-6">
-      <div
-        class="card carder card-shadow"
-        style="
-          height: 20vh;
-        "
-      >
-        <div class="job card-body">
-          <p class="card-text " style="font-weight: bolder; text-align: center;">
-            Delivered Orders          </p>
-          <h1
-            class="card-text"
-            style="font-weight: bolder; font-size: 50px; text-align: center"
-          >
-            {{ TotalDeliveryOrder }}
-          </h1>
-        </div>
+      <div class="card">
+        <h5 class="text-center" style="color: var(--theme); padding-left: 20px">
+          Orders
+        </h5>
+        <p-chart
+          type="line"
+          [data]="basicData2"
+          [options]="basicOptions"
+        ></p-chart>
       </div>
     </div>
   </div>
-  <div>
-    <div class="row">
-        <!-- <div class="col-md-2"></div> -->
-        <div class="col-md-8">
-          <table class="table table-hover   main-container ">
-      <thead>
-        <tr>
-          <th scope="col">Profile</th>
-          <th scope="col">CustomerName</th>
-          <th scope="col">Product</th>
-          <th scope="col">Date</th>
-        </tr>
-      </thead>
-      <tbody *ngFor="let ordervalue of OrderList">
-        <tr>
-          <th>
-            <img
-              [src]="ordervalue.customer.customerImage"
-              height="70"
-              width="70"
-              alt=""
-            />
-          </th>
-          <td>{{ ordervalue.customer.customerName }}</td>
-          <td>{{ ordervalue.filledProduct.productCategory.productName }}</td>
-          <td>{{ ordervalue.orderDate | date }}</td>
-        </tr>
-      </tbody>
-    </table>
-        </div>
-        <div class="col-md-4"></div>
-    </div>
-    </div>
 </div>
 
 <ng-template #progressLoader>
@@ -92,5 +100,3 @@
     [style]="{ height: '65px' }"
   ></p-progressBar>
 </ng-template>
-
-

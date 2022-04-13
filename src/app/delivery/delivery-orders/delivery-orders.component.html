@@ -1,7 +1,6 @@
 <app-navbar></app-navbar>
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
-  [adminMenuItems]="adminMenuItems"
   [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 <div  *ngIf="!progress; else progressLoader" class="main-container" [ngClass]="{ collapsed: collapedSideBar } ">
@@ -67,7 +66,7 @@
 
               <p-button
                 (click)="showMaximizableDialog(item.orderId)"
-                [style]="{ 'background-color': 'var(--red-500)' }"
+                [style]="{ 'background-color': 'var(--theme)' }"
                 icon="pi pi-external-link"
                 label="Deliver Product"
               ></p-button>

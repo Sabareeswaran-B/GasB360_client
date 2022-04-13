@@ -1,53 +1,85 @@
 <app-navbar></app-navbar>
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
-  [adminMenuItems]="adminMenuItems"
   [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 
-<div   *ngIf="!progress; else progressLoader"
- class="main-container"
- [ngClass]="{ collapsed: collapedSideBar }">
-<div class="row m-5  p-2">
-  <div class="grid ">
-    <div class="col-12 md:col-4">
+<div
+  *ngIf="!progress; else progressLoader"
+  class="main-container"
+  [ngClass]="{ collapsed: collapedSideBar }"
+>
+  <div class="row m-5 p-2">
+    <div class="grid">
+      <div class="col-12 md:col-4">
         <div class="p-inputgroup card-shadow">
           <button type="button" pButton pRipple label="Search"></button>
-          <div style="width:100%;">
-            <input [(ngModel)]="CustomerNameFilter" style="position: relative;top:5px;border:1px solid white " class="form-control " type="text" (keyup)="FilterFn()" pInputText placeholder="Search Customer..">
+          <div style="width: 100%">
+            <input
+              [(ngModel)]="CustomerNameFilter"
+              style="position: relative; top: 5px; border: 1px solid white"
+              class="form-control"
+              type="text"
+              (keyup)="FilterFn()"
+              pInputText
+              placeholder="Search Customer.."
+            />
           </div>
-          <div style="width:30px;position: relative;top:7px">
-              <i class="pi pi-search" style="font-size: 1.5rem;"></i>
+          <div style="width: 30px; position: relative; top: 7px">
+            <i class="pi pi-search" style="font-size: 1.5rem"></i>
           </div>
-
         </div>
-    </div>
-  <div class="row ">
-  <div class="col-sm-6 my-3" *ngFor="let item of OrderList">
-    <div class="card carder card-shadow">
-      <div class="card-body">
-        <div style="display: flex;align-items: center;justify-content: space-between">
-          <h5 class="card-title card-titler fw-bold">Customer Name : {{item.order.customer.customerName}}</h5>
-          <button pButton type="button" class="p-button-raised ">{{item.order.orderStatus}}</button>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 my-3" *ngFor="let item of OrderList">
+          <div class="card carder card-shadow">
+            <div class="card-body">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                "
+              >
+                <h5 class="card-title card-titler fw-bold">
+                  Customer Name : {{ item.order.customer.customerName }}
+                </h5>
+                <button pButton type="button" class="p-button-raised">
+                  {{ item.order.orderStatus }}
+                </button>
+              </div>
+
+              <hr />
+              <p class="card-text">
+                Product Name :
+                {{ item.order.filledProduct.productCategory.productName }}
+              </p>
+              <p class="card-text">
+                Delivered Date : {{ item.deliveryDate | date }}
+              </p>
+
+              <p class="card-title card-titler fw-bold">Address</p>
+              <hr />
+              <p class="card-text">
+                Street : {{ item.order.address.addressStreetName }}
+              </p>
+              <p class="card-text">
+                City : {{ item.order.address.addressCity }}
+              </p>
+              <p class="card-text">
+                State & Country : {{ item.order.address.addressState }},{{
+                  item.order.address.addressCountry
+                }}
+              </p>
+              <p class="card-text">
+                Phone : {{ item.order.customer.customerPhone }}
+              </p>
+            </div>
+          </div>
         </div>
-
-        <hr>
-        <p class="card-text">Product Name : {{item.order.filledProduct.productCategory.productName}}</p>
-        <p class="card-text">Delivered Date : {{item.deliveryDate |date}}</p>
-
-        <p class="card-title card-titler fw-bold">Address </p>
-        <hr>
-        <p class="card-text">Street : {{item.order.address.addressStreetName}}</p>
-        <p class="card-text">City : {{item.order.address.addressCity}}</p>
-        <p class="card-text">State & Country : {{item.order.address.addressState}},{{item.order.address.addressCountry}}</p>
-        <p class="card-text">Phone : {{item.order.customer.customerPhone}}</p>
-
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
 </div>
 
 <ng-template #progressLoader>

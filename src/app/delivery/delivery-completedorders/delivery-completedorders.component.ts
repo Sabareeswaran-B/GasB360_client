@@ -33,22 +33,12 @@ export class DeliveryCompletedordersComponent implements OnInit {
     this.collapedSideBar = $event;
   }
 
-  adminMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
-    { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
-    { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
   employeeMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/delivery/dashboard' },
-    { label: 'Delivery', icon: 'pi pi-user', routerLink: '/delivery/deliveredorders' },
     { label: 'Order', icon: 'pi pi-star', routerLink: '/delivery/ordersbyemployee' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Delivery', icon: 'pi pi-user', routerLink: '/delivery/deliveredorders' },
+    { label: 'Logout', icon: 'k-icon k-i-undo',  routerLink: '/login' }
   ];
-
 
   //Get Orders Delivered By Employee
   deliveredOrderList(id:any){

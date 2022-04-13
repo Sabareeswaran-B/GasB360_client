@@ -11,6 +11,13 @@ import { DeliveryDashboardComponent } from './delivery-dashboard/delivery-dashbo
 import { NgSidenavModule } from 'ng-sidenav';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { NavbarComponent } from './navbar/navbar.component';
+import {KnobModule} from 'primeng/knob';
+import {ChartModule} from 'primeng/chart';
+import {CardModule} from 'primeng/card';
+import {AvatarModule} from 'primeng/avatar';
+import {AvatarGroupModule} from 'primeng/avatargroup';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import { ChipModule } from 'primeng/chip';
 
 
 @NgModule({
@@ -28,7 +35,14 @@ import { NavbarComponent } from './navbar/navbar.component';
     DeliveryRouterModule,
     ProgressBarModule,
     SplitButtonModule,
-    NgSidenavModule
+    NgSidenavModule,
+    KnobModule,
+    ChartModule,
+    CardModule,
+    AvatarModule,
+    AvatarGroupModule,
+    ScrollPanelModule,
+    ChipModule
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
