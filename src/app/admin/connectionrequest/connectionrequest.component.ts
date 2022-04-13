@@ -15,6 +15,8 @@ export class ConnectionrequestComponent implements OnInit {
   dataCount!:number;
   componentLoading:boolean = true;
   collapedSideBar!: boolean;
+  isLoadingAccept : string ="";
+  isLoadingDeclined : string ="";
 
   constructor(private service: AdminService, private toaster: ToastrService) { }
 
@@ -51,6 +53,7 @@ export class ConnectionrequestComponent implements OnInit {
     });
   }
   AcceptRequest( customerId : string){
+    this.isLoadingAccept = customerId;
     // console.log(customerId)
     this.service.AcceptCustomerConnection(customerId).subscribe({
       next: (data)=>{
@@ -61,10 +64,11 @@ export class ConnectionrequestComponent implements OnInit {
     })
   }
   RejectRequest(customerId : string){
+    this.isLoadingDeclined=customerId;
     // console.log(customerId)
     this.service.RejectCustomerConnection(customerId).subscribe({
       next: (data)=>{
-        this.toaster.error("ARejected Customer Request")
+        this.toaster.success("Rejected Customer Request")
         this.LoadingPage()
       },
       error: (err)=>{}
