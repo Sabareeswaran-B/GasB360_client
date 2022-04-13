@@ -20,7 +20,7 @@ export class AdminService {
   // Employee 
   GetAllEmployees() {
     return this.http
-      .get(`${environment.baseUrl}/Employee/GetAllEmployees`,
+      .get<Response>(`${environment.baseUrl}/Employee/GetAllEmployees`,
         {
           headers:
           {
@@ -64,7 +64,7 @@ export class AdminService {
   // Product Category 
   GetAllProductCategories() {
     return this.http
-      .get(`${environment.baseUrl}/ProductCategory/GetAllProductCategories`,
+      .get<Response>(`${environment.baseUrl}/ProductCategory/GetAllProductCategories`,
         {
           headers:
           {
@@ -106,7 +106,7 @@ export class AdminService {
   // Filled Product Category
   GetAllFilledProducts() {
     return this.http
-      .get(`${environment.baseUrl}/FilledProduct/GetAllFilledProducts`,
+      .get<Response>(`${environment.baseUrl}/FilledProduct/GetAllFilledProducts`,
         {
           headers:
           {
@@ -168,7 +168,7 @@ export class AdminService {
   // Unfilled Product Category
   GetAllUnfilledProducts() {
     return this.http
-      .get(`${environment.baseUrl}/UnfilledProduct/GetAllUnfilledProducts`,
+      .get<Response>(`${environment.baseUrl}/UnfilledProduct/GetAllUnfilledProducts`,
         {
           headers:
           {
@@ -258,6 +258,16 @@ export class AdminService {
           }
         });
   }
+  GetAllCustomers() {
+    return this.http
+      .get<Response>(`${environment.baseUrl}/customer/GetAllCustomers`,
+        {
+          headers:
+          {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+  }
 
   // 
   GetAdminDashboard() {
@@ -305,6 +315,18 @@ export class AdminService {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         });
+  }
+
+  //Get All Orders
+  GetAllOrders() {
+    return this.http
+    .get<Response>(`${environment.baseUrl}/Order/GetAllOrders`,
+      {
+        headers:
+        {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      });
   }
 
 }

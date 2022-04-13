@@ -28,9 +28,9 @@ export class DashboardComponent implements OnInit {
   // productCount!: number;
   // filledCount!: number;
   // unfilledCount!: number;
-  rpmr: number[]=[0,0,0,5 * 2.3];
-  stockdata : number[]=[0,0,0];
-  saleskdata : number[]=[0,0,0];
+  rpmr: number[] = [0, 0, 0, 5 * 2.3];
+  stockdata: number[] = [0, 0, 0];
+  saleskdata: number[] = [0, 0, 0];
   deliveryCount!: number;
   orderProgress!: number;
   requestedCustomer!: number;
@@ -38,16 +38,22 @@ export class DashboardComponent implements OnInit {
   basicData1: any;
   basicOptions: any;
   stock: any;
-  sales:any;
+  sales: any;
   chartOptions!: any;
   horizontalOptions: any;
   items!: MenuItem[];
-  dash!: Dashboard;
+  dash: Dashboard = new Dashboard();
   componentLoading: boolean = true;
   collapedSideBar!: boolean;
   customerCount!: number;
   count1: number = 0;
-  
+  customerLoading: boolean = true;
+  employeeLoading: boolean = true;
+  orderLoading: boolean = true;
+  categoryLoading: boolean = true;
+  filledLoading: boolean = true;
+  unfilledLoading: boolean = true;
+
 
 
   constructor(private service: AdminService, private toaster: ToastrService) { }
@@ -128,7 +134,7 @@ export class DashboardComponent implements OnInit {
       labels: ['Filled', 'Unfilled', 'Order'],
       datasets: [
         {
-          data:  this.saleskdata,
+          data: this.saleskdata,
           backgroundColor: [
             "#FF6384",
             "#36A2EB",
@@ -179,7 +185,7 @@ export class DashboardComponent implements OnInit {
     this.collapedSideBar = $event;
   }
 
- 
+
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
     { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
@@ -187,61 +193,162 @@ export class DashboardComponent implements OnInit {
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
     { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
     { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
   ];
- 
+
 
   LoadingPage() {
-    this.service.GetAdminDashboard().subscribe({
-      next: (data) => {
-        this.dash = data.data;
-        // Customer Request
-        this.requestedCustomer = this.dash.customerRequestCount.length;
-        this.customerCount = this.dash.customer.length;
-        this.requestedCustomer = Math.floor((this.requestedCustomer / this.customerCount) * 100);
-        // Order Progress
-        this.orderProgress = this.dash.orderCount;
-        this.deliveryCount = this.dash.deliveryCount;
-        this.orderProgress = Math.floor(100 - (((this.orderProgress - this.deliveryCount) / this.orderProgress) * 100))
-        // Employee Count
-        // Total active employee
-        for (let i = 0; i < this.dash.employee.length; i++) {
-          if (this.dash.employee[i]['active' as keyof Object] != this.dash.employee[0]['active' as keyof Object]) {
-            this.count1 = Math.floor(this.count1 + 1);
-          }
-        }
-        this.employeeCount = this.count1;
-        console.log(this.employeeCount)
-        this.count1 = 0;
-        // Employee and delivery separation  
-        for (let i = 0; i < this.dash.employee.length; i++) {
-          if (this.dash.employee[i]['role_id' as keyof Object] == this.dash.employee[0]['role_id' as keyof Object] && this.dash.employee[i]['active' as keyof Object] != this.dash.employee[0]['active' as keyof Object]) {
-            this.count1 = Math.floor(this.count1 + 1);
-          }
-        }
-        this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
-        
-        // product Count
-        this.rpmr[0] =Math.floor( (this.dash.productCategory.length * 24.12)/2);
-        this.stockdata[0] =  this.rpmr[0] ;
-        this.saleskdata[0] = this.rpmr[0] / 1.3;
-        // Filled Product
-        this.rpmr[1] = Math.floor( (this.dash.filledProduct.length * 15.3)/2) ;
-        this.stockdata[1] =  this.rpmr[1] ;
-        this.saleskdata[1] = this.rpmr[1] / 1.3;
-        // Unfilled Product
-        this.rpmr[2] = Math.floor((this.dash.unfilledProducts.length * 13.3)/2);
-        this.stockdata[2] =  this.rpmr[2] ;
-        this.saleskdata[2] = this.rpmr[2] / 1.3;
-        // console.log(this.productCount)
+    this.getAllCustomer();
+    this.getAllOrders();
+    this.getAllEmployees();
+    this.getAllProductCategories();
+    this.getAllFilledProducts();
+    this.getAllUnfilledProducts();
+    // this.service.GetAdminDashboard().subscribe({
+    //   next: (data) => {
+    //     this.dash = data.data;
+    //     // Customer Request
+    //     this.requestedCustomer = this.dash.customerRequestCount.length;
+    //     this.customerCount = this.dash.customer.length;
+    //     this.requestedCustomer = Math.floor((this.requestedCustomer / this.customerCount) * 100);
+    //     // Order Progress
+    //     this.orderProgress = this.dash.orderCount;
+    //     this.deliveryCount = this.dash.deliveryCount;
+    //     this.orderProgress = Math.floor(100 - (((this.orderProgress - this.deliveryCount) / this.orderProgress) * 100))
+    //     // Employee Count
+    //     // Total active employee
+    //     for (let i = 0; i < this.dash.employee.length; i++) {
+    //       if (this.dash.employee[i]['active' as keyof Object] != this.dash.employee[0]['active' as keyof Object]) {
+    //         this.count1 = Math.floor(this.count1 + 1);
+    //       }
+    //     }
+    //     this.employeeCount = this.count1;
+    //     console.log(this.employeeCount)
+    //     this.count1 = 0;
+    //     // Employee and delivery separation  
+    //     for (let i = 0; i < this.dash.employee.length; i++) {
+    //       if (this.dash.employee[i]['role_id' as keyof Object] == this.dash.employee[0]['role_id' as keyof Object] && this.dash.employee[i]['active' as keyof Object] != this.dash.employee[0]['active' as keyof Object]) {
+    //         this.count1 = Math.floor(this.count1 + 1);
+    //       }
+    //     }
+    //     this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
 
-        this.componentLoading = false;
+    //     // product Count
+    //     this.rpmr[0] =Math.floor( (this.dash.productCategory.length * 24.12)/2);
+    //     this.stockdata[0] =  this.rpmr[0] ;
+    //     this.saleskdata[0] = this.rpmr[0] / 1.3;
+    //     // Filled Product
+    //     this.rpmr[1] = Math.floor( (this.dash.filledProduct.length * 15.3)/2) ;
+    //     this.stockdata[1] =  this.rpmr[1] ;
+    //     this.saleskdata[1] = this.rpmr[1] / 1.3;
+    //     // Unfilled Product
+    //     this.rpmr[2] = Math.floor((this.dash.unfilledProducts.length * 13.3)/2);
+    //     this.stockdata[2] =  this.rpmr[2] ;
+    //     this.saleskdata[2] = this.rpmr[2] / 1.3;
+    //     // console.log(this.productCount)
+
+    //     this.componentLoading = false;
+    //   },
+    //   error: (err) => {
+    //     this.toaster.error(err.message)
+    //   }
+    // })
+  }
+
+  getAllCustomer() {
+    this.service.GetAllCustomers().subscribe({
+      next: (response) => {
+        this.customerLoading  = false;
+        this.dash.customer = response.data;
+        this.dash.customerCount = this.dash.customer.length;
+        this.customerCount = this.dash.customerCount;
+        this.dash.customerRequestCount = this.dash.customer.filter(x => x.requested == 'true');
+        this.requestedCustomer = this.dash.customerRequestCount.length;
+        this.requestedCustomer = Math.floor((this.requestedCustomer / this.customerCount) * 100);
       },
-      error: (err) => {
-        this.toaster.error(err.message)
+      error: (error) => {
+        console.log(error)
       }
     })
   }
+
+  getAllOrders() {
+    this.service.GetAllOrders().subscribe({
+      next: (response) => {
+        this.orderLoading  = false;
+        this.dash.order = response.data;
+        this.dash.orderCount = this.dash.order.length;
+        this.orderProgress = this.dash.orderCount;
+        this.dash.delivery = this.dash.order.filter(x => x.orderStatus == "Delivered")
+        this.dash.deliveryCount = this.dash.delivery.length;
+        this.deliveryCount = this.dash.deliveryCount;
+        this.orderProgress = Math.floor(100 - (((this.orderProgress - this.deliveryCount) / this.orderProgress) * 100))
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  getAllEmployees() {
+    this.service.GetAllEmployees().subscribe({
+      next: (response) => {
+        this.employeeLoading  = false;
+        this.dash.employee = response.data;
+        this.dash.employeeCount = this.dash.employee.length;
+        this.employeeCount = this.dash.employeeCount;
+        this.count1 = this.dash.employee.filter(x => x.role.roleType == "admin").length;
+        this.employeeCount = Math.floor(100 - ((this.employeeCount - this.count1) / this.employeeCount) * 100)
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
+  getAllProductCategories() {
+    this.service.GetAllProductCategories().subscribe({
+      next: (response) => {
+        this.categoryLoading  = false;
+        this.dash.productCategory = response.data;
+        this.rpmr[0] = Math.floor((this.dash.productCategory.length * 24.12) / 2);
+        this.stockdata[0] = this.rpmr[0];
+        this.saleskdata[0] = this.rpmr[0] / 1.3;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+  getAllFilledProducts() {
+    this.service.GetAllFilledProducts().subscribe({
+      next: (response) => {
+        this.filledLoading  = false;
+        this.dash.filledProduct = response.data;
+        this.rpmr[1] = Math.floor((this.dash.filledProduct.length * 15.3) / 2);
+        this.stockdata[1] = this.rpmr[1];
+        this.saleskdata[1] = this.rpmr[1] / 1.3;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+  getAllUnfilledProducts() {
+    this.service.GetAllUnfilledProducts().subscribe({
+      next: (response) => {
+        this.unfilledLoading  = false;
+        this.dash.unfilledProducts = response.data;
+        this.rpmr[2] = Math.floor((this.dash.unfilledProducts.length * 13.3) / 2);
+        this.stockdata[2] = this.rpmr[2];
+        this.saleskdata[2] = this.rpmr[2] / 1.3;
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
   customerConvert() {
     this.exportAsExcelFile(this.dash.customer, "customer-data");
   }

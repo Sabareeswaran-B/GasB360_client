@@ -1,16 +1,10 @@
 <app-navbar></app-navbar>
 
-<ng-sidenav
-  (collapsedEvent)="receiveCollapsed($event)"
-  [adminMenuItems]="adminMenuItems"
-  
-></ng-sidenav>
+<ng-sidenav (collapsedEvent)="receiveCollapsed($event)" [adminMenuItems]="adminMenuItems"></ng-sidenav>
 
-<div
-  [ngClass]="{ collapsed: collapedSideBar }"
-  class="main-container"
-  *ngIf="!componentLoading; else progresloading"
->
+<div [ngClass]="{ collapsed: collapedSideBar }" class="main-container" *ngIf="!customerLoading && !employeeLoading 
+  && !orderLoading && !categoryLoading 
+  && !filledLoading && !unfilledLoading; else progresloading">
   <div class="row">
     <div class="col-md-6">
       <div class="row">
@@ -18,16 +12,12 @@
           <p-card>
             <h5 valign="top" align="left">Customer Request</h5>
             <hr />
-           <span> Total Customer requested to new connection.</span>
+            <span> Total Customer requested to new connection.</span>
             <p valign="bottom" align="right" class="small-knob">
-              <p-knob
-                [(ngModel)]="requestedCustomer"
-                valueTemplate="{{ requestedCustomer }}%"
-                [readonly]="true"
-                [strokeWidth]="5"
-              ></p-knob>
-            </p> </p-card
-          ><br />
+              <p-knob [(ngModel)]="requestedCustomer" valueTemplate="{{ requestedCustomer }}%" [readonly]="true"
+                [strokeWidth]="5"></p-knob>
+            </p>
+          </p-card><br />
         </div>
         <div class="col-md-4">
           <p-card>
@@ -36,14 +26,10 @@
             Total items progressed to delivery partner.
             <p valign="bottom" align="right" class="small-knob">
               <br />
-              <p-knob
-                [(ngModel)]="orderProgress"
-                valueTemplate="{{ orderProgress }}%"
-                [readonly]="true"
-                [strokeWidth]="5"
-              ></p-knob>
-            </p> </p-card
-          ><br />
+              <p-knob [(ngModel)]="orderProgress" valueTemplate="{{ orderProgress }}%" [readonly]="true"
+                [strokeWidth]="5"></p-knob>
+            </p>
+          </p-card><br />
         </div>
         <div class="col-md-4">
           <p-card>
@@ -52,16 +38,10 @@
             Employee includes both admin and delivery
             <p valign="bottom" align="right" class="small-knob">
               <br />
-              <p-knob
-                [(ngModel)]="employeeCount"
-                valueTemplate="{{ employeeCount }}%"
-                [readonly]="true"
-                [strokeWidth]="5"
-                valueColor="#F61BD8"
-                rangeColor="#F6A61B"
-              ></p-knob>
-            </p> </p-card
-          ><br />
+              <p-knob [(ngModel)]="employeeCount" valueTemplate="{{ employeeCount }}%" [readonly]="true"
+                [strokeWidth]="5" valueColor="#F61BD8" rangeColor="#F6A61B"></p-knob>
+            </p>
+          </p-card><br />
         </div>
       </div>
       <!-- row end -->
@@ -69,17 +49,14 @@
         <p-card>
           <div class="row">
             <div class="col-md-8">
-              <Marquee class="scro"
-                ><h4>
-                  Download Data Sheet for customer, Order and Delivery.<br /></h4
-              ></Marquee>
+              <Marquee class="scro">
+                <h4>
+                  Download Data Sheet for customer, Order and Delivery.<br /></h4>
+              </Marquee>
             </div>
             <div class="col-md-4">
-              <p-splitButton
-                label="DataSheet"
-                [model]="items"
-                styleClass="p-button-raised p-button-warning mr-2 mb-2"
-              ></p-splitButton>
+              <p-splitButton label="DataSheet" [model]="items" styleClass="p-button-raised p-button-warning mr-2 mb-2">
+              </p-splitButton>
             </div>
           </div>
         </p-card>
@@ -93,14 +70,10 @@
         </h5>
         <p valign="bottom" align="right"></p>
         <div class="small-knob">
-          <apx-chart
-            [series]="chartOptions.series"
-            [chart]="chartOptions.chart"
-            [plotOptions]="chartOptions.plotOptions"
-            [labels]="chartOptions.labels"
-          ></apx-chart>
-        </div> </p-card
-      ><br />
+          <apx-chart [series]="chartOptions.series" [chart]="chartOptions.chart"
+            [plotOptions]="chartOptions.plotOptions" [labels]="chartOptions.labels"></apx-chart>
+        </div>
+      </p-card><br />
       <br />
     </div>
   </div>
@@ -109,41 +82,26 @@
       <p-card [style]="{ width: '99%', height: '93%' }">
         <h5>Stock Utility</h5>
         <hr />
-        <p-chart
-          type="doughnut"
-          [data]="stock"
-          [options]="chartOptions"
-        ></p-chart>
+        <p-chart type="doughnut" [data]="stock" [options]="chartOptions"></p-chart>
       </p-card>
     </div>
     <div class="col-md-3">
       <p-card [style]="{ width: '99%', height: '93%' }">
         <h5>Sales Data</h5>
         <hr />
-        <p-chart
-          type="polarArea"
-          [data]="sales "
-          [options]="chartOptions"
-        ></p-chart>
+        <p-chart type="polarArea" [data]="sales " [options]="chartOptions"></p-chart>
       </p-card>
     </div>
     <div class="col-md-6">
       <p-card [style]="{ width: '99%', height: '93%' }">
         <h5>Product Recycle</h5>
         <hr />
-        <p-chart
-          type="line"
-          [data]="basicData"
-          [options]="basicOptions"
-        ></p-chart>
+        <p-chart type="line" [data]="basicData" [options]="basicOptions"></p-chart>
       </p-card>
     </div>
   </div>
 </div>
 <ng-template #progresloading>
   <br />
-  <p-progressBar
-    mode="indeterminate"
-    [style]="{ height: '35px' }"
-  ></p-progressBar>
+  <p-progressBar mode="indeterminate" [style]="{ height: '35px' }"></p-progressBar>
 </ng-template>
