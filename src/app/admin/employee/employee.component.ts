@@ -171,22 +171,22 @@ export class EmployeeComponent implements OnInit {
             value: inputValue,
           },
           {
-            field: "job_title",
+            field: "role.roleType",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "budget",
+            field: "active",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "phone",
+            field: "employeePhone",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "address",
+            field: "employeeEmail",
             operator: "contains",
             value: inputValue,
           },
