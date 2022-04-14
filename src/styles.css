@@ -19,7 +19,7 @@ html,
 body {
     height: 100%;
     width: 100%;
-    background-color: #fafafa;
+    /* background-color: #fafafa; */
 }
 
 p-inputnumber, .p-inputnumber, p-calendar, .p-calendar, p-password, .p-password, .p-password-input, .p-inputtext, p-dropdown, .p-dropdown {
