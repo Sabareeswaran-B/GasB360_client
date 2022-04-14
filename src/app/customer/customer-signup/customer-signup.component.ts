@@ -93,7 +93,7 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     customer.customerEmail = this.signupForm.controls['customerEmail'].value;
     customer.typeId = this.signupForm.controls['typeId'].value.typeId;
     customer.password = this.signupForm.controls['password'].value;
-    this.customerService.Signup(customer).subscribe({
+    var subscription = this.customerService.Signup(customer).subscribe({
       next: (response) => {
         console.log(response.data);
         // let message = data['message' as keyof Object] as unknown as string
@@ -107,7 +107,8 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
         this.toastr.error(error.error.message);
         this.isLoading = false;
       }
-    })
+    });
+    this.subscriptions.push(subscription);
   }
 
   passwordShow() {

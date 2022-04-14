@@ -94,13 +94,8 @@ export class DeliveryOrdersComponent implements OnInit {
 
     this.service.OrderDeliveryCheckByOtp(this.orderid, data.otp).subscribe({
       next: (response) => {
-
         this.toaster.success(response.message);
-        this.router.navigate(['/deliveredorders']);
-
-        alert(response.message);
         this.router.navigate(['/delivery/deliveredorders']);
-
       },
       error: (error) => {
         this.toaster.error(error.error.message);

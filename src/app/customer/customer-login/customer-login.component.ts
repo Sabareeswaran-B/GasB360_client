@@ -64,7 +64,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
   login(): void {
     this.isLoading = true;
     console.log(this.loginForm.value);
-    this.customerService.login(this.loginForm.value).subscribe({
+    var subscription = this.customerService.login(this.loginForm.value).subscribe({
       next: (response) => {
         console.log(response);
         var data = response.data as LoginResponse;
@@ -91,7 +91,7 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
         this.isLoading = false;
       }
     })
-    // this.subscriptions.push(subscription);
+    this.subscriptions.push(subscription);
   }
 
   passwordShow() {
