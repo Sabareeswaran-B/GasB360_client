@@ -54,7 +54,7 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
         this.orders = response.data as Order[];
         this.componentLoading = false;
         this.shimmerLoading = false;
-        if (this.orders.length < 0) {
+        if (this.orders.length <= 0) {
           this.noOrdersYet = true;
         }
         console.log(this.orders);
