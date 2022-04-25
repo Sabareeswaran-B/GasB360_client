@@ -17,7 +17,7 @@
         </div>
         <div class="col-lg-3 col-md-6 col-sm-12 mt-3">
             <div class="card shadow-lg text-center justify-content-center">
-                <h1 class="h5 fw-normal" style="color: rgb(177, 177, 177);">Allowed Connections limit</h1>
+                <h1 class="h5 fw-normal" style="color: rgb(177, 177, 177);">Allowed limit per month</h1>
                 <p-knob [(ngModel)]="customer.allowedLimit" [min]="0" [max]="4" [readonly]=true></p-knob>
                 <!-- <button pButton class="gasb-bg-primary mt-2 w-50" label="Order Now!" routerLink="/customer/products"
                     style="margin-left: auto; margin-right: auto; border-radius: 20px;"></button> -->
@@ -34,7 +34,7 @@
                 <p-knob [(ngModel)]="dateDifference" [min]="0" [max]="30" [readonly]=true></p-knob>
             </div>
             <ng-template #orderNow>
-                <div class="card shadow-lg text-center justify-content-center" routerLink="/customer/products">
+                <div class="card shadow-lg text-center justify-content-center" style="cursor: pointer;" routerLink="/customer/products">
                     <h1 class="h6 fw-normal mt-3" style="color: rgb(177, 177, 177);">Welcome to GasB360</h1>
                     <h1 class="h3 fw-bold">Order now</h1>
                 </div>
