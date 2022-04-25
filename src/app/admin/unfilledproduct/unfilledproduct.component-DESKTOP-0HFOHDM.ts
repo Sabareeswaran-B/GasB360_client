@@ -16,6 +16,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class UnfilledproductComponent implements OnInit {
   unfilledDataForGrid!: any;
+  unfilledDataForGridData!: any;
   unfilledDataUpdate!: FormGroup;
   unfilledCreateForm!: FormGroup;
 
@@ -58,23 +59,20 @@ export class UnfilledproductComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
+ 
+
   LoadingPage() {
     this.service.GetAllUnfilledProducts().subscribe({
       next: (data) => {
         this.unfilledDataForGrid = data['data' as keyof Object];
+        this.unfilledDataForGridData = data['data' as keyof Object];
         this.dataCount = this.unfilledDataForGrid.length; 
         this.componentLoading = false;
         // console.log(this.unfilledDataForGrid)
@@ -212,5 +210,35 @@ export class UnfilledproductComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.unfilledDataForGrid = process(this.unfilledDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "productCategory.productName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "unfilledProductQuantity",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "branch.branchName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "branch.branchLocation",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 }

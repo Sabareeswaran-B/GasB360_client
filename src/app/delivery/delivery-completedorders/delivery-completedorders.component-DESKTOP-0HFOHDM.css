@@ -1,3 +1,7 @@
+:root{
+  --theme:#6280ff;
+}
+
 .main-container {
   margin-top: 56px;
   margin-left: 235px;
@@ -20,13 +24,13 @@
 }
 
 .theme {
-  background-color: var(--theme);
+  background-color: var(--red-500);
   color: white;
 
 }
 
 .theme:hover {
-  background-color: var(--theme);
+  background-color: var(--red-500);
   color: white;
 
 }
@@ -75,9 +79,8 @@
   border-radius: 4px;
 }
 
-
-
-
-
-
-
+.p-dialog-title {
+  color: var(--theme);
+  position: relative;
+  left: 250px;
+}

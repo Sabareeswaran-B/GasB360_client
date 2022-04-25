@@ -15,7 +15,7 @@ export default class Dashboard {
     customerRequestCount!:Customer[];
     employee!:Employee[];
     order!:Order[];
-    delivery!:Delivery[];
+    delivery!:Order[];
     customerCount!: number;
     employeeCount!: number;
     orderCount!:number;

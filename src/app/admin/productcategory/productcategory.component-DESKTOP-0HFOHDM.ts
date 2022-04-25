@@ -5,6 +5,8 @@ import { Toast, ToastrService } from 'ngx-toastr';
 import ProductCategory  from 'src/app/model/product-category.model';
 import Type from 'src/app/model/type.model';
 import { MenuItem } from 'primeng/api';
+import { process } from "@progress/kendo-data-query";
+
 
 @Component({
   selector: 'app-productcategory',
@@ -13,6 +15,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class ProductcategoryComponent implements OnInit {
   productDataForGrid!: any;
+  productDataForGridData!: any;
   productDataUpdate!: FormGroup;
   productCreateForm!: FormGroup;
   type_data!:Type[] ;
@@ -47,23 +50,19 @@ export class ProductcategoryComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
+ 
   LoadingPage() {
     this.service.GetAllProductCategories().subscribe({
       next: (data) => {
         this.productDataForGrid = data['data' as keyof Object];
+        this.productDataForGridData = data['data' as keyof Object];
         this.dataCount = this.productDataForGrid.length; 
         this.componentLoading = false;
         // console.log(this.productDataForGrid)
@@ -159,5 +158,35 @@ export class ProductcategoryComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.productDataForGrid = process(this.productDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "productName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "productWeight",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "productPrice",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "type.typeName",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 }

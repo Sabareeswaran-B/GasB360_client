@@ -28,6 +28,7 @@ export class DeliveryDashboardComponent implements OnInit {
   chartOptions: any;
   totalOrder: number[] = [0,0]
  arrdata:number[]=[6, 8,7, 0];
+ arrdata2 :number[] = [12, 23, 11, 0];
 
   basicData: any;
   basicData2: any;
@@ -67,7 +68,7 @@ export class DeliveryDashboardComponent implements OnInit {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
     datasets: [
         {
-            label: 'First Dataset',
+            label: 'Total customer delivered in this month ',
             data: this.arrdata,
             fill: false,
             borderColor: '#EDC126',
@@ -80,8 +81,8 @@ this.basicData2 = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
       {
-          label: 'Second Dataset',
-          data: [28, 48, 40, 19, 86, 27, 90],
+          label: 'Total Orders taken for this month',
+          data: this.arrdata2,
           fill: false,
           borderColor: '#FFA726',
           tension: .4
@@ -93,7 +94,7 @@ this.basicOptions = {
             plugins: {
                 legend: {
                     labels: {
-                        color: '#ebedef'
+                        color: 'black'
                     }
                 }
             },
@@ -117,39 +118,6 @@ this.basicOptions = {
             }
         };
 
-//   this.basicData = {
-//     labels: ['Monthly Count', 'Order total'],
-//     datasets: [
-//         {
-//             label: 'My First dataset',
-//             backgroundColor: '#42A5F5',
-//             data: [65,0]
-//         },
-//         {
-//             label: 'My Second dataset',
-//             backgroundColor: '#FFA726',
-//             data: [0,48]
-//         }
-
-//     ]
-// };
-
-// this.horizontalOptions = {
-//   tooltips: {
-//     mode: 'index',
-//     intersect: false
-// },
-// responsive: true,
-// scales: {
-//     xAxes: [{
-//         stacked: true,
-//     }],
-//     yAxes: [{
-//         stacked: true
-//     }]
-// }
-// };
-
   }
   receiveCollapsed($event: boolean) {
     this.collapedSideBar = $event;
@@ -169,6 +137,7 @@ this.basicOptions = {
         this.OrderList = response.data as Order[];
         this.graphdata = response['data' as keyof Object] as unknown as Order[];
         this.totalOrder[0] = this.TotalOrders;
+        this.arrdata2[3] = this.TotalOrders;
         // console.log( this.OrderList.cu)
         // console.log(this.graphdata)
 

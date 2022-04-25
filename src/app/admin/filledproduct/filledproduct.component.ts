@@ -17,7 +17,6 @@ import { MenuItem } from 'primeng/api';
 })
 export class FilledproductComponent implements OnInit {
   filledDataForGrid!: any;
-  filledDataForGridData!: any;
   filledDataUpdate!: FormGroup;
   filledCreateForm!: FormGroup;
 
@@ -59,19 +58,23 @@ export class FilledproductComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
+    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
-    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
   ];
- 
+  employeeMenuItems: MenuItem[] = [
+    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
+    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
+    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+  ];
   LoadingPage() {
     this.service.GetAllFilledProducts().subscribe({
       next: (data) => {
         this.filledDataForGrid = data['data' as keyof Object];
-        this.filledDataForGridData = data['data' as keyof Object];
         this.dataCount = this.filledDataForGrid.length; 
         this.componentLoading = false;  
         // console.log(this.productDataForGrid)
@@ -192,9 +195,9 @@ decreaseQuantity(dataItem: FilledProducts){
     })
   }
   deleteGridElementPopup(dataItem : any){
-    // console.log(dataItem)
+    console.log(dataItem)
     this.displayDelete = "Are You Sure want to delete, ";
-    this.displayDelete += dataItem.productCategory.productName;
+    this.displayDelete += dataItem.productcategory.productName;
     this.displayDelete += "?";
     this.displayModalDelete = true;
     this.deleteMemberId = dataItem.filledProductId;
@@ -215,29 +218,33 @@ decreaseQuantity(dataItem: FilledProducts){
   
 
 
-  public onFilter(inputEvent: Event): void {
-    let inputValue = (inputEvent.target as HTMLInputElement).value;
-    this.filledDataForGrid = process(this.filledDataForGridData, {
+  onFilter(inputValue: string): void {
+    this.gridView = process(this.gridData, {
       filter: {
         logic: "or",
         filters: [
           {
-            field: "productCategory.productName",
+            field: "full_name",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "filledProductQuantity",
+            field: "job_title",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "productbranch.branchNamerice",
+            field: "budget",
             operator: "contains",
             value: inputValue,
           },
           {
-            field: "branch.branchLocation",
+            field: "phone",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "address",
             operator: "contains",
             value: inputValue,
           },

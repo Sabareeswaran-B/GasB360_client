@@ -14,7 +14,7 @@ import { OrderIndexComponent } from '../order-index/order-index.component';
 
 
 const routes: Routes = [
-  { path: "", component: DashboardComponent,canActivate: [AuthGuard] },
+  { path: "customer/dashboard", component: DashboardComponent,canActivate: [AuthGuard] },
   { path: "customer/login", component: CustomerLoginComponent },
   { path: "customer/signup", component: CustomerSignupComponent },
   { path: "customer/profile", component: ProfileComponent, canActivate: [AuthGuard] },

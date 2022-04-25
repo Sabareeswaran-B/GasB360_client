@@ -15,6 +15,8 @@ export class ConnectionrequestComponent implements OnInit {
   dataCount!:number;
   componentLoading:boolean = true;
   collapedSideBar!: boolean;
+  isLoadingAccept : string ="";
+  isLoadingDeclined : string ="";
 
   constructor(private service: AdminService, private toaster: ToastrService) { }
 
@@ -28,20 +30,15 @@ export class ConnectionrequestComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
-
+ 
+ 
   LoadingPage() {
     this.service.GetAllConnectionRequests().subscribe({
       next: (data) => {
@@ -56,6 +53,7 @@ export class ConnectionrequestComponent implements OnInit {
     });
   }
   AcceptRequest( customerId : string){
+    this.isLoadingAccept = customerId;
     // console.log(customerId)
     this.service.AcceptCustomerConnection(customerId).subscribe({
       next: (data)=>{
@@ -66,10 +64,11 @@ export class ConnectionrequestComponent implements OnInit {
     })
   }
   RejectRequest(customerId : string){
+    this.isLoadingDeclined=customerId;
     // console.log(customerId)
     this.service.RejectCustomerConnection(customerId).subscribe({
       next: (data)=>{
-        this.toaster.error("ARejected Customer Request")
+        this.toaster.success("Rejected Customer Request")
         this.LoadingPage()
       },
       error: (err)=>{}

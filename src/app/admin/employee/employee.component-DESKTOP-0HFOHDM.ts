@@ -5,6 +5,7 @@ import Role from 'src/app/model/role.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { MenuItem } from 'primeng/api';
+import { process } from "@progress/kendo-data-query";
 
 @Component({
   selector: 'app-employee',
@@ -13,6 +14,7 @@ import { MenuItem } from 'primeng/api';
 })
 export class EmployeeComponent implements OnInit {
   employeeDataForGrid!: any;
+  employeeDataForGridData!: any;
   employeeDataUpdate!: FormGroup;
   employeeCreateForm!: FormGroup;
   role_data!: Role[];
@@ -47,24 +49,20 @@ export class EmployeeComponent implements OnInit {
 
   adminMenuItems: MenuItem[] = [
     { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/admin/dashboard' },
-    { label: 'Drained', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
-    { label: 'Infused ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin/productcategory' },
     { label: 'Employee', icon: 'pi pi-id-card', routerLink: '/admin/employee' },
     { label: 'Connection', icon: 'pi pi-user', routerLink: '/admin/connection' },
-    { label: 'Product', icon: 'pi pi-star', routerLink: '/admin//productcategory' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
+    { label: 'Filled ', icon: 'pi pi-book', routerLink: '/admin/filledproduct' },
+    { label: 'Unfilled', icon: 'pi pi-book', routerLink: '/admin/unfilledproduct' },
+    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login'},
   ];
-  employeeMenuItems: MenuItem[] = [
-    { label: 'Dashboard', icon: 'pi pi-th-large', routerLink: '/employee/dashboard' },
-    { label: 'Visitor', icon: 'pi pi-user', routerLink: '/employee/visitor' },
-    { label: 'Lending', icon: 'pi pi-star', routerLink: '/employee/lending' },
-    { label: 'Logout', icon: 'k-icon k-i-undo', routerLink: '/login' },
-  ];
+ 
 
   LoadingPage() {
     this.service.GetAllEmployees().subscribe({
       next: (data) => {
         this.employeeDataForGrid = data['data' as keyof Object];
+        this.employeeDataForGridData = data['data' as keyof Object];
         this.dataCount = this.employeeDataForGrid.length;
         this.componentLoading = false;
       },
@@ -160,6 +158,42 @@ export class EmployeeComponent implements OnInit {
         console.log(err)
       }
     })
+  }
+
+  public onFilter(inputEvent: Event): void {
+    let inputValue = (inputEvent.target as HTMLInputElement).value;
+    this.employeeDataForGrid = process(this.employeeDataForGridData, {
+      filter: {
+        logic: "or",
+        filters: [
+          {
+            field: "employeeName",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "role.roleType",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "active",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "employeePhone",
+            operator: "contains",
+            value: inputValue,
+          },
+          {
+            field: "employeeEmail",
+            operator: "contains",
+            value: inputValue,
+          },
+        ],
+      },
+    }).data;
   }
 
 }

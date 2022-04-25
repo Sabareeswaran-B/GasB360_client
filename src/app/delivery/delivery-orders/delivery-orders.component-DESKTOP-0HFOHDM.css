@@ -1,3 +1,7 @@
+:root{
+  --theme:#6280ff;
+}
+
 .main-container {
   margin-top: 56px;
   margin-left: 235px;

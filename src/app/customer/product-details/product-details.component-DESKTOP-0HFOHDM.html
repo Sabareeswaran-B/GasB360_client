@@ -74,12 +74,12 @@
           Product quantity :
         </h6>
         <div class="h5 fw-normal ">1</div>
-        <button class="product-button k-bg-primary text-light shadow py-1"
+        <button class="product-button gasb-bg-primary text-light shadow py-1"
           (click)="confirmOrder()" *ngIf="!orderLoading;else loader">ORDER</button>
-        <!-- <button pButton pRipple class="k-bg-primary w-100 px-3" *ngIf="!orderLoading;else loader"
+        <!-- <button pButton pRipple class="gasb-bg-primary w-100 px-3" *ngIf="!orderLoading;else loader"
           style="margin-top: auto;" (click)="confirmOrder()" label="ORDER"></button> -->
         <ng-template #loader>
-          <button class="product-button k-bg-primary text-light shadow py-1" [disabled]="true">
+          <button class="product-button gasb-bg-primary text-light shadow py-1" [disabled]="true">
             <i class="pi pi-spin pi-spinner"></i>
           </button>
         </ng-template>
@@ -103,7 +103,7 @@
       </kendo-tilelayout-item-body>
     </kendo-tilelayout-item>
   </kendo-tilelayout>
-  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+  <p-confirmDialog [style]="{width: '25vw'}" [baseZIndex]="10000" acceptButtonStyleClass="gasb-bg-primary"></p-confirmDialog>
 </div>
 
 <ng-template #componentLoader>

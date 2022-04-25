@@ -3,53 +3,52 @@
 <ng-sidenav
   (collapsedEvent)="receiveCollapsed($event)"
   [adminMenuItems]="adminMenuItems"
-  [employeeMenuItems]="employeeMenuItems"
 ></ng-sidenav>
 
-<div class="main-container" *ngIf="!componentLoading; else progresloading">
+<div
+  [ngClass]="{ collapsed: collapedSideBar }"
+  class="main-container"
+  *ngIf="!componentLoading; else progresloading"
+>
   <div class="row">
     <div class="col-md-2 text-center">
-      <p-card title="Create New Employee">
-        <span pTooltip="Create New Employee " tooltipPosition="bottom">
+      <p-card>
+        <span pTooltip="  Create a Product" tooltipPosition="bottom">
           <svg
             (click)="this.createNewUserPopup()"
             xmlns="http://www.w3.org/2000/svg"
             width="70"
             height="90"
             fill="currentColor"
-            class="bi bi-person-plus-fill"
+            class="bi bi-bag-plus-fill"
             viewBox="0 0 16 16"
           >
             <path
-              d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"
-            />
-            <path
               fill-rule="evenodd"
-              d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"
+              d="M10.5 3.5a2.5 2.5 0 0 0-5 0V4h5v-.5zm1 0V4H15v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4h3.5v-.5a3.5 3.5 0 1 1 7 0zM8.5 8a.5.5 0 0 0-1 0v1.5H6a.5.5 0 0 0 0 1h1.5V12a.5.5 0 0 0 1 0v-1.5H10a.5.5 0 0 0 0-1H8.5V8z"
             />
           </svg>
         </span>
       </p-card>
       <br />
       <p-card>
-        <h5>
-          Count
-          <hr />
-          {{ dataCount }}
-        </h5>
+        <span>
+          <h5>
+            Count
+            <hr />
+            {{ dataCount }}
+          </h5>
+        </span>
       </p-card>
       <br />
-      <!-- <p-card>
-        <h5>Change Password<hr>{{dataCount}}</h5>
-      </p-card> -->
     </div>
     <div class="col-md-10">
       <p-card>
-        <h5>Admin Panel</h5>
+        <h5>Product Category</h5>
         <hr />
         <kendo-grid
-          [kendoGridBinding]="employeeDataForGrid"
-          kendoGridSelectBy="employeeEmail"
+          [kendoGridBinding]="productDataForGrid"
+          kendoGridSelectBy="productName"
           [pageSize]="10"
           [pageable]="true"
           [pageable]="true"
@@ -61,57 +60,58 @@
           [columnMenu]="{ filter: true }"
         >
           <ng-template kendoGridToolbarTemplate>
-            <span pTooltip="Click to Export Excel " tooltipPosition="right">
-              <button
-                type="button"
-                class="btn btn-success"
-                kendoGridExcelCommand
-                icon="file-excel"
-              >
-                Export to Excel
-              </button>
-            </span>
+            <span
+            pTooltip="Search in product category "
+            tooltipPosition="right">
+            <input
+               class="form-control"
+               [style.width.px]="500"
+               placeholder="Search"
+               kendoTextBox
+               (input)="onFilter($event)"
+             />
+           </span>
+            <kendo-grid-spacer></kendo-grid-spacer>
+            <button
+              type="button"
+              class="btn btn-primary"
+              kendoGridExcelCommand
+              icon="file-excel"
+              pTooltip="Click to Convert Excel"
+              tooltipPosition="left"
+            >
+              Export to Excel
+            </button>
           </ng-template>
           <kendo-grid-column
-            field="employeeName"
-            title="Employee Name"
+            field="productName"
+            title="Product Name"
             [width]="140"
             [headerStyle]="{ 'font-weight': 'bold' }"
           >
           </kendo-grid-column>
           <kendo-grid-column
-            field="role.roleType"
-            title="role Name"
+            field="productWeight"
+            title="Product Quantity"
             [width]="100"
             [headerStyle]="{ 'font-weight': 'bold' }"
           >
           </kendo-grid-column>
           <kendo-grid-column
-            field="active"
-            title="active"
+            field="productPrice"
+            title="Product Price"
             [width]="60"
             [headerStyle]="{ 'font-weight': 'bold' }"
           >
           </kendo-grid-column>
           <kendo-grid-column
-            field="employeePhone"
-            title="Employee Phone"
+            field="type.typeName"
+            title="Type Name"
             [width]="120"
             [headerStyle]="{ 'font-weight': 'bold' }"
           >
           </kendo-grid-column>
-          <kendo-grid-column
-            field="employeeEmail"
-            title=" Employee Email"
-            [width]="120"
-            [headerStyle]="{ 'font-weight': 'bold' }"
-          >
-          </kendo-grid-column>
-          <kendo-grid-column
-            title=""
-            [width]="120"
-            [headerStyle]="{ 'font-weight': 'bold' }"
-          >
+          <kendo-grid-column title="" [width]="120">
             <ng-template kendoGridCellTemplate let-dataItem>
               <span pTooltip="Edit Row " tooltipPosition="left">
                 <svg
@@ -120,7 +120,7 @@
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-pencil-square"
+                  class="bi bi-pencil-square text-primary"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -133,14 +133,14 @@
                 </svg>
               </span>
               &nbsp;&nbsp;&nbsp;
-              <span pTooltip="Delete Row " tooltipPosition="right">
+              <span pTooltip="Delete Row" tooltipPosition="right">
                 <svg
                   (click)="deleteGridElementPopup(dataItem)"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
                   height="30"
                   fill="currentColor"
-                  class="bi bi-trash3-fill"
+                  class="bi bi-trash3-fill text-danger"
                   viewBox="0 0 16 16"
                 >
                   <path
@@ -150,40 +150,40 @@
               </span>
             </ng-template>
           </kendo-grid-column>
-          <kendo-grid-excel fileName="Employee.xlsx"></kendo-grid-excel>
+          <kendo-grid-excel fileName="ProductCategory.xlsx"></kendo-grid-excel>
         </kendo-grid>
       </p-card>
     </div>
   </div>
-
 </div>
-<!-- Creating Pop Up -->
+
+<!-- Creating Product -->
 <p-dialog
-  header="Create a new User"
+  header="Create a new Product"
   [(visible)]="displayModalCreate"
   [modal]="true"
   [style]="{ width: '50vw' }"
   [draggable]="false"
   [resizable]="false"
 >
-  <form [formGroup]="employeeCreateForm">
+  <form [formGroup]="productCreateForm">
     <br />
     <span class="p-float-label" width="100">
       <input
         id="float-input"
         type="text"
-        name="name_text"
-        formControlName="employeeName"
+        name="name_product"
+        formControlName="productName"
         pInputText
         required
       />
-      <label for="float-input">employee Name </label> </span
+      <label for="float-input">product Name </label> </span
     ><br />
     <span class="p-float-label" width="100">
       <p-dropdown
-        [options]="role_data"
-        optionLabel="roleType"
-        formControlName="roleId"
+        [options]="type_data"
+        optionLabel="typeName"
+        formControlName="typeId"
         [showClear]="true"
       ></p-dropdown>
       <label for="float-input"> Role Type </label> </span
@@ -192,33 +192,22 @@
       <input
         id="float-input"
         type="number"
-        name="pNum"
-        formControlName="employeePhone"
+        name="productWeight"
+        formControlName="productWeight"
         pInputText
         required
       />
-      <label for="float-input"> employee Phone</label> </span
+      <label for="float-input"> product Weight</label> </span
     ><br />
     <span class="p-float-label" width="100">
       <input
         id="float-input"
-        type="email"
-        formControlName="employeeEmail"
+        type="text"
+        formControlName="productPrice"
         pInputText
         required
       />
-      <label for="float-input"> employee Email </label> </span
-    ><br />
-    <span class="p-float-label" width="100">
-      <input
-        id="float-input"
-        type="password"
-        name="password_new"
-        formControlName="password"
-        pInputText
-        required
-      />
-      <label for="float-input"> password </label> </span
+      <label for="float-input"> product Price </label> </span
     ><br />
     <div class="row">
       <div class="col-md-6">
@@ -228,7 +217,7 @@
           type="button"
           label="Exit"
           (click)="
-            this.employeeDataUpdate.reset(); this.displayModalCreate = false
+            this.productDataUpdate.reset(); this.displayModalCreate = false
           "
         ></button>
       </div>
@@ -255,7 +244,7 @@
   [resizable]="true"
 >
   <div class="grid p-fluid">
-    <form [formGroup]="employeeDataUpdate">
+    <form [formGroup]="productDataUpdate">
       <br />
       <span class="p-float-label" width="100">
         <input
@@ -263,52 +252,51 @@
           type="text"
           name="id_text"
           [readonly]="true"
-          formControlName="employeeId"
+          formControlName="productId"
           pInputText
-          disable
         />
-        <label for="float-input">employee Id </label> </span
+        <label for="float-input">product Id </label> </span
       ><br />
       <span class="p-float-label" width="100">
         <input
           id="float-input"
           type="text"
           name="name_text"
-          formControlName="employeeName"
+          formControlName="productName"
           pInputText
           required
         />
-        <label for="float-input">employee Name </label> </span
+        <label for="float-input">product Name </label> </span
       ><br />
       <span class="p-float-label" width="100">
         <p-dropdown
-          [options]="role_data"
-          optionLabel="roleType"
-          formControlName="roleId"
+          [options]="type_data"
+          optionLabel="typeName"
+          formControlName="typeId"
           [showClear]="true"
         ></p-dropdown>
-        <label for="float-input"> Role Type </label> </span
+        <label for="float-input"> type Name </label> </span
       ><br />
       <span class="p-float-label" width="100">
         <input
           id="float-input"
           type="number"
           name="Phone_num"
-          formControlName="employeePhone"
+          formControlName="productWeight"
           pInputText
           required
         />
-        <label for="float-input"> employee Phone</label> </span
+        <label for="float-input"> product Weight</label> </span
       ><br />
       <span class="p-float-label" width="100">
         <input
           id="float-input"
           type="email"
-          formControlName="employeeEmail"
+          formControlName="productPrice"
           pInputText
           required
         />
-        <label for="float-input"> employee Email </label> </span
+        <label for="float-input"> product Price </label> </span
       ><br />
       <br />
       <div class="row">
@@ -320,7 +308,7 @@
             type="button"
             label="Exit"
             (click)="
-              this.employeeDataUpdate.reset(); this.displayModalEdit = false
+              this.productDataUpdate.reset(); this.displayModalEdit = false
             "
           ></button>
         </div>
@@ -352,7 +340,7 @@
   [draggable]="false"
   [resizable]="true"
 >
-  <form [formGroup]="employeeDataUpdate">
+  <form [formGroup]="productDataUpdate">
     <div class="row">
       <div class="col-md-6">
         <h4>{{ displayDelete }}</h4>
@@ -376,7 +364,7 @@
   </form>
 </p-dialog>
 <ng-template #progresloading>
-  <br>
+  <br />
   <p-progressBar
     mode="indeterminate"
     [style]="{ height: '35px' }"
