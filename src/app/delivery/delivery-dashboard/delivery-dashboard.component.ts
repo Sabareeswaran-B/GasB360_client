@@ -154,7 +154,7 @@ this.basicOptions = {
   deliveredOrderList(id: any) {
     this.service.GetDeliveriesByEmployeeId(id).subscribe({
       next: (response) => {
-        console.log(response.data.length)
+        // console.log(response.data.length)
         this.TotalDeliveryOrder = response.data.length;
         this.DeliveryOrderList = response.data as Order[];
         // this.graphdata = response['data' as keyof Object] as unknown as Order[];

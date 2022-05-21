@@ -107,7 +107,6 @@ export class FilledproductComponent implements OnInit {
   createNewUser(){
     this.displayModalCreate = false;
     let Filled = this.filledCreateForm.value;
-    console.log(Filled)
     Filled.branchId = Filled.branchId.branchId;
     Filled.productCategoryId = Filled.productCategoryId.productId;
     this.service.AddNewFilledProduct(Filled).subscribe({
@@ -127,7 +126,6 @@ increaseQuantity(dataItem: FilledProducts){
   
 this.service.AddFilledProductStock(dataItem.filledProductId,"1").subscribe({
   next: (data)=>{
-    console.log(data)
     this.LoadingPage()
     this.toaster.success("Added an Element")
   },
@@ -138,7 +136,6 @@ this.service.AddFilledProductStock(dataItem.filledProductId,"1").subscribe({
 decreaseQuantity(dataItem: FilledProducts){
     this.service.RemoveFilledProductStock(dataItem.filledProductId,"1").subscribe({
       next: (data)=>{
-        console.log(data)
         this.LoadingPage()
         this.toaster.error("Removed an Element")
       },
@@ -165,7 +162,6 @@ decreaseQuantity(dataItem: FilledProducts){
         console.log(err)
       }
     });
-    console.log(dataItem)
     this.filledDataUpdate.setValue({
       'filledProductId': dataItem.filledProductId,
       'productCategoryId': dataItem.productCategoryId,
@@ -180,7 +176,6 @@ decreaseQuantity(dataItem: FilledProducts){
     let updateGrid = this.filledDataUpdate.value;
     updateGrid.branchId = updateGrid.branchId.branchId;
     updateGrid.productCategoryId = updateGrid.productCategoryId.productId;
-    console.log(updateGrid)
     this.service.UpdateFilledProduct(updateGrid, updateGrid.filledProductId).subscribe({
       next : (data)=>{
         this.LoadingPage()

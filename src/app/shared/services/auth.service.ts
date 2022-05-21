@@ -19,7 +19,7 @@ export class AuthService {
     ) {}
 
   loginUser(signinForm: SignIn) {
-    console.log(signinForm);
+    // console.log(signinForm);
     return this.http.post(environment.baseUrl + '/Employee/Login', signinForm).pipe(
       catchError((err) => {
         console.log(err);

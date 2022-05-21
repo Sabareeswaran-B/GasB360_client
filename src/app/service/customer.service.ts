@@ -21,7 +21,7 @@ export class CustomerService {
   //login api
   login(customerCredential: LoginRequest) {
     return this.httpClient
-    .post<Response>(`${env.baseUrl}/customer/login`, customerCredential)
+      .post<Response>(`${env.baseUrl}/customer/login`, customerCredential)
   }
 
   //Signup Api
@@ -100,10 +100,13 @@ export class CustomerService {
   CheckoutStipe(order: Order) {
     return this.httpClient
       .post<Response>(`${env.baseUrl}/create-checkout-session`, {
-        customerId: order.customerId,
-        orderTotalprice: order.orderTotalprice,
-        filledProductId: order.filledProductId,
-        addressId: order.addressId
+        origin: window.origin,
+        data: {
+          customerId: order.customerId,
+          orderTotalprice: order.orderTotalprice,
+          filledProductId: order.filledProductId,
+          addressId: order.addressId
+        }
       },
         {
           headers: {
@@ -114,7 +117,7 @@ export class CustomerService {
 
   //Order add new
   AddNewOrder(order: Order) {
-    console.log(order)
+    // console.log(order)
     return this.httpClient
       .post<Response>(`${env.baseUrl}/order/addneworder`, {
         customerId: order.customerId,

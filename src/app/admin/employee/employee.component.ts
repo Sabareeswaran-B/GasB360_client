@@ -150,7 +150,6 @@ export class EmployeeComponent implements OnInit {
     this.displayModalDelete = false;
     this.service.DeleteEmployee(this.deleteMemberId).subscribe({
       next: (data) => {
-        console.log(data)
         this.toaster.error("Successfully Deleted");
         this.LoadingPage()
       },

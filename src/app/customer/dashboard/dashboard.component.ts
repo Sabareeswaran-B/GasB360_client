@@ -64,9 +64,8 @@ export class DashboardComponent implements OnInit {
       next: (response) => {
         this.orders = response.data as Order[];
         if (this.orders.length > 0) {
-          this.orders = this.orders.sort((a, b) => new Date(b.orderDate).valueOf() - new Date(a.orderDate).valueOf());
-          this.nextOrderDate.setDate(new Date(this.orders[0].orderDate).getDate() + 30)
-          this.dateDifference = this.calculateDiff(this.nextOrderDate);
+          // this.nextOrderDate.setDate(new Date(this.orders[0].orderDate).getDate() + 30)
+          this.dateDifference = this.calculateDiff(new Date(this.orders[0].orderDate));
         }
         this.orderLoading = false;
         this.orders.forEach((order) => {
@@ -109,14 +108,19 @@ export class DashboardComponent implements OnInit {
 
   calculateDiff(dateSent: Date) {
     let currentDate = new Date();
-    return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) / (1000 * 60 * 60 * 24));
+    var dateDifference = Math.floor(
+      (
+        currentDate.getTime()
+        - dateSent.getTime()
+      ) / (1000 * 60 * 60 * 24)
+    );
+    return dateDifference <= 30 ? 30 - dateDifference : 0
   }
 
   getAllProductCategories() {
     var subscription = this.customerService.GetAllProductCategories().subscribe({
       next: (response) => {
         this.products = response.data as ProductCategory[];
-        console.log(this.products);
       },
       error: (error) => {
         console.log(error);

@@ -44,7 +44,7 @@ export class DeliveryCompletedordersComponent implements OnInit {
   deliveredOrderList(id:any){
     this.service.GetDeliveriesByEmployeeId(id).subscribe({
       next: (response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.OrderList=response.data as Delivery[];
         this.OrderListWithoutFilter=response.data as Delivery[];
         this.progress = false;
@@ -59,11 +59,11 @@ export class DeliveryCompletedordersComponent implements OnInit {
   FilterFn = debounce(this.search, 400)
 
   search(){
-    console.log(this.CustomerNameFilter);
+    // console.log(this.CustomerNameFilter);
     var CustomerNameFilter = this.CustomerNameFilter;
 
     this.OrderList = this.OrderListWithoutFilter.filter(function (el:any){
-      console.log(el);
+      // console.log(el);
          return el.order.customer.customerName.toString().toLowerCase().includes(
           CustomerNameFilter.toString().trim().toLowerCase()
         )

@@ -57,7 +57,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   getProductCategoryById(productCategoryId: string) {
     var subscription = this.customerService.GetProductCategoryById(productCategoryId).subscribe({
       next: (response) => {
-        console.log(response);
         this.product = response.data as FilledProduct;
         this.componentLoading = false;
       },

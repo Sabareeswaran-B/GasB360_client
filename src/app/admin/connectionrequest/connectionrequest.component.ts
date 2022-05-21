@@ -43,7 +43,6 @@ export class ConnectionrequestComponent implements OnInit {
     this.service.GetAllConnectionRequests().subscribe({
       next: (data) => {
         this.CustomerRequest = data.data  as Customer[];
-        console.log(this.CustomerRequest)
         this.dataCount = this.CustomerRequest.length; 
         this.componentLoading = false;
       },

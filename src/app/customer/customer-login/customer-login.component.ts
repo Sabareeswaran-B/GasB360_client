@@ -63,10 +63,8 @@ export class CustomerLoginComponent implements OnInit, OnDestroy {
 
   login(): void {
     this.isLoading = true;
-    console.log(this.loginForm.value);
     var subscription = this.customerService.login(this.loginForm.value).subscribe({
       next: (response) => {
-        console.log(response);
         var data = response.data as LoginResponse;
         localStorage.setItem('token', data.token);
         localStorage.setItem('id', data.id);

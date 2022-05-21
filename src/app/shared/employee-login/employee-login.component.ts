@@ -60,7 +60,7 @@ export class EmployeeLoginComponent implements OnInit, OnDestroy {
             localStorage.setItem('user', JSON.stringify(this.userData));
             JSON.parse(localStorage.getItem('user')!);
             this.userData = result.data;
-            console.log(this.userData)
+            // console.log(this.userData)
             localStorage.setItem('token', this.userData.token);
             localStorage.setItem('id', this.userData.id);
             localStorage.setItem('isLoggedin', 'true');

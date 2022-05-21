@@ -95,7 +95,6 @@ export class CustomerSignupComponent implements OnInit, OnDestroy {
     customer.password = this.signupForm.controls['password'].value;
     var subscription = this.customerService.Signup(customer).subscribe({
       next: (response) => {
-        console.log(response.data);
         // let message = data['message' as keyof Object] as unknown as string
         // this.messageService.add({ severity: 'success', summary: message });
         this.toastr.success("Sign up successful");

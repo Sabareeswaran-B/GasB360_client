@@ -54,7 +54,7 @@ export class DeliveryOrdersComponent implements OnInit {
   refreshOrderList(id: any) {
     this.service.getOrderByEmployeeId(id).subscribe({
       next: (response) => {
-        console.log(response.data)
+        // console.log(response.data)
         this.OrderList = response.data as Order[];
         this.OrderListWithoutFilter = response.data as Order[];
         this.progress = false;
@@ -70,7 +70,7 @@ export class DeliveryOrdersComponent implements OnInit {
   FilterFn = debounce(this.search, 400)
 
   search() {
-    console.log(this.CustomerNameFilter);
+    // console.log(this.CustomerNameFilter);
     var CustomerNameFilter = this.CustomerNameFilter;
 
     this.OrderList = this.OrderListWithoutFilter.filter(function (el: any) {

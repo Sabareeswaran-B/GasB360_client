@@ -112,7 +112,6 @@ export class ProductcategoryComponent implements OnInit {
         console.log(err)
       }
     });
-    console.log(dataItem.typeId)
     this.productDataUpdate.setValue({
       'productId': dataItem.productId,
       'productName': dataItem.productName,
@@ -128,7 +127,6 @@ export class ProductcategoryComponent implements OnInit {
     this.displayModalEdit = false;
     let updateGrid = this.productDataUpdate.value;
     updateGrid.typeId = updateGrid.typeId.typeId;
-    console.log(updateGrid)
     this.service.UpdateProductCategory(updateGrid,updateGrid.productId).subscribe({
       next : (data)=>{
         this.LoadingPage()
@@ -150,7 +148,6 @@ export class ProductcategoryComponent implements OnInit {
     this.displayModalDelete = false;
     this.service.DeleteProductCategory(this.deleteMemberId).subscribe({
       next : (data)=>{
-        console.log(data)
         this.toaster.error("Successfully Deleted");
         this.LoadingPage()
       },

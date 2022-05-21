@@ -75,7 +75,7 @@ export class ProfileComponent implements OnInit {
     let fileExtension: string = fileToUpload.name.split('?')[0].split('.').pop() || '';
     const formData = new FormData();
     formData.append('file', fileToUpload, fileName + '.' + fileExtension);
-    console.log(formData);
+    // console.log(formData);
     var subscription = this.customerService.UpdateCustomerImage(formData, this.customerId).subscribe({
       next: (data) => {
         this.toastr.success("image uploaded successful");
@@ -110,7 +110,7 @@ export class ProfileComponent implements OnInit {
   }
 
   openEditModal() {
-    console.log(this.customer)
+    // console.log(this.customer)
     this.displayEditModal = true;
     this.profileEditForm.setValue({
       'customerId': this.customer.customerId,

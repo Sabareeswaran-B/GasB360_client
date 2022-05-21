@@ -110,7 +110,6 @@ export class UnfilledproductComponent implements OnInit {
   createNewUser(){
     this.displayModalCreate = false;
     let Filled = this.unfilledCreateForm.value;
-    console.log(Filled)
     Filled.branchId = Filled.branchId.branchId;
     Filled.productCategoryId = Filled.productCategoryId.productId;
     this.service.AddNewUnfilledProduct(Filled).subscribe({
@@ -159,7 +158,7 @@ export class UnfilledproductComponent implements OnInit {
     let updateGrid = this.unfilledDataUpdate.value;
     updateGrid.branchId = updateGrid.branchId.branchId;
     updateGrid.productCategoryId = updateGrid.productCategoryId.productId;
-    console.log(updateGrid)
+    // console.log(updateGrid)
     this.service.UpdateUnfilledProduct(updateGrid, updateGrid.unfilledProductId).subscribe({
       next : (data)=>{
         this.LoadingPage()
@@ -173,7 +172,6 @@ export class UnfilledproductComponent implements OnInit {
   increaseQuantity(dataItem : UnfilledProducts){
     this.service.AddUnfilledProductStock(dataItem.unfilledProductId,"1").subscribe({
       next: (data)=>{
-        console.log(data)
         this.LoadingPage()
         this.toaster.success("Added an Element")
       },
@@ -183,7 +181,6 @@ export class UnfilledproductComponent implements OnInit {
   decreaseQuantity(dataItem : UnfilledProducts){
     this.service.RemoveUnfilledProductStock(dataItem.unfilledProductId,"1").subscribe({
       next: (data)=>{
-        console.log(data)
         this.LoadingPage()
         this.toaster.error("Removed an Element")
       },
@@ -191,7 +188,6 @@ export class UnfilledproductComponent implements OnInit {
     })
   }
   deleteGridElementPopup(dataItem : UnfilledProducts){
-    console.log(dataItem)
     this.displayDelete = "Are You Sure want to delete, ";
     this.displayDelete += dataItem.productCategory.productName;
     this.displayDelete += "?";
@@ -202,7 +198,6 @@ export class UnfilledproductComponent implements OnInit {
     this.displayModalDelete = false;
     this.service.DeleteUnfilledProduct(this.deleteMemberId).subscribe({
       next : (data)=>{
-        console.log(data)
         this.toaster.error("Successfully Deleted");
         this.LoadingPage()
       },

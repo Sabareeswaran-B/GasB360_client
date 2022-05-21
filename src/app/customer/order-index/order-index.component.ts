@@ -57,7 +57,6 @@ export class OrderIndexComponent implements OnInit, OnDestroy {
         if (this.orders.length <= 0) {
           this.noOrdersYet = true;
         }
-        console.log(this.orders);
       },
       error: (error) => {
         console.log(error)

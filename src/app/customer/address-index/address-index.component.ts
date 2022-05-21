@@ -101,7 +101,6 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
     });
     this.customerService.AddNewAddress(this.addAddressForm.value).subscribe({
       next: (data) => {
-        console.log(data);
         this.toastr.success(data.message)
         this.addnewLoading = false;
         this.addAddressForm.reset();
@@ -161,7 +160,7 @@ export class AddressIndexComponent implements OnInit, OnDestroy {
           order.addressId = this.selectedAddress.addressId;
           order.customerId = this.customerId;
           order.filledProductId = this.selectedProduct.filledProductId;
-          order.orderTotalprice = this.selectedProduct.productCategory.productPrice;
+          order.orderTotalprice = this.selectedProduct.productCategory.productPrice;          
           var subscription = this.customerService.CheckoutStipe(order).subscribe({
             next: (response) => {
               // this.toastr.success(response.message);
